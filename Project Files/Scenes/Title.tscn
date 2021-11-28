@@ -308,13 +308,14 @@ margin_bottom = 370.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_colors/font_color = Color( 0.964706, 0.690196, 0.443137, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "A3: Tool Time"
+text = "A4: Enemies at Your 12!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartButton" parent="Title Info" instance=ExtResource( 11 )]
+visible = false
 margin_left = 947.0
 margin_top = 1006.0
 margin_right = 987.0
@@ -327,6 +328,7 @@ controller_input = "StartGame"
 visible = false
 
 [node name="QuitButton" parent="Title Info" instance=ExtResource( 11 )]
+visible = false
 margin_left = 112.297
 margin_top = 1010.49
 margin_right = 152.297
@@ -347,6 +349,7 @@ anims/Disable = SubResource( 12 )
 anims/RESET = SubResource( 13 )
 
 [node name="StartLabel" type="Label" parent="Title Info"]
+visible = false
 margin_left = 9.0
 margin_top = 855.0
 margin_right = 2725.0

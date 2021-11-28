@@ -6,7 +6,7 @@
 [ext_resource path="res://Audio/SFX/Ship Sounds/Braking_2.wav" type="AudioStream" id=5]
 [ext_resource path="res://Audio/SFX/Ship Sounds/Moving.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/UpgradeSystem.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Characters/PlayerWeaponManager.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/PlayerWeaponManager.gd" type="Script" id=8]
 
 [node name="PlayerShipController" groups=["Player"] instance=ExtResource( 1 )]
 pause_mode = 1

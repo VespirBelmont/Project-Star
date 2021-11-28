@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Characters/VisualManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/ShipManager.tscn" type="PackedScene" id=1]
 
 [node name="VisualManager_Preview" instance=ExtResource( 1 )]
 calculate_stats = false

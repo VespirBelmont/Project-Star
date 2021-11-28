@@ -13,10 +13,10 @@ func _physics_process(delta):
 
 
 func control_check():
-	var move_right = Input.is_action_pressed("MoveRight_%s" % player_id) and can_move and $VisualManager.wing_check()
-	var move_left = Input.is_action_pressed("MoveLeft_%s" % player_id) and can_move and $VisualManager.wing_check()
-	var accelerate = Input.is_action_pressed("Accelerate_%s" % player_id) and can_move and $VisualManager.wing_check()
-	var brake = Input.is_action_pressed("Brake_%s" % player_id) and can_move and $VisualManager.wing_check()
+	var move_right = Input.is_action_pressed("MoveRight_%s" % player_id) and can_move and $ShipManager.wing_check()
+	var move_left = Input.is_action_pressed("MoveLeft_%s" % player_id) and can_move and $ShipManager.wing_check()
+	var accelerate = Input.is_action_pressed("Accelerate_%s" % player_id) and can_move and $ShipManager.wing_check()
+	var brake = Input.is_action_pressed("Brake_%s" % player_id) and can_move and $ShipManager.wing_check()
 	
 	var shoot_left = Input.is_action_pressed("ShootLeft_%s" % player_id)
 	var shoot_right = Input.is_action_pressed("ShootRight_%s" % player_id)
@@ -43,16 +43,16 @@ func control_check():
 		if not $Audio/Brake.playing:
 			$Audio/Brake.play()
 	
-	if $VisualManager.wing_check() and move_module.velocity.y < 0:
+	if $ShipManager.wing_check() and move_module.velocity.y < 0:
 		move_module.velocity.y -= move_module.auto_move_speed
 	
 	if shoot_left:
-		for side_weapon in $VisualManager/WeaponLeft.get_children():
+		for side_weapon in $ShipManager/WeaponLeft.get_children():
 			if side_weapon.visible:
 				side_weapon.shoot()
 	
 	if shoot_right:
-		for side_weapon in $VisualManager/WeaponRight.get_children():
+		for side_weapon in $ShipManager/WeaponRight.get_children():
 			if side_weapon.visible:
 				side_weapon.shoot()
 
