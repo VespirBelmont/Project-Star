@@ -11,10 +11,11 @@ export (int) var damage_modifier = 0
 export (Vector2) var shoot_direction = Vector2(0, -1)
 export (float) var shoot_speed
 
-export (String, "Player", "Enemy") var target = "Enemy"
+export (Array, String, "Player", "Enemy", "Hazard") var target = ["Enemy"]
 
 export (bool) var reload_feedback_active = true
 
+export (String, "SmallShake", "MediumShake", "LauncherShake") var cam_fx
 
 func shoot():
 	if not can_fire: return
@@ -23,6 +24,11 @@ func shoot():
 	$Bullets.add_child(projectile)
 	projectile.setup(damage_modifier, shoot_direction, shoot_speed, target)
 	projectile.global_position = $ProjectileSpawnPos.global_position
+	
+	if cam_fx != "":
+		var cam_anim = get_parent().get_parent().get_parent().get_parent().get_parent().get_node("CamRig/Anim")
+		cam_anim.play(cam_fx)
+	
 	$Audio/Shoot.play()
 	$MuzzleFlashSprite/FlashAnim.play("Flash")
 	

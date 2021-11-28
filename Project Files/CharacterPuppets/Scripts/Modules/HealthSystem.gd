@@ -36,6 +36,7 @@ func change_health_max(_new_max):
 
 #This handles damaging the character
 func take_damage(damage, knockback, damage_pos):
+	print("HURT")
 	emit_signal("Hurt")
 	#Reduce the current health with the modify stat method
 	health_current = clamp(health_current - damage, 0, health_max)
@@ -44,9 +45,10 @@ func take_damage(damage, knockback, damage_pos):
 	#Then we limit it so it can only be right or left at 1 or -1
 	damage_direction = clamp(controller.global_position.x - damage_pos.x, -1, 1)
 	
-	move_module.velocity.x = damage_direction * knockback #Then set the horizontal velocity to damage jump's value times the direction which knocks us back
-	if controller.is_in_group("AI"):
-		move_module.move(true)
+	if move_module != null:
+		move_module.velocity.x = damage_direction * knockback #Then set the horizontal velocity to damage jump's value times the direction which knocks us back
+		if controller.is_in_group("AI"):
+			move_module.move(true)
 	
 	if health_current == 0:
 		emit_signal("Dead")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Weapons/WeaponTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/SpriteManager.gd" type="Script" id=3]
+
+[node name="Cerberus Cannon" instance=ExtResource( 1 )]
+position = Vector2( 0, 0 )
+scale = Vector2( 2, 2 )
+reload_feedback_active = false
+
+[node name="ProjectileSpawnPos" parent="." index="2"]
+position = Vector2( 0.283, -9.438 )
+
+[node name="Sprite" parent="." index="3"]
+visible = false
+
+[node name="MuzzleFlashSprite" parent="." index="4"]
+position = Vector2( -7.45058e-09, -10.5 )
+
+[node name="GameplaySprite" type="Node2D" parent="." index="7"]
+position = Vector2( -0.064, 0.189 )
+script = ExtResource( 3 )
+
+[node name="Outline" type="Node2D" parent="GameplaySprite" index="0"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Outline" index="0"]
+modulate = Color( 1, 1, 1, 0.466667 )
+position = Vector2( 0.12, -1.12 )
+scale = Vector2( 1, 0.984 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 146.097, 1116.94, 7.36105, 21.531 )
+
+[node name="Detail_1" type="Node2D" parent="GameplaySprite" index="1"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_1" index="0"]
+modulate = Color( 0.662745, 0.729412, 0.611765, 1 )
+position = Vector2( 0.218, -0.781 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 155.85, 1118.23, 6.07285, 19.3228 )
+
+[node name="Detail_2" type="Node2D" parent="GameplaySprite" index="2"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_2" index="0"]
+modulate = Color( 0.603922, 0.666667, 0.713726, 1 )
+position = Vector2( 0.409, -0.784 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 163.211, 1118.05, 5.7048, 19.6908 )

@@ -63,6 +63,7 @@ tracks/1/keys = {
 position = Vector2( 0, 0 )
 damage_modifier = 2
 reload_feedback_active = false
+cam_fx = "MediumShake"
 
 [node name="CooldownTimer" parent="." index="0"]
 wait_time = 1.3

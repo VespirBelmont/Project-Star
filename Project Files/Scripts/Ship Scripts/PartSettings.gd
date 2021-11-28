@@ -10,14 +10,8 @@ export (int) var damage_modifier = 0
 
 func _ready():
 	if preview_mode:
-		$GameSprite.hide()
+		$GameplaySprite.hide()
 		$PreviewSprite.show()
-		
-		if has_particles:
-			$Particles.hide()
 	else:
-		$GameSprite.show()
+		$GameplaySprite.show()
 		$PreviewSprite.hide()
-		
-		if has_particles:
-			$Particles.show()

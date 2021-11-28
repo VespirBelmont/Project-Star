@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wings_Starter.png-7f4e040ae47fec4fc6a475f04635c8a8.stex"
+path="res://.import/Explosion.png-3f7398d4dd634c19ea47acba591b77ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Characters/Wings_Starter.png"
-dest_files=[ "res://.import/Wings_Starter.png-7f4e040ae47fec4fc6a475f04635c8a8.stex" ]
+source_file="res://Graphics/Explosion.png"
+dest_files=[ "res://.import/Explosion.png-3f7398d4dd634c19ea47acba591b77ea.stex" ]
 
 [params]
 

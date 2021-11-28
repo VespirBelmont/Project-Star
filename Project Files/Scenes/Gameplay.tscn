@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Characters/Player/PlayerShipController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CamRig.tscn" type="PackedScene" id=2]
@@ -10,12 +10,177 @@
 [ext_resource path="res://Graphics/Interface/BlankSquare.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/MenuBlur.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/GameManager.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Hazards/SkyMine.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 435.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6.00002, 600.875 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cam:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "ExplosionShake"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Filters/ExplosionFilter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.592157, 0.435294, 0.576471 ), Color( 1, 0.592157, 0.435294, 0.0509804 ), Color( 1, 0.552941, 0.380392, 0.537255 ), Color( 1, 0.592157, 0.435294, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Filters/ExplosionFilter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cam:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, -206 ), Vector2( 50, -206 ), Vector2( 66, -206 ), Vector2( 82, -206 ), Vector2( 66, -206 ), Vector2( 50, -206 ), Vector2( 66, -206 ), Vector2( 82, -206 ), Vector2( 66, -206 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "LauncherShake"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, -206 ), Vector2( 66, -166 ), Vector2( 66, -206 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "MediumShake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, -206 ), Vector2( 42, -206 ), Vector2( 66, -206 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 479, 469 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cam:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.4, 0.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Filters/ExplosionFilter:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.592157, 0.435294, 0.0509804 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Filters/ExplosionFilter:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Cam:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 58, -206 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "SmallShake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 66, -206 ), Vector2( 63, -206 ), Vector2( 66, -206 ) ]
+}
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -233,7 +398,6 @@ script = ExtResource( 10 )
 
 [node name="P1" parent="Players" instance=ExtResource( 1 )]
 position = Vector2( 561.835, 466.218 )
-collision_layer = 1
 
 [node name="InstantMoveSystem" parent="Players/P1/Modules" index="0"]
 move_speeds = {
@@ -243,22 +407,24 @@ move_speeds = {
 }
 
 [node name="CamRig" parent="." instance=ExtResource( 2 )]
+position = Vector2( 479, 469 )
 scroll_speed = 7.0
 
 [node name="Cam" parent="CamRig" index="0"]
-position = Vector2( 66, -206 )
+position = Vector2( 58, -206 )
+zoom = Vector2( 0.4, 0.4 )
 
 [node name="TopLimit" parent="CamRig/Limits" index="0"]
-position = Vector2( 523, -9 )
+position = Vector2( 550, -83 )
 
 [node name="BottomLimit" parent="CamRig/Limits" index="1"]
 position = Vector2( 588, 1244 )
 
 [node name="RightLimit" parent="CamRig/Limits" index="2"]
-position = Vector2( 1114, 373 )
+position = Vector2( 1133, 373 )
 
 [node name="LeftLimit" parent="CamRig/Limits" index="3"]
-position = Vector2( -22, 386 )
+position = Vector2( -48, 386 )
 
 [node name="Boundaries" type="Node2D" parent="CamRig"]
 position = Vector2( -481, -469 )
@@ -283,6 +449,23 @@ collision_mask = 0
 position = Vector2( 543, 3 )
 rotation = 1.5708
 shape = SubResource( 2 )
+
+[node name="Filters" type="Node2D" parent="CamRig"]
+
+[node name="ExplosionFilter" type="Sprite" parent="CamRig/Filters"]
+modulate = Color( 1, 0.592157, 0.435294, 0.0509804 )
+position = Vector2( 76.5, -210 )
+scale = Vector2( 37.2188, 20.9375 )
+texture = ExtResource( 8 )
+
+[node name="Anim" type="AnimationPlayer" parent="CamRig"]
+autoplay = "Default"
+anims/Default = SubResource( 13 )
+anims/ExplosionShake = SubResource( 11 )
+anims/LauncherShake = SubResource( 16 )
+anims/MediumShake = SubResource( 15 )
+anims/RESET = SubResource( 12 )
+anims/SmallShake = SubResource( 14 )
 
 [node name="Music" type="Node" parent="."]
 
@@ -398,9 +581,50 @@ margin_bottom = 212.214
 [node name="CRTShader" parent="Interface" instance=ExtResource( 4 )]
 visible = false
 
+[node name="SkyMine" parent="." instance=ExtResource( 11 )]
+position = Vector2( 564, 337 )
+collision_layer = 0
+
+[node name="SkyMine2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 563, 381 )
+collision_layer = 0
+
+[node name="SkyMine3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 588, 296 )
+collision_layer = 0
+
+[node name="SkyMine4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 542, 284 )
+collision_layer = 0
+
+[node name="SkyMine5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 517, 314 )
+collision_layer = 0
+
+[node name="SkyMine6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 505, 356 )
+collision_layer = 0
+
+[node name="SkyMine7" parent="." instance=ExtResource( 11 )]
+position = Vector2( 612, 369 )
+collision_layer = 0
+
+[node name="SkyMine8" parent="." instance=ExtResource( 11 )]
+position = Vector2( 615, 332 )
+collision_layer = 0
+
+[node name="SkyMine9" parent="." instance=ExtResource( 11 )]
+position = Vector2( 527, 377 )
+collision_layer = 0
+
+[node name="SkyMine10" parent="." instance=ExtResource( 11 )]
+position = Vector2( 509, 276 )
+collision_layer = 0
+
 [connection signal="Button_Pressed" from="Interface/Interface/Player_1/Upgrade" to="Players/P1/UpgradeSystem" method="toggle"]
 
 [editable path="Players/P1"]
+[editable path="Players/P1/ShipManager"]
 [editable path="CamRig"]
 [editable path="Interface/Interface/Player_1"]
 [editable path="Interface/Interface/Player_1/Upgrade"]

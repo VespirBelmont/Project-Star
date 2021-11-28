@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/CropFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/CropWings.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scripts/PlayerWeaponManager.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Weapons/RocketLauncherMk1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Weapons/CropCannon.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Weapons/CerberusCannon.tscn" type="PackedScene" id=14]
 
 [node name="ShipManager" type="Node2D"]
 script = ExtResource( 3 )
@@ -20,7 +21,6 @@ script = ExtResource( 3 )
 [node name="Wings" type="Node2D" parent="."]
 
 [node name="Crop Wings" parent="Wings" instance=ExtResource( 2 )]
-visible = false
 position = Vector2( -0.47, 0 )
 has_particles = true
 
@@ -64,9 +64,11 @@ script = ExtResource( 11 )
 visible = false
 
 [node name="Auto Rifle XV" parent="WeaponLeft" instance=ExtResource( 10 )]
-visible = false
 
 [node name="Rocket Launcher Mk1" parent="WeaponLeft" instance=ExtResource( 12 )]
+visible = false
+
+[node name="Cerberus Cannon" parent="WeaponLeft" instance=ExtResource( 14 )]
 visible = false
 
 [node name="WeaponRight" type="Node2D" parent="."]
@@ -81,4 +83,6 @@ visible = false
 visible = false
 
 [node name="Rocket Launcher Mk1" parent="WeaponRight" instance=ExtResource( 12 )]
+
+[node name="Cerberus Cannon" parent="WeaponRight" instance=ExtResource( 14 )]
 visible = false

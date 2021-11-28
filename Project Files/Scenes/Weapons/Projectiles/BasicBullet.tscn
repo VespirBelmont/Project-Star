@@ -10,12 +10,15 @@ extents = Vector2( 0.26935, 0.448467 )
 
 [node name="BasicBullet" instance=ExtResource( 2 )]
 scale = Vector2( 10, 10 )
+collision_mask = 6
+targets = [ "Hazard", "Enemy" ]
 
 [node name="AreaCollider" parent="." index="0"]
 position = Vector2( 0.034616, -0.0522324 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="1"]
+visible = false
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 position = Vector2( 0.0108557, -0.0302038 )
@@ -26,7 +29,6 @@ region_enabled = true
 region_rect = Rect2( 4, 19, 8, 12 )
 
 [node name="TrailParticles" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 0.0187601, 0.540431 )
 lifetime = 0.6
 speed_scale = 5.0
 texture = ExtResource( 4 )

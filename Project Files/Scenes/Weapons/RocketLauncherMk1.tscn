@@ -8,6 +8,7 @@ position = Vector2( 0, 0 )
 damage_modifier = 5
 shoot_speed = 8.0
 reload_feedback_active = false
+cam_fx = "LauncherShake"
 
 [node name="CooldownTimer" parent="." index="0"]
 wait_time = 3.0
