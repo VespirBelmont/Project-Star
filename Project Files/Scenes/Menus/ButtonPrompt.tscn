@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Audio/SFX/Purchased.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/PromptManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=6]
+size = 130
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PromptManager:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PromptManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="ButtonPrompt" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionLabel" type="Label" parent="."]
+modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
+margin_left = 38.5
+margin_top = 5.5
+margin_right = 405.5
+margin_bottom = 168.5
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 6 )
+text = "Option"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PromptManager" parent="." instance=ExtResource( 3 )]
+
+[node name="PressedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Disable = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[connection signal="Button_Pressed" from="." to="PromptManager" method="button_pressed"]
+[connection signal="Button_Pressed" from="." to="PressedAudio" method="play"]

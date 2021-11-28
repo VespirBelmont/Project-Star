@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://CharacterPuppets/Scenes/2D/Templates/CharacterCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterPuppets/Scripts/Puppets/PlatformerPuppet2D.gd" type="Script" id=2]
+
+[node name="PlatformerPuppet2D" instance=ExtResource( 1 )]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="DustParticles" parent="Particles" index="0"]
+amount = 40
+explosiveness = 0.14
+local_coords = false

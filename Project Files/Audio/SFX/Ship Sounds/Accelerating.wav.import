@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Accelerating.wav-5efa9f0df7f7243248f04d7c427f0adc.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Ship Sounds/Accelerating.wav"
+dest_files=[ "res://.import/Accelerating.wav-5efa9f0df7f7243248f04d7c427f0adc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

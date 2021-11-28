@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/CamRig.gd" type="Script" id=1]
+
+[node name="CamRig" type="Node2D"]
+position = Vector2( 481, 469 )
+script = ExtResource( 1 )
+target_path = NodePath("../Player")
+
+[node name="Cam" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.6, 0.6 )
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLimit" type="Position2D" parent="Limits"]
+
+[node name="BottomLimit" type="Position2D" parent="Limits"]
+
+[node name="RightLimit" type="Position2D" parent="Limits"]
+
+[node name="LeftLimit" type="Position2D" parent="Limits"]

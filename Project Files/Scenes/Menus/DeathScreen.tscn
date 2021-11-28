@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/DeathScreen.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.176471, 0.176471, 0.176471, 0 ), Color( 0.176471, 0.176471, 0.176471, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayAgain:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 732.421, 1085.78 ), Vector2( 732.421, 893.78 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuitGame:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 812.072, 1169.7 ), Vector2( 812.072, 977.7 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.176471, 0.176471, 0.176471, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayAgain:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 732.421, 1085.78 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuitGame:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 812.072, 1169.7 ) ]
+}
+
+[node name="DeathScreen" type="Control"]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+margin_left = -77.0
+margin_top = -54.0
+margin_right = 1924.0
+margin_bottom = 1091.0
+color = Color( 0.176471, 0.176471, 0.176471, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayAgain" parent="." instance=ExtResource( 1 )]
+margin_left = 732.421
+margin_top = 1085.78
+margin_right = 772.421
+margin_bottom = 1125.78
+rect_scale = Vector2( 2.5, 2.5 )
+keyboard_input = "Option_1"
+controller_input = "Option_1"
+
+[node name="OptionLabel" parent="PlayAgain" index="0"]
+text = "Fly Again!"
+
+[node name="QuitGame" parent="." instance=ExtResource( 1 )]
+margin_left = 812.072
+margin_top = 1169.7
+margin_right = 852.072
+margin_bottom = 1209.7
+keyboard_input = "Option_3"
+controller_input = "Option_3"
+
+[node name="OptionLabel" parent="QuitGame" index="0"]
+custom_colors/font_color = Color( 0.941176, 0.560784, 0.560784, 1 )
+text = "Quit"
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[connection signal="Button_Pressed" from="PlayAgain" to="." method="play_again"]
+[connection signal="Button_Pressed" from="QuitGame" to="." method="quit"]
+
+[editable path="PlayAgain"]
+[editable path="QuitGame"]

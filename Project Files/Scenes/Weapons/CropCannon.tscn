@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Weapons/WeaponTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Audio/SFX/Shooting Sounds/Shooting_2.wav" type="AudioStream" id=2]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Reload_Left"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.4467, 0.833946 ), Vector2( -20.5533, 0.833946 ), Vector2( -20.5533, 0.833946 ), Vector2( 1.4467, 0.833946 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 4, 4 ), Vector2( 4, 4 ), Vector2( 0.001, 0.001 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Reload_Right"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.4467, 0.833946 ), Vector2( 27.4467, 0.833946 ), Vector2( 27.4467, 0.833946 ), Vector2( 1.4467, 0.833946 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 4, 4 ), Vector2( 4, 4 ), Vector2( 0.001, 0.001 ) ]
+}
+
+[node name="Crop Cannon" instance=ExtResource( 1 )]
+position = Vector2( 0, 0 )
+damage_modifier = 2
+reload_feedback_active = false
+
+[node name="CooldownTimer" parent="." index="0"]
+wait_time = 1.3
+
+[node name="ProjectileSpawnPos" parent="." index="2"]
+position = Vector2( -0.073, -2.55817 )
+
+[node name="Sprite" parent="." index="3"]
+position = Vector2( -0.073, -0.356819 )
+region_rect = Rect2( 2, 3, 4, 8 )
+
+[node name="MuzzleFlashSprite" parent="." index="4"]
+position = Vector2( -0.073, -3.34313 )
+
+[node name="Shoot" parent="Audio" index="0"]
+stream = ExtResource( 2 )
+volume_db = 3.0
+bus = "SFX"
+
+[node name="ReloadedLabel" parent="." index="6"]
+visible = false
+scale = Vector2( 0.001, 0.001 )
+
+[node name="ReloadAnim" type="AnimationPlayer" parent="ReloadedLabel" index="0"]
+playback_speed = 2.0
+anims/Reload_Left = SubResource( 4 )
+anims/Reload_Right = SubResource( 6 )

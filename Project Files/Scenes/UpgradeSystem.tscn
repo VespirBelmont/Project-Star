@@ -1,0 +1,1125 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/Menus/UpgradeSystem.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Characters/WorkshopCustomizeManager.gd" type="Script" id=3]
+[ext_resource path="res://Graphics/Shaders/hologram_lines-b1399a8d.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Interface/meter_under.png" type="Texture" id=5]
+[ext_resource path="res://Audio/SFX/Equipped.wav" type="AudioStream" id=6]
+[ext_resource path="res://Graphics/Interface/BlankSquare.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Interface/meter_progress.png" type="Texture" id=8]
+[ext_resource path="res://Audio/SFX/Purchased.wav" type="AudioStream" id=9]
+[ext_resource path="res://Graphics/Nuts and Bolts.png" type="Texture" id=10]
+[ext_resource path="res://Audio/SFX/NotEnoughCurrency.wav" type="AudioStream" id=11]
+[ext_resource path="res://Scenes/Characters/VisualManager_Preview.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/PartPreviewInfo.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Graphics/Fonts/AdventPro-Medium.ttf" type="DynamicFontData" id=18]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 baseColor: hint_color = vec4(0.3058, 0.835, 0.960, 1.);
+uniform float speed = 0.5;
+uniform vec4 linesColor: hint_color = vec4(0.633232, 0.910156, 0.555693, 1.);
+uniform float linesColorIntensity = 5.;
+uniform sampler2D hologramTexture;
+uniform vec2 hologramTextureTiling = vec2(1., 5.);
+
+vec2 tilingAndOffset(vec2 uv, vec2 tiling, vec2 offset) {
+    return mod(uv * tiling + offset, 1);
+}
+
+void fragment() {
+    vec2 offset = vec2(TIME * speed / 100.0);
+    vec2 tiling = tilingAndOffset(UV, hologramTextureTiling, offset);
+    
+    vec4 noise = texture(hologramTexture, tiling);
+    
+    float fresnel = 0.71;
+    vec4 colorLines = linesColor * vec4(vec3(linesColorIntensity), 1.0);
+    vec4 emission = colorLines * fresnel * noise;
+    
+    vec4 albedo = baseColor;
+    float alpha = dot(noise.rgb, vec3(1.0));
+    vec4 hologram;
+    hologram.rgb = emission.rgb + (1.0 - emission.rgb) * albedo.rgb * albedo.a;
+    hologram.a = emission.a + (1.0 - emission.a) * alpha;
+    hologram.a = hologram.a + (1.0 - hologram.a) * albedo.a;
+    COLOR = texture(TEXTURE, UV);
+    COLOR.rgb = COLOR.rgb + (1.0 - COLOR.rgb) * hologram.rgb;
+    COLOR.a = min(COLOR.a, hologram.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/baseColor = Color( 1, 0.811765, 0.490196, 1 )
+shader_param/speed = 2.0
+shader_param/linesColor = Color( 0.372549, 0.494118, 0.533333, 0.768627 )
+shader_param/linesColorIntensity = 2.0
+shader_param/hologramTextureTiling = Vector2( 1, 5 )
+shader_param/hologramTexture = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 130
+font_data = ExtResource( 17 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 130
+font_data = ExtResource( 17 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 130
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 130
+font_data = ExtResource( 17 )
+
+[sub_resource type="Animation" id=7]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AreaSelection/Frame:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AreaSelection/Frame:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AreaSelection/WeaponRight:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AreaSelection/WeaponRight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AreaSelection/Wings:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AreaSelection/Wings:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Customization/Information:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 2, 2 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Customization/Information:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Customization/PreviousItem:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -114.081, -205.068 ), Vector2( -114.081, -165.068 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Customization/PreviousItem:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Customization/NextItem:rect_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -114.644, -65.7116 ), Vector2( -114.644, -113.712 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Customization/NextItem:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Customization/Back:rect_scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Customization/Back:rect_position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -164.853, -69.2571 ), Vector2( -108.853, -69.2571 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Customization/Back:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ShipInfo:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0.4, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 1, 1 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("ShipInfo:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0.4, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("AreaSelection/WeaponLeft:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Customization/PartList/WeaponLeft:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "ToggleSystem"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -3, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AreaSelection/Frame:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 3, 3 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AreaSelection/Frame:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AreaSelection/WeaponRight:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AreaSelection/WeaponRight:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 3, 3 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AreaSelection/Wings:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AreaSelection/Wings:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 3, 3 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("AreaSelection/WeaponLeft:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 3, 3 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Customization/PartList/WeaponLeft:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="UpgradeSystem" type="Node2D"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -3, 0 )
+scale = Vector2( 0.001, 0.001 )
+script = ExtResource( 2 )
+
+[node name="VisualManager_Preview" parent="." instance=ExtResource( 12 )]
+position = Vector2( 3, -125 )
+scale = Vector2( 5, 5 )
+
+[node name="AreaSelection" type="Node2D" parent="."]
+position = Vector2( 4, -127 )
+
+[node name="Frame" type="Node2D" parent="AreaSelection"]
+modulate = Color( 1, 1, 1, 0.0709206 )
+position = Vector2( 0.470276, 27.4217 )
+scale = Vector2( 0.213691, 0.213691 )
+
+[node name="ButtonPrompt" parent="AreaSelection/Frame" instance=ExtResource( 14 )]
+margin_left = 4.36225
+margin_top = -27.7313
+margin_right = 44.3622
+margin_bottom = 12.2687
+rect_scale = Vector2( 0.2, 0.2 )
+keyboard_input = "Option_1"
+controller_input = "Option_1"
+
+[node name="OptionLabel" parent="AreaSelection/Frame/ButtonPrompt" index="0"]
+margin_top = -1.1665
+margin_right = 555.5
+margin_bottom = 161.833
+text = "Frame"
+
+[node name="Sprite" type="Sprite" parent="AreaSelection/Frame"]
+modulate = Color( 1, 1, 1, 0.733333 )
+material = SubResource( 2 )
+position = Vector2( 21, -21 )
+scale = Vector2( 1, 0.04 )
+texture = ExtResource( 7 )
+
+[node name="WeaponRight" type="Node2D" parent="AreaSelection"]
+modulate = Color( 1, 1, 1, 0.0709206 )
+position = Vector2( 18.6588, 6.1591 )
+scale = Vector2( 0.213691, 0.213691 )
+
+[node name="ButtonPrompt" parent="AreaSelection/WeaponRight" instance=ExtResource( 14 )]
+margin_left = 18.4318
+margin_top = -9.80682
+margin_right = 58.4318
+margin_bottom = 30.1931
+rect_scale = Vector2( 0.2, 0.2 )
+enabled = false
+keyboard_input = "Option_2"
+controller_input = "Option_2"
+
+[node name="OptionLabel" parent="AreaSelection/WeaponRight/ButtonPrompt" index="0"]
+margin_left = 13.7513
+margin_top = 5.50006
+margin_right = 788.751
+text = "Weapon R"
+
+[node name="PromptManager" parent="AreaSelection/WeaponRight/ButtonPrompt" index="1"]
+margin_left = 163.224
+margin_top = 0.838821
+margin_right = 203.224
+margin_bottom = 40.8388
+
+[node name="Sprite3" type="Sprite" parent="AreaSelection/WeaponRight"]
+modulate = Color( 1, 1, 1, 0.733333 )
+material = SubResource( 2 )
+position = Vector2( 36.0322, -2 )
+scale = Vector2( 1.31451, 0.04 )
+texture = ExtResource( 7 )
+
+[node name="WeaponLeft" type="Node2D" parent="AreaSelection"]
+position = Vector2( -5.3412, 6.1591 )
+scale = Vector2( 0.213691, 0.213691 )
+
+[node name="ButtonPrompt" parent="AreaSelection/WeaponLeft" instance=ExtResource( 14 )]
+margin_left = -58.9015
+margin_top = -9.80682
+margin_right = -18.9015
+margin_bottom = 30.1931
+rect_scale = Vector2( 0.2, 0.2 )
+enabled = false
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="OptionLabel" parent="AreaSelection/WeaponLeft/ButtonPrompt" index="0"]
+margin_left = 13.7513
+margin_top = 5.50006
+margin_right = 788.751
+text = "Weapon L"
+
+[node name="PromptManager" parent="AreaSelection/WeaponLeft/ButtonPrompt" index="1"]
+margin_left = -23.4426
+margin_top = 0.838821
+margin_right = 16.5574
+margin_bottom = 40.8388
+
+[node name="Sprite3" type="Sprite" parent="AreaSelection/WeaponLeft"]
+modulate = Color( 1, 1, 1, 0.733333 )
+material = SubResource( 2 )
+position = Vector2( -41.3011, -2 )
+scale = Vector2( 1.31451, 0.04 )
+texture = ExtResource( 7 )
+
+[node name="Wings" type="Node2D" parent="AreaSelection"]
+modulate = Color( 1, 1, 1, 0.0709206 )
+position = Vector2( -60.8144, 16.1973 )
+scale = Vector2( 0.213691, 0.213691 )
+
+[node name="ButtonPrompt" parent="AreaSelection/Wings" instance=ExtResource( 14 )]
+margin_left = -25.9953
+margin_top = 5.53964
+margin_right = 14.0047
+margin_bottom = 45.5396
+rect_scale = Vector2( 0.2, 0.2 )
+keyboard_input = "Option_3"
+controller_input = "Option_3"
+
+[node name="OptionLabel" parent="AreaSelection/Wings/ButtonPrompt" index="0"]
+text = "Wings"
+
+[node name="PromptManager" parent="AreaSelection/Wings/ButtonPrompt" index="1"]
+margin_left = 4.90524
+margin_top = -0.992523
+margin_right = 44.9052
+margin_bottom = 39.0075
+
+[node name="Sprite2" type="Sprite" parent="AreaSelection/Wings"]
+modulate = Color( 1, 1, 1, 0.733333 )
+material = SubResource( 2 )
+position = Vector2( -3.85121, 14 )
+scale = Vector2( 1.2407, 0.04 )
+texture = ExtResource( 7 )
+
+[node name="Customization" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="PreviousItem" parent="Customization" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 1.43051e-06 )
+margin_left = -114.081
+margin_top = -205.068
+margin_right = -74.0812
+margin_bottom = -165.068
+rect_scale = Vector2( 1, 1 )
+keyboard_input = "Option_1"
+controller_input = "Option_1"
+
+[node name="OptionLabel" parent="Customization/PreviousItem" index="0"]
+visible = false
+
+[node name="NextItem" parent="Customization" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 1.43051e-06 )
+margin_left = -114.644
+margin_top = -65.7117
+margin_right = -74.6441
+margin_bottom = -25.7117
+rect_scale = Vector2( 1, 1 )
+keyboard_input = "Option_3"
+controller_input = "Option_3"
+
+[node name="OptionLabel" parent="Customization/NextItem" index="0"]
+visible = false
+
+[node name="Back" parent="Customization" instance=ExtResource( 14 )]
+modulate = Color( 1, 1, 1, 1.39077e-06 )
+margin_left = -164.853
+margin_top = -69.2571
+margin_right = -124.853
+margin_bottom = -29.2571
+rect_scale = Vector2( 0.7, 0.7 )
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="OptionLabel" parent="Customization/Back" index="0"]
+margin_left = 36.3596
+margin_top = -1.99155
+margin_right = 403.36
+margin_bottom = 161.008
+text = "Back"
+
+[node name="Information" type="Node2D" parent="Customization"]
+modulate = Color( 1, 1, 1, 1.43051e-06 )
+position = Vector2( 4.9218, -122.754 )
+scale = Vector2( 0.00100286, 0.00100286 )
+
+[node name="Background" type="Node2D" parent="Customization/Information"]
+position = Vector2( -33.5226, -4.65686 )
+
+[node name="Sprite" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
+position = Vector2( 143.068, 4.1684 )
+scale = Vector2( 3.43343, 4.09709 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.160784, 0.160784, 0.160784, 0.745098 )
+position = Vector2( 143.225, 4.3259 )
+scale = Vector2( 3.30547, 3.94944 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
+position = Vector2( 143.225, -48.0088 )
+scale = Vector2( 3.30547, 0.0471305 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
+position = Vector2( 143.225, 10.3906 )
+scale = Vector2( 3.30547, 0.0471305 )
+texture = ExtResource( 7 )
+
+[node name="Sprite5" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
+position = Vector2( 142.891, -1.62305 )
+scale = Vector2( 3.30547, 0.0471305 )
+texture = ExtResource( 7 )
+
+[node name="Sprite6" type="Sprite" parent="Customization/Information/Background"]
+modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
+position = Vector2( 142.893, -34.6648 )
+scale = Vector2( 3.30547, 0.0471305 )
+texture = ExtResource( 7 )
+
+[node name="PartName" type="Label" parent="Customization/Information"]
+margin_left = 57.9775
+margin_top = -62.1569
+margin_right = 2145.98
+margin_bottom = 100.843
+rect_scale = Vector2( 0.05, 0.05 )
+custom_fonts/font = SubResource( 6 )
+text = "PArt Name"
+align = 1
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="Node2D" parent="Customization/Information"]
+position = Vector2( -32.5226, 2.34315 )
+
+[node name="Header" type="Label" parent="Customization/Information/Stats"]
+margin_left = 70.4773
+margin_top = -6.50342
+margin_right = 2158.48
+margin_bottom = 156.497
+rect_scale = Vector2( 0.07, 0.07 )
+custom_fonts/font = SubResource( 6 )
+text = "STATS"
+align = 1
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Node2D" parent="Customization/Information/Stats"]
+
+[node name="HeaderLabel" type="Label" parent="Customization/Information/Stats/Health"]
+margin_left = 100.772
+margin_top = 4.05859
+margin_right = 2188.77
+margin_bottom = 167.059
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "Health "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="Customization/Information/Stats/Health"]
+margin_left = 91.9895
+margin_top = 10.3915
+margin_right = 211.99
+margin_bottom = 22.3915
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="Node2D" parent="Customization/Information/Stats"]
+
+[node name="HeaderLabel" type="Label" parent="Customization/Information/Stats/Speed"]
+margin_left = 99.9685
+margin_top = 15.6937
+margin_right = 2187.97
+margin_bottom = 178.694
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "Speed "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="Customization/Information/Stats/Speed"]
+margin_left = 91.9605
+margin_top = 21.3355
+margin_right = 211.961
+margin_bottom = 33.3355
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Damage" type="Node2D" parent="Customization/Information/Stats"]
+
+[node name="HeaderLabel" type="Label" parent="Customization/Information/Stats/Damage"]
+margin_left = 99.248
+margin_top = 27.1544
+margin_right = 2187.25
+margin_bottom = 190.154
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "DAmage "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="Customization/Information/Stats/Damage"]
+margin_left = 92.0094
+margin_top = 31.8913
+margin_right = 212.009
+margin_bottom = 43.8913
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lore" type="Node2D" parent="Customization/Information"]
+position = Vector2( -32.5226, 4.34315 )
+
+[node name="HeaderLabel" type="Label" parent="Customization/Information/Lore"]
+margin_left = 69.9773
+margin_top = -55.0034
+margin_right = 2157.98
+margin_bottom = 107.997
+rect_scale = Vector2( 0.07, 0.07 )
+custom_fonts/font = SubResource( 8 )
+text = "Story"
+align = 1
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoreLabel" type="Label" parent="Customization/Information/Lore"]
+margin_left = 95.0
+margin_top = -41.0
+margin_right = 2983.0
+margin_bottom = 782.0
+rect_scale = Vector2( 0.035, 0.035 )
+custom_fonts/font = SubResource( 9 )
+text = "The story of each part goes here"
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipPrompt" parent="Customization/Information" instance=ExtResource( 14 )]
+margin_left = 79.2111
+margin_top = 51.2282
+margin_right = 119.211
+margin_bottom = 91.2282
+rect_scale = Vector2( 0.3, 0.3 )
+keyboard_input = "Interact"
+controller_input = "Interact"
+
+[node name="OptionLabel" parent="Customization/Information/EquipPrompt" index="0"]
+margin_left = 34.2008
+margin_top = -2.10631
+margin_right = 510.201
+margin_bottom = 160.894
+text = "Equip"
+align = 0
+
+[node name="Cost" type="Node2D" parent="Customization/Information/EquipPrompt"]
+position = Vector2( -25.9382, 11.2324 )
+
+[node name="Icon" type="Sprite" parent="Customization/Information/EquipPrompt/Cost"]
+position = Vector2( -19.0717, 2.48808 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 66, 34, 18, 17 )
+
+[node name="AmountLabel" type="Label" parent="Customization/Information/EquipPrompt/Cost"]
+margin_left = -3.98438
+margin_top = -6.1875
+margin_right = 363.016
+margin_bottom = 156.813
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 10 )
+text = "1000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PartList" type="Node2D" parent="Customization"]
+
+[node name="Frame" type="Node2D" parent="Customization/PartList"]
+
+[node name="Crop Frame" parent="Customization/PartList/Frame" instance=ExtResource( 13 )]
+lore = "Starting wings"
+health_mod = 1
+speed_mod = 2
+cost = 0
+purchased = true
+equipped = true
+
+[node name="Jet Frame" parent="Customization/PartList/Frame" instance=ExtResource( 13 )]
+lore = "Starting wings"
+health_mod = 1
+speed_mod = 2
+cost = 10
+
+[node name="Supersonic Frame" parent="Customization/PartList/Frame" instance=ExtResource( 13 )]
+lore = "Starting wings"
+health_mod = 1
+speed_mod = 2
+cost = 30
+
+[node name="Star Frame" parent="Customization/PartList/Frame" instance=ExtResource( 13 )]
+lore = "Starting wings"
+health_mod = 1
+speed_mod = 2
+cost = 100
+
+[node name="Wings" type="Node2D" parent="Customization/PartList"]
+
+[node name="Crop Wings" parent="Customization/PartList/Wings" instance=ExtResource( 13 )]
+lore = "Starting wings"
+health_mod = 1
+speed_mod = 2
+cost = 0
+purchased = true
+can_unequip = true
+
+[node name="Jet Wings" parent="Customization/PartList/Wings" instance=ExtResource( 13 )]
+lore = "Faster than fuck boi"
+health_mod = 2
+speed_mod = 4
+cost = 10
+can_unequip = true
+
+[node name="Supersonic Wings" parent="Customization/PartList/Wings" instance=ExtResource( 13 )]
+lore = "Movin' at the speed of sound! Quickest wings around! Got ourselves a situation; last stop before space and unknown locations!"
+health_mod = 2
+speed_mod = 5
+cost = 30
+can_unequip = true
+
+[node name="Star Wings" parent="Customization/PartList/Wings" instance=ExtResource( 13 )]
+lore = "Houston, we have lift off!"
+health_mod = 3
+speed_mod = 6
+cost = 60
+can_unequip = true
+
+[node name="WeaponLeft" type="Node2D" parent="Customization/PartList"]
+modulate = Color( 1, 1, 1, 0.0709206 )
+
+[node name="Crop Cannon" parent="Customization/PartList/WeaponLeft" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 2
+cost = 10
+can_unequip = true
+
+[node name="Auto Rifle XV" parent="Customization/PartList/WeaponLeft" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 1
+cost = 30
+can_unequip = true
+
+[node name="Rocket Launcher Mk1" parent="Customization/PartList/WeaponLeft" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 5
+cost = 60
+can_unequip = true
+
+[node name="WeaponRight" type="Node2D" parent="Customization/PartList"]
+
+[node name="Crop Cannon" parent="Customization/PartList/WeaponRight" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 2
+cost = 10
+can_unequip = true
+
+[node name="Auto Rifle XV" parent="Customization/PartList/WeaponRight" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 1
+cost = 30
+can_unequip = true
+
+[node name="Rocket Launcher Mk1" parent="Customization/PartList/WeaponRight" instance=ExtResource( 13 )]
+lore = "Starting wings"
+damage_mod = 5
+cost = 60
+can_unequip = true
+
+[node name="Sounds" type="Node" parent="Customization"]
+
+[node name="Equipped" type="AudioStreamPlayer" parent="Customization/Sounds"]
+stream = ExtResource( 6 )
+volume_db = -5.0
+bus = "SFX"
+
+[node name="Purchased" type="AudioStreamPlayer" parent="Customization/Sounds"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="CouldntPurchase" type="AudioStreamPlayer" parent="Customization/Sounds"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="ShipInfo" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 7.82311e-07 )
+position = Vector2( 1.81653, -127.716 )
+scale = Vector2( 0.00100078, 0.00100078 )
+
+[node name="Stats" type="Node2D" parent="ShipInfo"]
+position = Vector2( -0.162827, -5.99982 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Header" type="Label" parent="ShipInfo/Stats"]
+visible = false
+margin_left = 70.4773
+margin_top = -6.50342
+margin_right = 2158.48
+margin_bottom = 156.497
+rect_scale = Vector2( 0.07, 0.07 )
+custom_fonts/font = SubResource( 6 )
+text = "STATS"
+align = 1
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Node2D" parent="ShipInfo/Stats"]
+position = Vector2( -230.201, -25.7757 )
+
+[node name="HeaderLabel" type="Label" parent="ShipInfo/Stats/Health"]
+margin_left = 100.772
+margin_top = 4.05859
+margin_right = 2188.77
+margin_bottom = 167.059
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "Health "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="ShipInfo/Stats/Health"]
+margin_left = 91.9895
+margin_top = 10.3915
+margin_right = 211.99
+margin_bottom = 22.3915
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="Node2D" parent="ShipInfo/Stats"]
+position = Vector2( -232.047, -20.5507 )
+
+[node name="HeaderLabel" type="Label" parent="ShipInfo/Stats/Speed"]
+margin_left = 100.0
+margin_top = 14.0
+margin_right = 740.0
+margin_bottom = 177.0
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "Speed "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="ShipInfo/Stats/Speed"]
+margin_left = 91.9605
+margin_top = 21.3355
+margin_right = 211.961
+margin_bottom = 33.3355
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Damage" type="Node2D" parent="ShipInfo/Stats"]
+position = Vector2( -231.109, -11.9202 )
+
+[node name="HeaderLabel" type="Label" parent="ShipInfo/Stats/Damage"]
+margin_left = 99.0
+margin_top = 26.0
+margin_right = 732.0
+margin_bottom = 189.0
+rect_scale = Vector2( 0.04, 0.04 )
+custom_fonts/font = SubResource( 6 )
+text = "DAmage "
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MeterProgress" type="TextureProgress" parent="ShipInfo/Stats/Damage"]
+margin_left = 92.0094
+margin_top = 31.8913
+margin_right = 212.009
+margin_bottom = 43.8913
+rect_scale = Vector2( 0.35, 0.5 )
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/ToggleCustomization = SubResource( 7 )
+anims/ToggleSystem = SubResource( 4 )
+
+[connection signal="Button_Pressed" from="AreaSelection/Frame/ButtonPrompt" to="." method="customize_part" binds= [ "Frame" ]]
+[connection signal="Button_Pressed" from="AreaSelection/WeaponRight/ButtonPrompt" to="." method="customize_part" binds= [ "WeaponRight" ]]
+[connection signal="Button_Pressed" from="AreaSelection/WeaponLeft/ButtonPrompt" to="." method="customize_part" binds= [ "WeaponLeft" ]]
+[connection signal="Button_Pressed" from="AreaSelection/Wings/ButtonPrompt" to="." method="customize_part" binds= [ "Wings" ]]
+[connection signal="Button_Pressed" from="Customization/PreviousItem" to="Customization" method="select_part" binds= [ -1 ]]
+[connection signal="Button_Pressed" from="Customization/NextItem" to="Customization" method="select_part" binds= [ 1 ]]
+[connection signal="Button_Pressed" from="Customization/Back" to="." method="go_back"]
+[connection signal="Button_Pressed" from="Customization/Information/EquipPrompt" to="Customization" method="interact_with_part"]
+
+[editable path="AreaSelection/Frame/ButtonPrompt"]
+[editable path="AreaSelection/WeaponRight/ButtonPrompt"]
+[editable path="AreaSelection/WeaponLeft/ButtonPrompt"]
+[editable path="AreaSelection/Wings/ButtonPrompt"]
+[editable path="Customization/PreviousItem"]
+[editable path="Customization/NextItem"]
+[editable path="Customization/Back"]
+[editable path="Customization/Information/EquipPrompt"]

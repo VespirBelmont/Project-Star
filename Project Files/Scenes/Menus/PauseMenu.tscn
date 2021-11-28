@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PauseMenu.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Toggle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../MenuBlur:material:shader_param/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.389 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Options/Resume:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -794.087, -895.255 ), Vector2( -354.087, -895.255 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Options/Settings:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1862.13, -898.635 ), Vector2( 1450.13, -898.635 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Options/Quit:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1705.37, -839.696 ), Vector2( 1449.37, -839.696 ) ]
+}
+
+[node name="PauseMenu" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+game_manager_path = NodePath("../../..")
+
+[node name="PauseAnim" type="AnimationPlayer" parent="."]
+playback_speed = 1.5
+anims/Toggle = SubResource( 5 )
+
+[node name="Options" type="Control" parent="."]
+margin_left = 379.094
+margin_top = 917.035
+margin_right = 419.094
+margin_bottom = 957.035
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" parent="Options" instance=ExtResource( 1 )]
+margin_left = -794.087
+margin_top = -895.255
+margin_right = -754.087
+margin_bottom = -855.255
+keyboard_input = "PauseGame"
+controller_input = "PauseGame"
+
+[node name="OptionLabel" parent="Options/Resume" index="0"]
+text = "Resume"
+
+[node name="Settings" parent="Options" instance=ExtResource( 1 )]
+margin_left = 1862.13
+margin_top = -898.635
+margin_right = 1902.13
+margin_bottom = -858.635
+keyboard_input = "Option_1"
+controller_input = "Option_1"
+
+[node name="OptionLabel" parent="Options/Settings" index="0"]
+margin_left = -152.5
+margin_right = 641.5
+text = "Settings"
+
+[node name="PromptManager" parent="Options/Settings" index="1"]
+margin_left = 2.0
+margin_top = -1.0
+margin_right = 42.0
+margin_bottom = 39.0
+
+[node name="Quit" parent="Options" instance=ExtResource( 1 )]
+margin_left = 1705.37
+margin_top = -839.696
+margin_right = 1745.37
+margin_bottom = -799.696
+keyboard_input = "Option_3"
+controller_input = "Option_3"
+
+[node name="OptionLabel" parent="Options/Quit" index="0"]
+margin_left = -61.5
+margin_right = 305.5
+custom_colors/font_color = Color( 0.937255, 0.52549, 0.52549, 1 )
+text = "Quit"
+
+[node name="PromptManager" parent="Options/Quit" index="1"]
+margin_left = -0.5
+margin_top = 1.5
+margin_right = 39.5
+margin_bottom = 41.5
+
+[connection signal="Button_Pressed" from="Options/Resume" to="." method="toggle_pause"]
+[connection signal="Button_Pressed" from="Options/Settings" to="." method="toggle_settings"]
+[connection signal="Button_Pressed" from="Options/Quit" to="." method="quit_game"]
+
+[editable path="Options/Resume"]
+[editable path="Options/Settings"]
+[editable path="Options/Quit"]

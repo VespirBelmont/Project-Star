@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/Characters/Ships/PartTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Graphics/SmokeParticles.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=5]
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+trail_divisor = 4
+flag_disable_z = true
+gravity = Vector3( 0, 3, 0 )
+angular_velocity = 28.24
+angular_velocity_random = 0.45
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.1
+color_ramp = SubResource( 8 )
+
+[node name="Supersonic Wings" instance=ExtResource( 1 )]
+health_modifier = 2
+speed_modifier = 5
+
+[node name="Particles" type="Node2D" parent="." index="0"]
+
+[node name="TrailParticles2" parent="Particles" index="0" instance=ExtResource( 2 )]
+position = Vector2( 8.6985, 3.5055 )
+amount = 100
+lifetime = 8.0
+speed_scale = 3.0
+process_material = SubResource( 4 )
+texture = ExtResource( 3 )
+
+[node name="TrailParticles3" parent="Particles" index="1" instance=ExtResource( 2 )]
+position = Vector2( -10.2475, 3.74534 )
+amount = 100
+lifetime = 8.0
+speed_scale = 3.0
+process_material = SubResource( 4 )
+texture = ExtResource( 3 )
+
+[node name="GameSprite" parent="." index="1"]
+position = Vector2( -0.8428, -3.09026 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 96, 60, 30, 14 )
+
+[node name="PreviewSprite" parent="." index="2"]
+material = ExtResource( 5 )
+position = Vector2( -0.8428, -3.09026 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 96, 60, 30, 14 )
+
+[node name="WeaponAnchors" type="Node2D" parent="." index="3"]
+
+[node name="LeftPos" type="Position2D" parent="WeaponAnchors" index="0"]
+position = Vector2( -10.8093, -5.33773 )
+
+[node name="RightPos" type="Position2D" parent="WeaponAnchors" index="1"]
+position = Vector2( 9.40467, -5.24409 )

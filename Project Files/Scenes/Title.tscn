@@ -1,0 +1,425 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Graphics/Characters/Title/TitleShip.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Graphics/Shaders/StarShader.material" type="Material" id=3]
+[ext_resource path="res://Scripts/Menus/TitleManager.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Gameplay.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/Music/NeetCat - The Cat in Space.wav" type="AudioStream" id=6]
+[ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Graphics/Shaders/CRTShader.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Audio/SFX/TitleTakeOff.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/TitleShipStart.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 130
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PromptManager:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PromptManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 130
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Blink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.976471, 0.709804, 0.364706, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 130, 145 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_fonts/font:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 145 ]
+}
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+gravity = Vector3( 0, 3, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 0.02
+color = Color( 1, 0.882353, 0.529412, 1 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 978, 522 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BuildUp:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TakeOff:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "StartGame"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 978, 522 ), Vector2( 978, 578 ), Vector2( 978, 594 ), Vector2( 978, 602 ), Vector2( 978, -518 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BuildUp:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TakeOff:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.105882, 0.105882, 0.105882, 1 ), Color( 0.105882, 0.105882, 0.105882, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FadeRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.105882, 0.105882, 0.105882, 0 ) ]
+}
+
+[node name="Title" type="Node"]
+script = ExtResource( 4 )
+gameplay_tscn = ExtResource( 5 )
+
+[node name="SpaceBackground" type="ColorRect" parent="."]
+material = ExtResource( 3 )
+margin_left = -339.0
+margin_top = -200.0
+margin_right = 2279.0
+margin_bottom = 1268.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Title Info" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="Title Info"]
+margin_left = 447.0
+margin_top = 42.0
+margin_right = 1527.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 1 )
+text = "Project STAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VersionLabel" type="Label" parent="Title Info"]
+margin_left = 437.0
+margin_top = 207.0
+margin_right = 2539.0
+margin_bottom = 370.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_colors/font_color = Color( 0.964706, 0.690196, 0.443137, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "A3: Tool Time"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" parent="Title Info" instance=ExtResource( 11 )]
+margin_left = 947.0
+margin_top = 1006.0
+margin_right = 987.0
+margin_bottom = 1046.0
+rect_pivot_offset = Vector2( 19.3333, 20.6667 )
+keyboard_input = "StartGame"
+controller_input = "StartGame"
+
+[node name="OptionLabel" parent="Title Info/StartButton" index="0"]
+visible = false
+
+[node name="QuitButton" parent="Title Info" instance=ExtResource( 11 )]
+margin_left = 112.297
+margin_top = 1010.49
+margin_right = 152.297
+margin_bottom = 1050.49
+rect_pivot_offset = Vector2( 19.3333, 20.6667 )
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="OptionLabel" parent="Title Info/QuitButton" index="0"]
+margin_left = -17.6231
+margin_top = -32.6638
+margin_right = 349.377
+margin_bottom = 130.336
+text = "Quit"
+
+[node name="Anim" parent="Title Info/QuitButton" index="3"]
+anims/Disable = SubResource( 12 )
+anims/RESET = SubResource( 13 )
+
+[node name="StartLabel" type="Label" parent="Title Info"]
+margin_left = 9.0
+margin_top = 855.0
+margin_right = 2725.0
+margin_bottom = 1023.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_colors/font_color = Color( 0.964706, 0.690196, 0.443137, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Insert Coin"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartAnim" type="AnimationPlayer" parent="Title Info/StartLabel"]
+autoplay = "Blink"
+reset_on_save = false
+anims/Blink = SubResource( 2 )
+anims/RESET = SubResource( 4 )
+
+[node name="ShipSprite" type="Sprite" parent="."]
+position = Vector2( 978, 522 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="TrailParticles" parent="ShipSprite" instance=ExtResource( 7 )]
+position = Vector2( 0.0187601, 13.6654 )
+lifetime = 4.6
+speed_scale = 0.5
+local_coords = true
+process_material = SubResource( 9 )
+
+[node name="ShipAnim" type="AnimationPlayer" parent="ShipSprite"]
+anims/RESET = SubResource( 11 )
+anims/StartGame = SubResource( 10 )
+
+[node name="TakeOff" type="AudioStreamPlayer" parent="ShipSprite"]
+stream = ExtResource( 9 )
+pitch_scale = 0.61
+
+[node name="BuildUp" type="AudioStreamPlayer" parent="ShipSprite"]
+stream = ExtResource( 10 )
+volume_db = -4.0
+pitch_scale = 0.57
+
+[node name="FadeRect" type="ColorRect" parent="."]
+margin_left = -349.0
+margin_top = -225.0
+margin_right = 2346.0
+margin_bottom = 1273.0
+color = Color( 0.105882, 0.105882, 0.105882, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleAnim" type="AnimationPlayer" parent="."]
+autoplay = "Fade"
+anims/Fade = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -5.0
+autoplay = true
+bus = "Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CRTShader" parent="CanvasLayer" instance=ExtResource( 8 )]
+
+[connection signal="Button_Pressed" from="Title Info/StartButton" to="." method="play_game"]
+[connection signal="Button_Pressed" from="Title Info/QuitButton" to="." method="quit_game"]
+
+[editable path="Title Info/StartButton"]
+[editable path="Title Info/QuitButton"]
