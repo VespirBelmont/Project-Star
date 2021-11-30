@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cerberus Cannon - Charge.wav-e834e9b6b4eae92dab7766a78ee912c0.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Shooting Sounds/Cerberus Cannon - Charge.wav"
+dest_files=[ "res://.import/Cerberus Cannon - Charge.wav-e834e9b6b4eae92dab7766a78ee912c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -6,7 +6,7 @@
 [ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/SpriteManager.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=7]
 
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )

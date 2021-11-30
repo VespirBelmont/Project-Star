@@ -1,0 +1,381 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=1]
+[ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fly"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Detail_1/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Detail_1:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 21, 106, 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Detail_2:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 47, 106, 26 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Detail_3:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 75, 106, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Detail_2/SubDetail:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 71, 106, 5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../../Detail_1/Sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Fly"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../Detail_1/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Detail_1:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 21, 106, 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Detail_2:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 47, 106, 26 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Detail_3:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 75, 106, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Detail_2/SubDetail:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 18, 71, 106, 5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../../Detail_1/Sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Crop Frame" instance=ExtResource( 3 )]
+
+[node name="GameplaySprite" type="Node2D" parent="." index="0"]
+script = ExtResource( 5 )
+
+[node name="Outline2" type="Node2D" parent="GameplaySprite" index="0"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Outline2" index="0"]
+position = Vector2( 1, 0 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 38.1935, 118.73, 22.7272, 23.6013 )
+
+[node name="Detail_5" type="Node2D" parent="GameplaySprite" index="1"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_5" index="0"]
+modulate = Color( 0.807843, 0.407843, 0.329412, 1 )
+position = Vector2( 0.054, 0.218 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 74.2074, 117.856, 20.8041, 23.7761 )
+
+[node name="Detail_6" type="Node2D" parent="GameplaySprite" index="2"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_6" index="0"]
+modulate = Color( 0.537255, 0.537255, 0.537255, 1 )
+position = Vector2( 1.905, 1.808 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 95.8857, 121.527, 21.1538, 19.5804 )
+
+[node name="Outline" type="Node2D" parent="GameplaySprite" index="3"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Outline" index="0"]
+position = Vector2( 0, 0.413 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 13.7181, 120.797, 10.8391, 21.5034 )
+
+[node name="Detail_1" type="Node2D" parent="GameplaySprite" index="4"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_1" index="0"]
+visible = false
+modulate = Color( 0.756863, 0.643137, 0.419608, 1 )
+position = Vector2( -0.17, -0.437 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 65.2585, 119.682, 7.41563, 20.038 )
+
+[node name="Detail_2" type="Node2D" parent="GameplaySprite" index="5"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_2" index="0"]
+modulate = Color( 0.737255, 0.737255, 0.737255, 1 )
+position = Vector2( -0.163, 2.955 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 81.8253, 125.205, 6.29397, 15.7779 )
+
+[node name="Detail_3" type="Node2D" parent="GameplaySprite" index="6"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_3" index="0"]
+position = Vector2( -0.362, -4.372 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 83.7729, 133.725, 0.157776, 0 )
+
+[node name="Detail_4" type="Node2D" parent="GameplaySprite" index="7"]
+
+[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_4" index="0"]
+modulate = Color( 0.447059, 1, 0.831373, 1 )
+position = Vector2( -0.491, -4.308 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 118.958, 118.736, 11.3601, 14.2001 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameplaySprite" index="8"]
+root_node = NodePath("../Outline/Sprite")
+anims/Fly = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="PreviewSprite" type="Node2D" parent="." index="1"]
+visible = false
+script = ExtResource( 5 )
+
+[node name="Outline2" type="Node2D" parent="PreviewSprite" index="0"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Outline2" index="0"]
+material = ExtResource( 1 )
+position = Vector2( 1, 0 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 38.1935, 118.73, 22.7272, 23.6013 )
+
+[node name="Detail_5" type="Node2D" parent="PreviewSprite" index="1"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_5" index="0"]
+modulate = Color( 0.807843, 0.407843, 0.329412, 1 )
+material = ExtResource( 1 )
+position = Vector2( 0.054, 0.218 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 74.2074, 117.856, 20.8041, 23.7761 )
+
+[node name="Detail_6" type="Node2D" parent="PreviewSprite" index="2"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_6" index="0"]
+modulate = Color( 0.537255, 0.537255, 0.537255, 1 )
+material = ExtResource( 1 )
+position = Vector2( 1.905, 1.808 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 95.8857, 121.527, 21.1538, 19.5804 )
+
+[node name="Outline" type="Node2D" parent="PreviewSprite" index="3"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Outline" index="0"]
+material = ExtResource( 1 )
+position = Vector2( 0, 0.413 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 13.7181, 120.797, 10.8391, 21.5034 )
+
+[node name="Detail_1" type="Node2D" parent="PreviewSprite" index="4"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_1" index="0"]
+visible = false
+modulate = Color( 0.756863, 0.643137, 0.419608, 1 )
+material = ExtResource( 1 )
+position = Vector2( -0.17, -0.437 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 65.2585, 119.682, 7.41563, 20.038 )
+
+[node name="Detail_2" type="Node2D" parent="PreviewSprite" index="5"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_2" index="0"]
+modulate = Color( 0.737255, 0.737255, 0.737255, 1 )
+material = ExtResource( 1 )
+position = Vector2( -0.163, 2.955 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 81.8253, 125.205, 6.29397, 15.7779 )
+
+[node name="Detail_3" type="Node2D" parent="PreviewSprite" index="6"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_3" index="0"]
+material = ExtResource( 1 )
+position = Vector2( -0.362, -4.372 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 83.7729, 133.725, 0.157776, 0 )
+
+[node name="Detail_4" type="Node2D" parent="PreviewSprite" index="7"]
+
+[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_4" index="0"]
+modulate = Color( 0.447059, 1, 0.831373, 1 )
+material = ExtResource( 1 )
+position = Vector2( -0.491, -4.308 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 118.958, 118.736, 11.3601, 14.2001 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PreviewSprite" index="8"]
+root_node = NodePath("../Outline/Sprite")
+anims/Fly = SubResource( 3 )
+anims/RESET = SubResource( 4 )

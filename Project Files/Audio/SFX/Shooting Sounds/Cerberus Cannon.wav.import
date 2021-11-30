@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cerberus Cannon.wav-4990c7d62f097bcbcc02e44fb01b1444.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Shooting Sounds/Cerberus Cannon.wav"
+dest_files=[ "res://.import/Cerberus Cannon.wav-4990c7d62f097bcbcc02e44fb01b1444.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

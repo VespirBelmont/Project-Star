@@ -18,7 +18,9 @@ export (bool) var reload_feedback_active = true
 export (String, "SmallShake", "MediumShake", "LauncherShake") var cam_fx
 
 func shoot():
-	if not can_fire: return
+	if not can_fire: 
+		#$Audio/CantFire.play()
+		return
 	
 	var projectile = projectile_tscn.instance()
 	$Bullets.add_child(projectile)

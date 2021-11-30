@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Weapons/WeaponTemplate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/SpriteManager.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Weapons/Projectiles/CerberusBlast.tscn" type="PackedScene" id=4]
 
 [node name="Cerberus Cannon" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
 scale = Vector2( 2, 2 )
+projectile_tscn = ExtResource( 4 )
 reload_feedback_active = false
 
 [node name="ProjectileSpawnPos" parent="." index="2"]

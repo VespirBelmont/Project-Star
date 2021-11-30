@@ -3,10 +3,10 @@
 [ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/SpriteManager.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=4]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=5]
 
-[node name="Supersonic Frame" instance=ExtResource( 3 )]
+[node name="Star Frame" instance=ExtResource( 3 )]
 
 [node name="GameplaySprite" type="Node2D" parent="." index="0"]
 script = ExtResource( 4 )
@@ -14,37 +14,38 @@ script = ExtResource( 4 )
 [node name="Outline" type="Node2D" parent="GameplaySprite" index="0"]
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Outline" index="0"]
+position = Vector2( 0.211, -1.12 )
 scale = Vector2( 1, 0.984 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 31.9015, 4.90252, 11.0708, 23.0454 )
+region_rect = Rect2( 58.7343, -1.47179, 10.7546, 32.2637 )
 
 [node name="Detail_1" type="Node2D" parent="GameplaySprite" index="1"]
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_1" index="0"]
 modulate = Color( 0.756863, 0.643137, 0.419608, 1 )
-position = Vector2( -0.502, -0.846 )
+position = Vector2( 0, -0.961 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 185.943, 72.7847, 9.93741, 23.7393 )
+region_rect = Rect2( 276.021, 20.1623, 7.69946, 29.6017 )
 
 [node name="Detail_2" type="Node2D" parent="GameplaySprite" index="2"]
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_2" index="0"]
-modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
-position = Vector2( -0.584, -0.923 )
+modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
+position = Vector2( -0.519, 0.406 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 195.881, 73.1527, 7.91312, 22.8192 )
+region_rect = Rect2( 284.416, 23.3245, 7.94217, 25.9573 )
 
 [node name="Detail_3" type="Node2D" parent="GameplaySprite" index="3"]
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_3" index="0"]
-modulate = Color( 0.890196, 0.898039, 0.901961, 1 )
-position = Vector2( -1.137, -0.939 )
+modulate = Color( 0.858824, 0.858824, 0.858824, 1 )
+position = Vector2( 0.095, 0.357 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 204.53, 73.1527, 3.49648, 22.8192 )
+region_rect = Rect2( 294.101, 23.3245, 7.74844, 25.9573 )
 
 [node name="PreviewSprite" type="Node2D" parent="." index="1"]
 visible = false
@@ -54,37 +55,38 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Outline" index="0"]
 material = ExtResource( 1 )
+position = Vector2( 0.211, -1.12 )
 scale = Vector2( 1, 0.984 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 31.9015, 4.90252, 11.0708, 23.0454 )
+region_rect = Rect2( 58.7343, -1.47179, 10.7546, 32.2637 )
 
 [node name="Detail_1" type="Node2D" parent="PreviewSprite" index="1"]
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_1" index="0"]
 modulate = Color( 0.756863, 0.643137, 0.419608, 1 )
 material = ExtResource( 1 )
-position = Vector2( -0.502, -0.846 )
+position = Vector2( 0, -0.961 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 185.943, 72.7847, 9.93741, 23.7393 )
+region_rect = Rect2( 276.021, 20.1623, 7.69946, 29.6017 )
 
 [node name="Detail_2" type="Node2D" parent="PreviewSprite" index="2"]
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_2" index="0"]
-modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
+modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
 material = ExtResource( 1 )
-position = Vector2( -0.584, -0.923 )
+position = Vector2( -0.519, 0.406 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 195.881, 73.1527, 7.91312, 22.8192 )
+region_rect = Rect2( 284.416, 23.3245, 7.94217, 25.9573 )
 
 [node name="Detail_3" type="Node2D" parent="PreviewSprite" index="3"]
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_3" index="0"]
-modulate = Color( 0.890196, 0.898039, 0.901961, 1 )
+modulate = Color( 0.858824, 0.858824, 0.858824, 1 )
 material = ExtResource( 1 )
-position = Vector2( -1.137, -0.939 )
+position = Vector2( 0.095, 0.357 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 204.53, 73.1527, 3.49648, 22.8192 )
+region_rect = Rect2( 294.101, 23.3245, 7.74844, 25.9573 )

@@ -315,7 +315,6 @@ __meta__ = {
 }
 
 [node name="StartButton" parent="Title Info" instance=ExtResource( 11 )]
-visible = false
 margin_left = 947.0
 margin_top = 1006.0
 margin_right = 987.0
@@ -328,7 +327,6 @@ controller_input = "StartGame"
 visible = false
 
 [node name="QuitButton" parent="Title Info" instance=ExtResource( 11 )]
-visible = false
 margin_left = 112.297
 margin_top = 1010.49
 margin_right = 152.297
@@ -349,7 +347,6 @@ anims/Disable = SubResource( 12 )
 anims/RESET = SubResource( 13 )
 
 [node name="StartLabel" type="Label" parent="Title Info"]
-visible = false
 margin_left = 9.0
 margin_top = 855.0
 margin_right = 2725.0

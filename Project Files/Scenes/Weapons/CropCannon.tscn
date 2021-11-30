@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Weapons/WeaponTemplate.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Audio/SFX/Shooting Sounds/Shooting_2.wav" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/Shooting Sounds/Crop Cannon - Fire.wav" type="AudioStream" id=2]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Reload_Left"
@@ -80,7 +80,8 @@ position = Vector2( -0.073, -3.34313 )
 
 [node name="Shoot" parent="Audio" index="0"]
 stream = ExtResource( 2 )
-volume_db = 3.0
+volume_db = -13.0
+pitch_scale = 1.09
 bus = "SFX"
 
 [node name="ReloadedLabel" parent="." index="6"]

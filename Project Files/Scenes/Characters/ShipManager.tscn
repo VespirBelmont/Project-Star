@@ -1,19 +1,20 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/CropFrame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Frames/CropFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/CropWings.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Ship Scripts/ShipVisualManager.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/StarWings.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/JetWings.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/SupersonicWings.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/JetFrame.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/SupersonicFrame.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Characters/Ship Parts/Bodies/StarFrame.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Frames/JetFrame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Frames/SupersonicFrame.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Frames/StarFrame.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Weapons/AutoRifleXV.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/PlayerWeaponManager.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Weapons/RocketLauncherMk1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Weapons/CropCannon.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Weapons/CerberusCannon.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Frames/DroneFrame.tscn" type="PackedScene" id=15]
 
 [node name="ShipManager" type="Node2D"]
 script = ExtResource( 3 )
@@ -21,6 +22,7 @@ script = ExtResource( 3 )
 [node name="Wings" type="Node2D" parent="."]
 
 [node name="Crop Wings" parent="Wings" instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -0.47, 0 )
 has_particles = true
 
@@ -42,6 +44,7 @@ has_particles = true
 [node name="Frame" type="Node2D" parent="."]
 
 [node name="Crop Frame" parent="Frame" instance=ExtResource( 1 )]
+visible = false
 
 [node name="Jet Frame" parent="Frame" instance=ExtResource( 7 )]
 visible = false
@@ -55,6 +58,9 @@ position = Vector2( -0.487, -1.617 )
 visible = false
 position = Vector2( -0.528, 0 )
 
+[node name="Drone Frame" parent="Frame" instance=ExtResource( 15 )]
+visible = false
+
 [node name="WeaponLeft" type="Node2D" parent="."]
 position = Vector2( -8.435, -3 )
 scale = Vector2( 0.5, 0.5 )
@@ -64,6 +70,7 @@ script = ExtResource( 11 )
 visible = false
 
 [node name="Auto Rifle XV" parent="WeaponLeft" instance=ExtResource( 10 )]
+visible = false
 
 [node name="Rocket Launcher Mk1" parent="WeaponLeft" instance=ExtResource( 12 )]
 visible = false
@@ -83,6 +90,7 @@ visible = false
 visible = false
 
 [node name="Rocket Launcher Mk1" parent="WeaponRight" instance=ExtResource( 12 )]
+visible = false
 
 [node name="Cerberus Cannon" parent="WeaponRight" instance=ExtResource( 14 )]
 visible = false

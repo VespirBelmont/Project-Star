@@ -57,10 +57,11 @@ func calculate_stats():
 	emit_signal("HealthChanged", health)
 	emit_signal("SpeedChanged", speed)
 	
-	var stats = get_parent().get_node("UpgradeSystem/ShipInfo/Stats")
-	stats.get_node("Health/MeterProgress").value = health
-	stats.get_node("Speed/MeterProgress").value = speed
-	stats.get_node("Damage/MeterProgress").value = damage
+	if get_parent().is_in_group("Player"):
+		var stats = get_parent().get_node("UpgradeSystem/ShipInfo/Stats")
+		stats.get_node("Health/MeterProgress").value = health
+		stats.get_node("Speed/MeterProgress").value = speed
+		stats.get_node("Damage/MeterProgress").value = damage
 
 
 func wing_check():

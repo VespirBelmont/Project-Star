@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=1]
+
+[node name="DroneFighter" instance=ExtResource( 1 )]
+part_setup = {
+"Frame": "Drone Frame",
+"WeaponLeft": "Auto Rifle XV",
+"WeaponRight": "Auto Rifle XV",
+"Wings": ""
+}
+
+[node name="InstantMoveSystem" parent="Modules" index="0"]
+move_speeds = {
+"Run": 30.0,
+"Sprint": 0.0,
+"Walk": 0.0
+}

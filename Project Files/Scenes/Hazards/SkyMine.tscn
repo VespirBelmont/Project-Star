@@ -1,19 +1,21 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Hazards/HazardTemplate.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Hazards/SkyMine.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SkyMine.gd" type="Script" id=2]
 [ext_resource path="res://Graphics/SHMUP Tiles.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Explosion.png" type="Texture" id=4]
 [ext_resource path="res://CharacterPuppets/Scenes/2D/Modules/HealthSystem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/SFX/Shooting Sounds/SkyMineExplosion - Standard.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX/Shooting Sounds/SkyMineTriggered.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 46, 42 )
+extents = Vector2( 93, 100 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 37, 33 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 27, 23 )
+extents = Vector2( 31, 29 )
 
 [sub_resource type="RectangleShape2D" id=8]
 
@@ -91,6 +93,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 4 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../Audio/Explosion:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -320,17 +334,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.576471, 0.576471, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.576471, 0.576471, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.576471, 0.576471, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Audio/Triggered:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.78, 0.94, 1.08 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, true, true ]
+}
 
 [node name="SkyMine" instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
 z_index = -2
+collision_layer = 0
+collision_mask = 6
 script = ExtResource( 2 )
-targets = [ "Player", "Enemy" ]
+targets = [ "Player", "Enemy", "Hazard" ]
 cam_effect = "ExplosionShake"
 
 [node name="AreaCollider" parent="." index="0"]
-visible = false
-position = Vector2( -4, 2 )
+position = Vector2( 5, 6 )
 shape = SubResource( 4 )
 disabled = true
 
@@ -348,7 +375,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( -1, 1 )
+position = Vector2( 1, -1 )
 shape = SubResource( 7 )
 
 [node name="Modules" type="Node2D" parent="Hitbox" index="1"]
@@ -367,7 +394,8 @@ shape = SubResource( 8 )
 modulate = Color( 1, 1, 1, 0 )
 rotation = 6.28319
 scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
+hframes = 12
 region_enabled = true
 region_rect = Rect2( 85.5065, 0.427348, 15.4969, 14.8852 )
 
@@ -377,6 +405,19 @@ anims/Explode = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 anims/Triggered = SubResource( 6 )
+
+[node name="Audio" type="Node2D" parent="." index="4"]
+
+[node name="Explosion" type="AudioStreamPlayer" parent="Audio" index="0"]
+stream = ExtResource( 6 )
+volume_db = 2.0
+pitch_scale = 0.83
+
+[node name="Triggered" type="AudioStreamPlayer" parent="Audio" index="1"]
+stream = ExtResource( 7 )
+volume_db = 3.0
+pitch_scale = 0.79
+bus = "SFX"
 
 [connection signal="body_entered" from="TriggerZone" to="." method="check_body"]
 [connection signal="Hurt" from="Hitbox/Modules/HealthSystem" to="." method="trigger_mine"]

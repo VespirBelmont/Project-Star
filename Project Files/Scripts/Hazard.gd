@@ -4,7 +4,7 @@ signal HitObject
 
 export (int) var damage = 1
 export (int) var knockback = 5
-export (Array, String, "Enemy", "Player") var targets = ["Player"]
+export (Array, String, "Enemy", "Player", "Hazard") var targets = ["Player"]
 
 export (String) var cam_effect = ""
 
