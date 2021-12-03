@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=4]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Part Modules/EnergyShield.tscn" type="PackedScene" id=7]
 
 [node name="Supersonic Frame" instance=ExtResource( 3 )]
 
@@ -88,3 +90,7 @@ position = Vector2( -1.137, -0.939 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 204.53, 73.1527, 3.49648, 22.8192 )
+
+[node name="Ram" parent="Modules" index="0" instance=ExtResource( 6 )]
+
+[node name="Energy Shield" parent="Modules" index="1" instance=ExtResource( 7 )]

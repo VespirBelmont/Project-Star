@@ -4,8 +4,8 @@ signal Button_Pressed
 
 export var enabled = true
 
-export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "Interact") var keyboard_input
-export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "Interact") var controller_input
+export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact") var keyboard_input
+export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact") var controller_input
 
 func _ready():
 	if enabled:

@@ -88,4 +88,6 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 2.07463, 18.695, 13.7235, 13.4315 )
 
+[node name="Modules" type="Node2D" parent="."]
+
 [connection signal="timeout" from="CooldownTimer" to="." method="cooldown_finished"]

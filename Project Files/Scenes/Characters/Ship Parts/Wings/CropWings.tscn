@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/SmokeParticles.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Part Modules/Boosters.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
@@ -713,3 +715,7 @@ position = Vector2( -8.142, 0.734 )
 
 [node name="RightPos" type="Position2D" parent="WeaponAnchors" index="1"]
 position = Vector2( 8.132, 0.796 )
+
+[node name="Ram" parent="Modules" index="0" instance=ExtResource( 8 )]
+
+[node name="Boosters" parent="Modules" index="1" instance=ExtResource( 9 )]

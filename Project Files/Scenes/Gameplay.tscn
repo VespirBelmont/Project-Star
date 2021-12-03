@@ -473,7 +473,6 @@ anims/SmallShake = SubResource( 14 )
 [node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 3 )
 volume_db = -7.0
-autoplay = true
 bus = "Music"
 
 [node name="World" type="Node" parent="."]
@@ -584,7 +583,6 @@ visible = false
 
 [node name="DroneFighter" parent="." instance=ExtResource( 11 )]
 position = Vector2( 542, 272 )
-collision_layer = 2
 collision_mask = 1
 script = ExtResource( 12 )
 part_setup = {

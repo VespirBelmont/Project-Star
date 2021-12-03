@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Part Modules/EnergyShield.tscn" type="PackedScene" id=7]
 
 [node name="Jet Frame" instance=ExtResource( 3 )]
 
@@ -73,3 +75,7 @@ position = Vector2( 0.391, -0.708 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 190.959, 24.1563, 8.58556, 21.2492 )
+
+[node name="Energy Shield" parent="Modules" index="0" instance=ExtResource( 7 )]
+
+[node name="Ram" parent="Modules" index="1" instance=ExtResource( 6 )]
