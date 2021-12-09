@@ -15,3 +15,12 @@ func _ready():
 	else:
 		$GameplaySprite.show()
 		$PreviewSprite.hide()
+
+func get_detail_count():
+	var count = 0
+	for detail in $GameplaySprite.get_children():
+		if "Detail" in detail.name:
+			count += 1
+	
+	return count
+

@@ -1,16 +1,17 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://Graphics/Characters/Title/TitleShip.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Graphics/Shaders/StarShader.material" type="Material" id=3]
 [ext_resource path="res://Scripts/Menus/TitleManager.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Gameplay.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Audio/Music/NeetCat - The Cat in Space.wav" type="AudioStream" id=6]
-[ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Shaders/CRTShader.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Audio/SFX/TitleTakeOff.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/SFX/TitleShipStart.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Characters/ShipManager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Audio/SFX/UI/Easter Egg.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 130
@@ -142,100 +143,9 @@ tracks/1/keys = {
 "values": [ 145 ]
 }
 
-[sub_resource type="Gradient" id=7]
-colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
-
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
-
-[sub_resource type="ParticlesMaterial" id=9]
-flag_disable_z = true
-gravity = Vector3( 0, 3, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.5
-scale_random = 0.02
-color = Color( 1, 0.882353, 0.529412, 1 )
-color_ramp = SubResource( 8 )
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 978, 522 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BuildUp:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TakeOff:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
 [sub_resource type="Animation" id=10]
 resource_name = "StartGame"
 length = 1.6
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.1, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 978, 522 ), Vector2( 978, 578 ), Vector2( 978, 594 ), Vector2( 978, 602 ), Vector2( 978, -518 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("BuildUp:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TakeOff:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Fade"
@@ -265,6 +175,41 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 0.105882, 0.105882, 0.105882, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=14]
+size = 130
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=15]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
 }
 
 [node name="Title" type="Node"]
@@ -367,28 +312,19 @@ reset_on_save = false
 anims/Blink = SubResource( 2 )
 anims/RESET = SubResource( 4 )
 
-[node name="ShipSprite" type="Sprite" parent="."]
-position = Vector2( 978, 522 )
-scale = Vector2( 8, 8 )
-texture = ExtResource( 1 )
-hframes = 4
+[node name="ShipManager" parent="." instance=ExtResource( 12 )]
+position = Vector2( 976, 564 )
+scale = Vector2( 15, 15 )
 
-[node name="TrailParticles" parent="ShipSprite" instance=ExtResource( 7 )]
-position = Vector2( 0.0187601, 13.6654 )
-lifetime = 4.6
-speed_scale = 0.5
-local_coords = true
-process_material = SubResource( 9 )
-
-[node name="ShipAnim" type="AnimationPlayer" parent="ShipSprite"]
-anims/RESET = SubResource( 11 )
+[node name="ShipAnim" type="AnimationPlayer" parent="ShipManager"]
+root_node = NodePath("")
 anims/StartGame = SubResource( 10 )
 
-[node name="TakeOff" type="AudioStreamPlayer" parent="ShipSprite"]
+[node name="TakeOff" type="AudioStreamPlayer" parent="ShipManager"]
 stream = ExtResource( 9 )
 pitch_scale = 0.61
 
-[node name="BuildUp" type="AudioStreamPlayer" parent="ShipSprite"]
+[node name="BuildUp" type="AudioStreamPlayer" parent="ShipManager"]
 stream = ExtResource( 10 )
 volume_db = -4.0
 pitch_scale = 0.57
@@ -418,8 +354,46 @@ bus = "Music"
 
 [node name="CRTShader" parent="CanvasLayer" instance=ExtResource( 8 )]
 
+[node name="ShipRandomizer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyboard_input = "ShipRandomizer"
+controller_input = "ShipRandomizer"
+
+[node name="OptionLabel" type="Label" parent="ShipRandomizer"]
+visible = false
+modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
+margin_left = 38.5
+margin_top = 5.5
+margin_right = 405.5
+margin_bottom = 168.5
+rect_scale = Vector2( 0.2, 0.2 )
+custom_fonts/font = SubResource( 14 )
+text = "Option"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PressedAudio" type="AudioStreamPlayer" parent="ShipRandomizer"]
+stream = ExtResource( 13 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="Anim" type="AnimationPlayer" parent="ShipRandomizer"]
+anims/Disable = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
 [connection signal="Button_Pressed" from="Title Info/StartButton" to="." method="play_game"]
 [connection signal="Button_Pressed" from="Title Info/QuitButton" to="." method="quit_game"]
+[connection signal="Button_Pressed" from="ShipRandomizer" to="ShipManager" method="ship_randomizer"]
+[connection signal="Button_Pressed" from="ShipRandomizer" to="ShipRandomizer/PressedAudio" method="play"]
 
 [editable path="Title Info/StartButton"]
 [editable path="Title Info/QuitButton"]

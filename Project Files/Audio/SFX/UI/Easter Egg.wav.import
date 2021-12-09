@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Easter Egg.wav-61cbb75aa432e12531c7fb7d67bf91f0.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/UI/Easter Egg.wav"
+dest_files=[ "res://.import/Easter Egg.wav-61cbb75aa432e12531c7fb7d67bf91f0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -12,6 +12,11 @@ export (bool) var update_weapon_anchors = false
 
 export (NodePath) var weapon_
 
+func get_part(_area):
+	for part in self.get_node(_area).get_children():
+		if part.visible:
+			return part
+
 func update_part(_area, _part):
 	for part in self.get_node(_area).get_children():
 		if part.name == _part:
@@ -29,7 +34,21 @@ func update_part(_area, _part):
 	if calculate_stats:
 		calculate_stats()
 
-
+func update_color(_area, _detail, _color):
+	for part in get_node(_area).get_children():
+		if part.visible:
+			for detail in part.get_node("GameplaySprite").get_children():
+				var detail_name = "Detail_%s" % _detail
+				if detail.name == detail_name:
+					for sprite in detail.get_children():
+						if sprite is Sprite:
+							sprite.modulate = _color
+			for detail in part.get_node("PreviewSprite").get_children():
+				var detail_name = "Detail_%s" % _detail
+				if detail.name == detail_name:
+					for sprite in detail.get_children():
+						if sprite is Sprite:
+							sprite.modulate = _color
 func calculate_stats():
 	health = 0
 	speed = 0
@@ -67,16 +86,38 @@ func calculate_stats():
 func wing_check():
 	for wing in $Wings.get_children():
 		if wing.visible:
+			print("Wing Visible")
 			return true
 	
 	for weapon in $WeaponLeft.get_children():
 		weapon.hide()
 	for weapon in $WeaponRight.get_children():
 		weapon.hide()
+	
 	return false
 
 
 func unequip_all(_area):
 	for part in get_node(_area).get_children():
 		part.hide()
+
+
+func ship_randomizer():
+	unequip_all("Wings")
+	unequip_all("WeaponRight")
+	unequip_all("WeaponLeft")
+	
+	var wing_name = $Wings.get_child(randi()%($Wings.get_child_count()-1)).name
+	update_part("Wings", wing_name)
+	
+	var frame_name = $Frame.get_child(randi()%($Frame.get_child_count()-1)).name
+	update_part("Frame", frame_name)
+	
+	var wl = $WeaponLeft.get_child(randi()%($WeaponLeft.get_child_count()-1)).name
+	update_part("WeaponLeft", wl)
+	
+	var wr = $WeaponRight.get_child(randi()%($WeaponRight.get_child_count()-1)).name
+	update_part("WeaponRight", wr)
+
+
 

@@ -10,6 +10,8 @@ var focused_part = ""
 var option_max = 0
 var option_current = 0
 
+var sub_option_max = 0
+var sub_option_current = 0
 
 func toggle():
 	if not can_input: return
@@ -19,7 +21,7 @@ func toggle():
 		active = false
 	else:
 		active = true
-	print(active)
+	
 	match active:
 		true:
 			get_tree().paused = true
@@ -27,7 +29,6 @@ func toggle():
 			set_process(true)
 		
 		false:
-			print("Close")
 			change_menu("Close")
 	
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -39,8 +40,13 @@ func change_menu(_new_menu):
 		"AreaMap":
 			for button in $AreaMap/Buttons.get_children():
 				button.disable()
+		
 		"PartSelect":
 			for button in $PartSelect/Buttons.get_children():
+				button.disable()
+			
+		"ColorSelect":
+			for button in $ColorSelect/Buttons.get_children():
 				button.disable()
 	
 	
@@ -73,6 +79,8 @@ func change_menu(_new_menu):
 			hide_ship_areas()
 		
 		"AreaMap":
+			revert_to_equipped()
+			
 			match current_menu:
 				"Close":
 					$Anim.play("ToggleSystem")
@@ -90,24 +98,23 @@ func change_menu(_new_menu):
 					$Anim.play_backwards("ToggleModuleSelect")
 					yield($Anim, "animation_finished")
 			
-			for wing in $PartSelect/PartList/Wings.get_children():
-				if wing.equipped:
-					if not $AreaMap/Options/WeaponLeft.available:
-						$AreaMap/Options/WeaponLeft.available = true
-						$AreaMap/Options/WeaponRight.available = true
-						break
+			var ship_visual = get_parent().get_node("ShipManager")
+			if ship_visual.wing_check():
+				if not $AreaMap/Options/WeaponLeft.available:
+					$AreaMap/Options/WeaponLeft.available = true
+					$AreaMap/Options/WeaponRight.available = true
 				
+			else:
 				if $AreaMap/Options/WeaponLeft.available:
 					$AreaMap/Options/WeaponLeft.available = false
 					$AreaMap/Options/WeaponRight.available = false
 			
 			option_max = 3
 			focused_area = ""
+			hide_ship_areas()
 			
 			for button in $AreaMap/Buttons.get_children():
 				button.enable()
-			
-			revert_to_equipped()
 		
 		"PartSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
@@ -125,8 +132,18 @@ func change_menu(_new_menu):
 		"ColorSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
 			focused_area = area
-			$ColorSelect.update_area(focused_area)
 			
+			var part = $VisualManager_Preview.get_part(focused_area)
+			option_max = $ColorSelect/ColorList.get_child_count() - 1
+			option_current = 0
+			
+			sub_option_max = part.get_detail_count()
+			sub_option_current = 1
+			update_color(1)
+			
+			
+			for button in $ColorSelect/Buttons.get_children():
+				button.enable()
 			$Anim.play("ToggleColorSelect")
 			yield($Anim, "animation_finished")
 		
@@ -149,6 +166,9 @@ func _process(delta):
 		
 		"PartSelect":
 			part_selection_controls()
+		
+		"ColorSelect":
+			color_selection_controls()
 
 func area_map_controls():
 	var options = $AreaMap/Options
@@ -226,14 +246,67 @@ func part_selection_controls():
 
 
 func color_selection_controls():
-	var next_item = Input.is_action_just_pressed("Option_3")
-	var prev_item = Input.is_action_just_pressed("Option_1")
+	var prev_detail = Input.is_action_just_pressed("Option_1")
+	var next_color = Input.is_action_just_pressed("Option_2")
+	var next_detail = Input.is_action_just_pressed("Option_3")
+	var prev_color = Input.is_action_just_pressed("Option_4")
+	var interact = Input.is_action_just_pressed("Interact")
 	
-	if next_item:
+	var last_item = option_current
+	var dir = 1
+	
+	if next_detail:
+		sub_option_current += 1
+		dir = 1
+	if prev_detail:
+		sub_option_current -= 1
+		dir = -1
+	clamp_sub_options()
+	
+	if next_color:
 		option_current += 1
-	if prev_item:
+		dir = 1
+	if prev_color:
 		option_current -= 1
+		dir = -1
 	clamp_options()
+	
+	if option_current != last_item:
+		update_color(dir)
+	
+	if interact:
+		change_color()
+
+func change_color():
+	var color = Color()
+	var color_node = $ColorSelect/ColorList.get_child(option_current)
+	
+	color = color_node.color
+	
+	$VisualManager_Preview.update_color(focused_area, sub_option_current, color)
+	var ship_visual = get_parent().get_node("ShipManager")
+	ship_visual.update_color(focused_area, sub_option_current, color)
+
+func update_color(_dir):
+	var area = focused_area
+	var part = focused_part
+	var color = $ColorSelect/ColorList.get_child(option_current)
+	
+	var loop_count = option_current
+	if color.unlocked == false:
+		for _color in $ColorSelect/ColorList.get_child_count():
+			var focused_color = $ColorSelect/ColorList.get_child(loop_count)
+			if not focused_color.unlocked:
+				loop_count += _dir
+			
+			if focused_color.unlocked:
+				option_current = loop_count
+				break;
+			
+			clamp_options()
+	
+	$ColorSelect/Information/ColorName.text = color.name
+	$VisualManager_Preview.update_color(focused_area, sub_option_current, color.color)
 
 func module_selection_controls():
 	var next_item = Input.is_action_just_pressed("Option_3")
@@ -268,13 +341,9 @@ func update_part_info(_part_name, _lore, _speed, _health, _damage, _cost, _purch
 
 
 func interact_with_part():
-	print(can_input)
-	if focused_area == "" or not can_input: 
-		print("Can't interact")
+	if current_menu != "PartSelect" or not can_input: 
 		return
 	can_input = false
-	
-	print("Interact")
 	
 	var area = $PartSelect/PartList.get_node(focused_area)
 	var part_node = area.get_child(option_current)
@@ -308,7 +377,6 @@ func interact_with_part():
 func input_cooldown():
 	yield(get_tree().create_timer(0.1), "timeout")
 	can_input = true
-	print("Can input")
 
 func hide_ship_areas():
 	var options = $AreaMap/Options
@@ -323,14 +391,19 @@ func revert_to_equipped():
 	for frame in $PartSelect/PartList/Frame.get_children():
 		if frame.equipped:
 			$VisualManager_Preview.update_part("Frame", frame.name)
+			
+			revert_color("Frame", frame.name)
 			break
 		child_counter += 1
 	
 	child_counter = 0
 	
+	
 	for wing in $PartSelect/PartList/Wings.get_children():
 		if wing.equipped:
 			$VisualManager_Preview.update_part("Wings", wing.name)
+			
+			revert_color("Wings", wing.name)
 			break
 		child_counter += 1
 		if child_counter == $PartSelect/PartList/Wings.get_child_count()-1: 
@@ -341,6 +414,8 @@ func revert_to_equipped():
 	for weapon_l in $PartSelect/PartList/WeaponLeft.get_children():
 		if weapon_l.equipped:
 			$VisualManager_Preview.update_part("WeaponLeft", weapon_l.name)
+			
+			#revert_color("WeaponLeft", weapon_l.name)
 			break
 		child_counter += 1
 		
@@ -352,11 +427,29 @@ func revert_to_equipped():
 	for weapon_r in $PartSelect/PartList/WeaponRight.get_children():
 		if weapon_r.equipped:
 			$VisualManager_Preview.update_part("WeaponRight", weapon_r.name)
+			
+			#revert_color("WeaponRight", weapon_r.name)
 			break
 		child_counter += 1
 		
 		if child_counter == $PartSelect/PartList/WeaponRight.get_child_count()-1: 
 			$VisualManager_Preview.unequip_all("WeaponRight")
+		
+
+func revert_color(revert_area, revert_part):
+	var ship_visual = get_parent().get_node("ShipManager")
+	
+	for detail in ship_visual.get_node(revert_area).get_node(revert_part).get_node("GameplaySprite").get_children():
+		if "Detail" in detail.name:
+			for sprite in detail.get_children():
+				if sprite is Sprite:
+					var target_color = sprite.modulate
+					
+					for _detail in $VisualManager_Preview.get_node(revert_area).get_node(revert_part).get_node("PreviewSprite").get_children():
+						if _detail.name == detail.name:
+							for _sprite in _detail.get_children():
+								if _sprite.name == sprite.name:
+									_sprite.modulate = target_color
 
 func go_back():
 	match current_menu:
@@ -366,6 +459,10 @@ func go_back():
 		"PartSelect":
 			change_menu("AreaMap")
 			yield($Anim, "animation_finished")
+		
+		"ColorSelect":
+			change_menu("AreaMap")
+			yield($Anim, "animation_finished")
 
 func clamp_options():
 	if option_current < 0:
@@ -373,4 +470,8 @@ func clamp_options():
 	if option_current > option_max:
 		option_current = 0
 
-
+func clamp_sub_options():
+	if sub_option_current < 1:
+		sub_option_current = sub_option_max
+	if sub_option_current > sub_option_max:
+		sub_option_current = 1

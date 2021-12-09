@@ -10,7 +10,6 @@ position = Vector2( -0.947, 0 )
 preview_mode = true
 
 [node name="Jet Wings" parent="Wings" index="1"]
-visible = true
 preview_mode = true
 
 [node name="Supersonic Wings" parent="Wings" index="2"]
@@ -28,7 +27,6 @@ position = Vector2( -0.77, 0 )
 preview_mode = true
 
 [node name="Supersonic Frame" parent="Frame" index="2"]
-visible = true
 position = Vector2( -0.736, -1.617 )
 preview_mode = true
 

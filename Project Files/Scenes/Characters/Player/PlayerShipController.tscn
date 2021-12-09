@@ -31,17 +31,10 @@ health_max = 10
 [node name="CamFX" type="Node" parent="Modules" index="2"]
 script = ExtResource( 4 )
 
-[node name="Crop Wings" parent="ShipManager/Wings" index="0"]
-visible = true
-
-[node name="Crop Frame" parent="ShipManager/Frame" index="0"]
-visible = true
-
 [node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
 target = [ "Enemy", "Hazard" ]
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
-visible = true
 target = [ "Enemy", "Hazard" ]
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
@@ -54,7 +47,6 @@ target = [ "Enemy", "Hazard" ]
 target = [ "Enemy", "Hazard" ]
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
-visible = true
 target = [ "Enemy", "Hazard" ]
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponRight" index="2"]
@@ -82,5 +74,6 @@ autoplay = true
 bus = "SFX"
 
 [node name="UpgradeSystem" parent="." index="6" instance=ExtResource( 7 )]
+position = Vector2( 0, -27 )
 
 [editable path="ShipManager"]
