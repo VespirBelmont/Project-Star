@@ -219,13 +219,29 @@ func part_selection_controls():
 	var prev_item = Input.is_action_just_pressed("Option_4")
 	var interact = Input.is_action_just_pressed("Interact")
 	
+	var dir = 0
+	
 	if next_item:
 		option_current += 1
+		dir = 1
 	if prev_item:
 		option_current -= 1
-
-	
+		dir = -1
 	clamp_options()
+	
+	var part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
+	
+	var loop_count = option_current
+	if part.unlocked == false:
+		for _part in $PartSelect/PartList.get_node(focused_area).get_child_count()-1:
+			var check_part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
+			
+			if not check_part.unlocked:
+				option_current += dir
+				clamp_options()
+			
+			if check_part.unlocked:
+				break;
 	
 	var part_node = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
 	
@@ -233,13 +249,7 @@ func part_selection_controls():
 	
 	$VisualManager_Preview.update_part(focused_area, part_node.name)
 	
-	update_part_info(part_node.name, part_node.lore, 
-				part_node.speed_mod, part_node.health_mod, 
-				part_node.damage_mod,
-				part_node.cost,
-				part_node.purchased,
-				part_node.equipped
-				)
+	update_part_info(part_node)
 	
 	if interact:
 		interact_with_part()
@@ -319,25 +329,29 @@ func module_selection_controls():
 	clamp_options()
 
 
-func update_part_info(_part_name, _lore, _speed, _health, _damage, _cost, _purchased, _equipped):
-	$PartSelect/Information/PartName.text = _part_name
-	$PartSelect/Information/Lore/LoreLabel.text = _lore
+func update_part_info(part_node):
+	$PartSelect/Information/PartName.text = part_node.name
+	$PartSelect/Information/Lore/LoreLabel.text = part_node.lore 
 	
-	$PartSelect/Information/Stats/Health/MeterProgress.value = _health
-	$PartSelect/Information/Stats/Speed/MeterProgress.value = _speed
-	$PartSelect/Information/Stats/Damage/MeterProgress.value = _damage
+	$PartSelect/Information/Stats/Health/MeterProgress.value = part_node.health_mod
+	$PartSelect/Information/Stats/Speed/MeterProgress.value = part_node.speed_mod
+	$PartSelect/Information/Stats/Damage/MeterProgress.value = part_node.damage_mod
 	
-	$PartSelect/Information/EquipPrompt/Cost/AmountLabel.text = str(_cost)
-	
-	if _purchased:
+	if part_node.purchased:
 		$PartSelect/Information/EquipPrompt/OptionLabel.text = "Equip"
 		$PartSelect/Information/EquipPrompt/Cost.hide()
 	else:
 		$PartSelect/Information/EquipPrompt/OptionLabel.text = "Purchase"
+		$PartSelect/Information/EquipPrompt/Cost/AmountLabel.text = str(part_node.cost)
 		$PartSelect/Information/EquipPrompt/Cost.show()
 	
-	if _equipped:
+	if part_node.equipped:
 		$PartSelect/Information/EquipPrompt/OptionLabel.text = "Equipped"
+	
+	if not part_node.repaired:
+		$PartSelect/Information/EquipPrompt/OptionLabel.text = "Repair"
+		$PartSelect/Information/EquipPrompt/Cost/AmountLabel.text = str(part_node.repair_cost)
+		$PartSelect/Information/EquipPrompt/Cost.show()
 
 
 func interact_with_part():
@@ -348,7 +362,7 @@ func interact_with_part():
 	var area = $PartSelect/PartList.get_node(focused_area)
 	var part_node = area.get_child(option_current)
 	
-	if part_node.purchased:
+	if part_node.purchased and part_node.repaired:
 		$Sounds/Equipped.play()
 		var ship_visual = get_parent().get_node("ShipManager")
 		ship_visual.update_part(focused_area, part_node.name)
@@ -356,7 +370,7 @@ func interact_with_part():
 		for part in $PartSelect/PartList.get_node(focused_area).get_children():
 			part.equipped = false
 		part_node.equipped = true
-	else:
+	elif part_node.repaired:
 		if PlayerInfo.player_currency >= part_node.cost:
 			PlayerInfo.change_currency(-part_node.cost)
 			part_node.purchased = true
@@ -364,13 +378,15 @@ func interact_with_part():
 		else:
 			$Sounds/CouldntPurchase.play()
 	
-	update_part_info(part_node.name, part_node.lore, 
-				part_node.speed_mod, part_node.health_mod, 
-				part_node.damage_mod,
-				part_node.cost,
-				part_node.purchased,
-				part_node.equipped
-				)
+	if not part_node.repaired:
+		if PlayerInfo.player_currency >= part_node.repair_cost:
+			PlayerInfo.change_currency(-part_node.repair_cost)
+			part_node.repaired = true
+			$Sounds/Purchased.play()
+		else:
+			$Sounds/CouldntPurchase.play()
+	
+	update_part_info(part_node)
 	
 	input_cooldown()
 
@@ -434,7 +450,6 @@ func revert_to_equipped():
 		
 		if child_counter == $PartSelect/PartList/WeaponRight.get_child_count()-1: 
 			$VisualManager_Preview.unequip_all("WeaponRight")
-		
 
 func revert_color(revert_area, revert_part):
 	var ship_visual = get_parent().get_node("ShipManager")
