@@ -32,4 +32,4 @@ func disable():
 
 func enable():
 	enabled = true
-	$Anim.play_backwards("Disable")
+	$Anim.play("Enable")

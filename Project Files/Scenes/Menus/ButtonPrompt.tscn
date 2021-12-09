@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Audio/SFX/Purchased.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PromptManager:modulate")
@@ -31,10 +31,37 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+"values": [ Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Enable"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -109,6 +136,7 @@ bus = "SFX"
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/Disable = SubResource( 7 )
+anims/Enable = SubResource( 9 )
 anims/RESET = SubResource( 8 )
 
 [connection signal="Button_Pressed" from="." to="PromptManager" method="button_pressed"]

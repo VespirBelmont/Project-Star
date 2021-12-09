@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Menus/UpgradeSystem.gd" type="Script" id=2]
@@ -223,10 +223,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PromptManager:modulate")
@@ -235,10 +235,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+"values": [ Color( 0.282353, 0.282353, 0.282353, 1 ) ]
 }
 
 [sub_resource type="Animation" id=39]
@@ -290,10 +290,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PromptManager:modulate")
@@ -302,10 +302,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+"values": [ Color( 0.282353, 0.282353, 0.282353, 1 ) ]
 }
 
 [sub_resource type="Animation" id=41]
@@ -765,9 +765,206 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=8]
-size = 130
-font_data = ExtResource( 17 )
+[sub_resource type="Animation" id=61]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PromptManager:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=62]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PromptManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=63]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PromptManager:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=64]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PromptManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "Disable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OptionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PromptManager:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+}
+
+[sub_resource type="Animation" id=66]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptManager:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OptionLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PromptManager:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "Disable"
@@ -889,6 +1086,55 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=43]
 resource_name = "ToggleModuleSelect"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("AreaMap:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AreaMap:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.001, 0.001 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ModuleSelect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ModuleSelect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "TogglePartSelect"
@@ -1140,9 +1386,7 @@ tracks/6/keys = {
 
 [node name="UpgradeSystem" type="Node2D"]
 pause_mode = 2
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -3, 0 )
-scale = Vector2( 0.001, 0.001 )
 script = ExtResource( 2 )
 
 [node name="VisualManager_Preview" parent="." instance=ExtResource( 12 )]
@@ -1151,13 +1395,11 @@ scale = Vector2( 5, 5 )
 
 [node name="AreaMap" type="Node2D" parent="."]
 position = Vector2( 4, -127 )
-scale = Vector2( 1, 1 )
 
 [node name="Background" type="Sprite" parent="AreaMap"]
-visible = false
-modulate = Color( 0.443137, 0.443137, 0.443137, 0.068304 )
+modulate = Color( 0.443137, 0.443137, 0.443137, 1 )
 position = Vector2( -5, 18 )
-scale = Vector2( 0.318224, 0.500977 )
+scale = Vector2( 7, 0.5005 )
 texture = ExtResource( 7 )
 offset = Vector2( 1, 169.83 )
 
@@ -1288,7 +1530,6 @@ anims/RESET = SubResource( 37 )
 anims/Toggle = SubResource( 34 )
 
 [node name="Buttons" type="Node2D" parent="AreaMap"]
-modulate = Color( 1, 1, 1, 0.147861 )
 position = Vector2( 18, -14 )
 
 [node name="PartSelect" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
@@ -1353,7 +1594,7 @@ position = Vector2( 1, -125 )
 [node name="Buttons" type="Node2D" parent="PartSelect"]
 
 [node name="PreviousItem" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-modulate = Color( 1, 1, 1, 0.0193493 )
+modulate = Color( 1, 1, 1, 0.00678349 )
 margin_left = -108.0
 margin_top = 64.0
 margin_right = -68.0002
@@ -1374,7 +1615,7 @@ text = "Previous
 Part"
 
 [node name="NextItem" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-modulate = Color( 1, 1, 1, 0.0193493 )
+modulate = Color( 1, 1, 1, 0.00678349 )
 margin_left = 77.0
 margin_top = 62.0
 margin_right = 117.0
@@ -1395,7 +1636,7 @@ text = "Next
 Part"
 
 [node name="Back" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-modulate = Color( 1, 1, 1, 0.0325757 )
+modulate = Color( 1, 1, 1, 0.0118293 )
 margin_left = -65.0
 margin_top = 81.0
 margin_right = -25.0
@@ -1413,9 +1654,9 @@ margin_bottom = 161.008
 text = "Back"
 
 [node name="Information" type="Node2D" parent="PartSelect"]
-modulate = Color( 1, 1, 1, 0.0193493 )
+modulate = Color( 1, 1, 1, 0.00678349 )
 position = Vector2( 12.9218, -2.754 )
-scale = Vector2( 0.0396793, 0.0396793 )
+scale = Vector2( 0.0145602, 0.0145602 )
 
 [node name="Background" type="Node2D" parent="PartSelect/Information"]
 position = Vector2( -33.5226, -4.65686 )
@@ -1728,7 +1969,6 @@ unlocked = true
 [node name="Ram" parent="PartSelect/PartList/Wings/Star Wings/Modules" instance=ExtResource( 1 )]
 
 [node name="WeaponLeft" type="Node2D" parent="PartSelect/PartList"]
-modulate = Color( 1, 1, 1, 0.068304 )
 
 [node name="Crop Cannon" parent="PartSelect/PartList/WeaponLeft" instance=ExtResource( 13 )]
 lore = "Starting wings"
@@ -1773,8 +2013,8 @@ cost = 60
 can_unequip = true
 
 [node name="ColorSelect" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0.0792645 )
-scale = Vector2( 0.0801853, 0.0801853 )
+modulate = Color( 1, 1, 1, 0.0129663 )
+scale = Vector2( 0.0139533, 0.0139533 )
 
 [node name="Background" type="Sprite" parent="ColorSelect"]
 visible = false
@@ -2056,10 +2296,90 @@ script = ExtResource( 3 )
 unlocked = true
 
 [node name="ModuleSelect" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.001, 0.001 )
+
+[node name="Background" type="Sprite" parent="ModuleSelect"]
+modulate = Color( 0.443137, 0.443137, 0.443137, 1 )
+position = Vector2( -5.90625, -108 )
+scale = Vector2( 3.40625, 0.500501 )
+texture = ExtResource( 7 )
+offset = Vector2( 1, 169.83 )
+
+[node name="Buttons" type="Node2D" parent="ModuleSelect"]
+position = Vector2( 6, -124 )
+
+[node name="PreviousItem" parent="ModuleSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = -107.0
+margin_top = 85.0
+margin_right = -67.0002
+margin_bottom = 125.0
+rect_scale = Vector2( 1, 1 )
+enabled = false
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="OptionLabel" parent="ModuleSelect/Buttons/PreviousItem" index="0"]
 visible = false
+margin_left = -1.0
+margin_top = -13.0
+margin_right = 902.0
+margin_bottom = 316.0
+rect_scale = Vector2( 0.05, 0.05 )
+text = "Previous
+Part"
+
+[node name="Anim" parent="ModuleSelect/Buttons/PreviousItem" index="3"]
+anims/Disable = SubResource( 61 )
+anims/RESET = SubResource( 62 )
+
+[node name="NextItem" parent="ModuleSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = 51.0
+margin_top = 84.0
+margin_right = 91.0
+margin_bottom = 124.0
+rect_scale = Vector2( 1, 1 )
+enabled = false
+keyboard_input = "Option_2"
+controller_input = "Option_2"
+
+[node name="OptionLabel" parent="ModuleSelect/Buttons/NextItem" index="0"]
+visible = false
+margin_left = 0.0
+margin_top = -20.0
+margin_right = 903.0
+margin_bottom = 309.0
+rect_scale = Vector2( 0.05, 0.05 )
+text = "Next 
+Part"
+
+[node name="Anim" parent="ModuleSelect/Buttons/NextItem" index="3"]
+anims/Disable = SubResource( 63 )
+anims/RESET = SubResource( 64 )
+
+[node name="Back" parent="ModuleSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = -32.0
+margin_top = 94.0
+margin_right = 8.0
+margin_bottom = 134.0
+rect_scale = Vector2( 0.4, 0.4 )
+enabled = false
+keyboard_input = "Option_3"
+controller_input = "Option_3"
+
+[node name="OptionLabel" parent="ModuleSelect/Buttons/Back" index="0"]
+margin_left = 36.3596
+margin_top = -1.99155
+margin_right = 403.36
+margin_bottom = 161.008
+text = "Back"
+
+[node name="Anim" parent="ModuleSelect/Buttons/Back" index="3"]
+anims/Disable = SubResource( 65 )
+anims/RESET = SubResource( 66 )
 
 [node name="Information" type="Node2D" parent="ModuleSelect"]
-position = Vector2( 4.9218, -122.754 )
+position = Vector2( -12, -51 )
 scale = Vector2( 2, 2 )
 
 [node name="Background" type="Node2D" parent="ModuleSelect/Information"]
@@ -2067,14 +2387,14 @@ position = Vector2( -33.5226, -4.65686 )
 
 [node name="Sprite" type="Sprite" parent="ModuleSelect/Information/Background"]
 modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
-position = Vector2( 143.068, 4.1684 )
-scale = Vector2( 3.43343, 4.09709 )
+position = Vector2( 143.068, -26.3641 )
+scale = Vector2( 3.43343, 2.18881 )
 texture = ExtResource( 7 )
 
 [node name="Sprite2" type="Sprite" parent="ModuleSelect/Information/Background"]
 modulate = Color( 0.160784, 0.160784, 0.160784, 0.745098 )
-position = Vector2( 143.225, 4.3259 )
-scale = Vector2( 3.30547, 3.94944 )
+position = Vector2( 143.225, -26.1041 )
+scale = Vector2( 3.30547, 2.04756 )
 texture = ExtResource( 7 )
 
 [node name="Sprite3" type="Sprite" parent="ModuleSelect/Information/Background"]
@@ -2083,32 +2403,14 @@ position = Vector2( 143.225, -48.0088 )
 scale = Vector2( 3.30547, 0.0471305 )
 texture = ExtResource( 7 )
 
-[node name="Sprite4" type="Sprite" parent="ModuleSelect/Information/Background"]
-modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
-position = Vector2( 143.225, 10.3906 )
-scale = Vector2( 3.30547, 0.0471305 )
-texture = ExtResource( 7 )
-
-[node name="Sprite5" type="Sprite" parent="ModuleSelect/Information/Background"]
-modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
-position = Vector2( 142.891, -1.62305 )
-scale = Vector2( 3.30547, 0.0471305 )
-texture = ExtResource( 7 )
-
-[node name="Sprite6" type="Sprite" parent="ModuleSelect/Information/Background"]
-modulate = Color( 0.960784, 0.694118, 0.482353, 0.631373 )
-position = Vector2( 142.893, -34.6648 )
-scale = Vector2( 3.30547, 0.0471305 )
-texture = ExtResource( 7 )
-
-[node name="PartName" type="Label" parent="ModuleSelect/Information"]
+[node name="ModuleName" type="Label" parent="ModuleSelect/Information"]
 margin_left = 57.9775
 margin_top = -62.1569
 margin_right = 2145.98
 margin_bottom = 100.843
 rect_scale = Vector2( 0.05, 0.05 )
 custom_fonts/font = SubResource( 27 )
-text = "PArt Name"
+text = "Module Name"
 align = 1
 valign = 2
 clip_text = true
@@ -2116,137 +2418,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stats" type="Node2D" parent="ModuleSelect/Information"]
-position = Vector2( -32.5226, 2.34315 )
-
-[node name="Header" type="Label" parent="ModuleSelect/Information/Stats"]
-margin_left = 70.4773
-margin_top = -6.50342
-margin_right = 2158.48
-margin_bottom = 156.497
-rect_scale = Vector2( 0.07, 0.07 )
-custom_fonts/font = SubResource( 27 )
-text = "STATS"
-align = 1
-valign = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Health" type="Node2D" parent="ModuleSelect/Information/Stats"]
-
-[node name="HeaderLabel" type="Label" parent="ModuleSelect/Information/Stats/Health"]
-margin_left = 100.772
-margin_top = 4.05859
-margin_right = 2188.77
-margin_bottom = 167.059
-rect_scale = Vector2( 0.04, 0.04 )
-custom_fonts/font = SubResource( 27 )
-text = "Health "
-valign = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MeterProgress" type="TextureProgress" parent="ModuleSelect/Information/Stats/Health"]
-margin_left = 91.9895
-margin_top = 10.3915
-margin_right = 211.99
-margin_bottom = 22.3915
-rect_scale = Vector2( 0.35, 0.5 )
-max_value = 10.0
-value = 10.0
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Speed" type="Node2D" parent="ModuleSelect/Information/Stats"]
-
-[node name="HeaderLabel" type="Label" parent="ModuleSelect/Information/Stats/Speed"]
-margin_left = 99.9685
-margin_top = 15.6937
-margin_right = 2187.97
-margin_bottom = 178.694
-rect_scale = Vector2( 0.04, 0.04 )
-custom_fonts/font = SubResource( 27 )
-text = "Speed "
-valign = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MeterProgress" type="TextureProgress" parent="ModuleSelect/Information/Stats/Speed"]
-margin_left = 91.9605
-margin_top = 21.3355
-margin_right = 211.961
-margin_bottom = 33.3355
-rect_scale = Vector2( 0.35, 0.5 )
-max_value = 10.0
-value = 10.0
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Damage" type="Node2D" parent="ModuleSelect/Information/Stats"]
-
-[node name="HeaderLabel" type="Label" parent="ModuleSelect/Information/Stats/Damage"]
-margin_left = 99.248
-margin_top = 27.1544
-margin_right = 2187.25
-margin_bottom = 190.154
-rect_scale = Vector2( 0.04, 0.04 )
-custom_fonts/font = SubResource( 27 )
-text = "DAmage "
-valign = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MeterProgress" type="TextureProgress" parent="ModuleSelect/Information/Stats/Damage"]
-margin_left = 92.0094
-margin_top = 31.8913
-margin_right = 212.009
-margin_bottom = 43.8913
-rect_scale = Vector2( 0.35, 0.5 )
-max_value = 10.0
-value = 10.0
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Lore" type="Node2D" parent="ModuleSelect/Information"]
+[node name="Description" type="Node2D" parent="ModuleSelect/Information"]
 position = Vector2( -32.5226, 4.34315 )
 
-[node name="HeaderLabel" type="Label" parent="ModuleSelect/Information/Lore"]
-margin_left = 69.9773
-margin_top = -55.0034
-margin_right = 2157.98
-margin_bottom = 107.997
-rect_scale = Vector2( 0.07, 0.07 )
-custom_fonts/font = SubResource( 8 )
-text = "Story"
-align = 1
-valign = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoreLabel" type="Label" parent="ModuleSelect/Information/Lore"]
+[node name="Label" type="Label" parent="ModuleSelect/Information/Description"]
 margin_left = 95.0
-margin_top = -41.0
-margin_right = 2983.0
-margin_bottom = 782.0
+margin_top = -54.0
+margin_right = 2853.0
+margin_bottom = 893.0
 rect_scale = Vector2( 0.035, 0.035 )
 custom_fonts/font = SubResource( 9 )
 text = "The story of each part goes here"
@@ -2257,10 +2436,10 @@ __meta__ = {
 }
 
 [node name="EquipPrompt" parent="ModuleSelect/Information" instance=ExtResource( 14 )]
-margin_left = 79.2111
-margin_top = 51.2282
-margin_right = 119.211
-margin_bottom = 91.2282
+margin_left = 98.5
+margin_top = -9.0
+margin_right = 138.5
+margin_bottom = 31.0
 rect_scale = Vector2( 0.3, 0.3 )
 keyboard_input = "Interact"
 controller_input = "Interact"
@@ -2299,11 +2478,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PartList" type="Node2D" parent="ModuleSelect"]
+[node name="ModuleList" type="Node2D" parent="ModuleSelect"]
 
-[node name="Frame" type="Node" parent="ModuleSelect/PartList"]
+[node name="Frame" type="Node" parent="ModuleSelect/ModuleList"]
 
-[node name="Crop Frame" parent="ModuleSelect/PartList/Frame" instance=ExtResource( 13 )]
+[node name="Crop Frame" parent="ModuleSelect/ModuleList/Frame" instance=ExtResource( 13 )]
 lore = "Starting wings"
 health_mod = 1
 speed_mod = 2
@@ -2311,51 +2490,51 @@ cost = 0
 purchased = true
 equipped = true
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Frame/Crop Frame"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Frame/Crop Frame"]
 
-[node name="Ram" parent="ModuleSelect/PartList/Frame/Crop Frame/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Frame/Crop Frame/Modules" instance=ExtResource( 1 )]
 
-[node name="Energy Shield" parent="ModuleSelect/PartList/Frame/Crop Frame/Modules" instance=ExtResource( 15 )]
+[node name="Energy Shield" parent="ModuleSelect/ModuleList/Frame/Crop Frame/Modules" instance=ExtResource( 15 )]
 
-[node name="Jet Frame" parent="ModuleSelect/PartList/Frame" instance=ExtResource( 13 )]
+[node name="Jet Frame" parent="ModuleSelect/ModuleList/Frame" instance=ExtResource( 13 )]
 lore = "Starting wings"
 health_mod = 1
 speed_mod = 2
 cost = 10
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Frame/Jet Frame"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Frame/Jet Frame"]
 
-[node name="Ram" parent="ModuleSelect/PartList/Frame/Jet Frame/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Frame/Jet Frame/Modules" instance=ExtResource( 1 )]
 
-[node name="Energy Shield" parent="ModuleSelect/PartList/Frame/Jet Frame/Modules" instance=ExtResource( 15 )]
+[node name="Energy Shield" parent="ModuleSelect/ModuleList/Frame/Jet Frame/Modules" instance=ExtResource( 15 )]
 
-[node name="Supersonic Frame" parent="ModuleSelect/PartList/Frame" instance=ExtResource( 13 )]
+[node name="Supersonic Frame" parent="ModuleSelect/ModuleList/Frame" instance=ExtResource( 13 )]
 lore = "Starting wings"
 health_mod = 1
 speed_mod = 2
 cost = 30
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Frame/Supersonic Frame"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Frame/Supersonic Frame"]
 
-[node name="Ram" parent="ModuleSelect/PartList/Frame/Supersonic Frame/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Frame/Supersonic Frame/Modules" instance=ExtResource( 1 )]
 
-[node name="Energy Shield" parent="ModuleSelect/PartList/Frame/Supersonic Frame/Modules" instance=ExtResource( 15 )]
+[node name="Energy Shield" parent="ModuleSelect/ModuleList/Frame/Supersonic Frame/Modules" instance=ExtResource( 15 )]
 
-[node name="Star Frame" parent="ModuleSelect/PartList/Frame" instance=ExtResource( 13 )]
+[node name="Star Frame" parent="ModuleSelect/ModuleList/Frame" instance=ExtResource( 13 )]
 lore = "Starting wings"
 health_mod = 1
 speed_mod = 2
 cost = 100
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Frame/Star Frame"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Frame/Star Frame"]
 
-[node name="Ram" parent="ModuleSelect/PartList/Frame/Star Frame/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Frame/Star Frame/Modules" instance=ExtResource( 1 )]
 
-[node name="Energy Shield" parent="ModuleSelect/PartList/Frame/Star Frame/Modules" instance=ExtResource( 15 )]
+[node name="Energy Shield" parent="ModuleSelect/ModuleList/Frame/Star Frame/Modules" instance=ExtResource( 15 )]
 
-[node name="Wings" type="Node" parent="ModuleSelect/PartList"]
+[node name="Wings" type="Node" parent="ModuleSelect/ModuleList"]
 
-[node name="Crop Wings" parent="ModuleSelect/PartList/Wings" instance=ExtResource( 13 )]
+[node name="Crop Wings" parent="ModuleSelect/ModuleList/Wings" instance=ExtResource( 13 )]
 lore = "Starting wings"
 health_mod = 1
 speed_mod = 2
@@ -2363,96 +2542,106 @@ cost = 0
 purchased = true
 can_unequip = true
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Wings/Crop Wings"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Wings/Crop Wings"]
 
-[node name="Boosters" parent="ModuleSelect/PartList/Wings/Crop Wings/Modules" instance=ExtResource( 16 )]
+[node name="Boosters" parent="ModuleSelect/ModuleList/Wings/Crop Wings/Modules" instance=ExtResource( 16 )]
+unlocked = true
 
-[node name="Ram" parent="ModuleSelect/PartList/Wings/Crop Wings/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Wings/Crop Wings/Modules" instance=ExtResource( 1 )]
+purchased = true
+equipped = true
+unlocked = true
 
-[node name="Jet Wings" parent="ModuleSelect/PartList/Wings" instance=ExtResource( 13 )]
+[node name="Jet Wings" parent="ModuleSelect/ModuleList/Wings" instance=ExtResource( 13 )]
 lore = "Faster than fuck boi"
 health_mod = 2
 speed_mod = 4
 cost = 10
 can_unequip = true
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Wings/Jet Wings"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Wings/Jet Wings"]
 
-[node name="Boosters" parent="ModuleSelect/PartList/Wings/Jet Wings/Modules" instance=ExtResource( 16 )]
+[node name="Boosters" parent="ModuleSelect/ModuleList/Wings/Jet Wings/Modules" instance=ExtResource( 16 )]
+unlocked = true
 
-[node name="Ram" parent="ModuleSelect/PartList/Wings/Jet Wings/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Wings/Jet Wings/Modules" instance=ExtResource( 1 )]
+unlocked = true
 
-[node name="Supersonic Wings" parent="ModuleSelect/PartList/Wings" instance=ExtResource( 13 )]
+[node name="Supersonic Wings" parent="ModuleSelect/ModuleList/Wings" instance=ExtResource( 13 )]
 lore = "Movin' at the speed of sound! Quickest wings around! Got ourselves a situation; last stop before space and unknown locations!"
 health_mod = 2
 speed_mod = 5
 cost = 30
 can_unequip = true
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Wings/Supersonic Wings"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Wings/Supersonic Wings"]
 
-[node name="Boosters" parent="ModuleSelect/PartList/Wings/Supersonic Wings/Modules" instance=ExtResource( 16 )]
+[node name="Boosters" parent="ModuleSelect/ModuleList/Wings/Supersonic Wings/Modules" instance=ExtResource( 16 )]
+unlocked = true
 
-[node name="Ram" parent="ModuleSelect/PartList/Wings/Supersonic Wings/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Wings/Supersonic Wings/Modules" instance=ExtResource( 1 )]
+unlocked = true
 
-[node name="Star Wings" parent="ModuleSelect/PartList/Wings" instance=ExtResource( 13 )]
+[node name="Star Wings" parent="ModuleSelect/ModuleList/Wings" instance=ExtResource( 13 )]
 lore = "Houston, we have lift off!"
 health_mod = 3
 speed_mod = 6
 cost = 60
 can_unequip = true
 
-[node name="Modules" type="Node" parent="ModuleSelect/PartList/Wings/Star Wings"]
+[node name="Modules" type="Node" parent="ModuleSelect/ModuleList/Wings/Star Wings"]
 
-[node name="Boosters" parent="ModuleSelect/PartList/Wings/Star Wings/Modules" instance=ExtResource( 16 )]
+[node name="Boosters" parent="ModuleSelect/ModuleList/Wings/Star Wings/Modules" instance=ExtResource( 16 )]
+unlocked = true
 
-[node name="Ram" parent="ModuleSelect/PartList/Wings/Star Wings/Modules" instance=ExtResource( 1 )]
+[node name="Ram" parent="ModuleSelect/ModuleList/Wings/Star Wings/Modules" instance=ExtResource( 1 )]
+unlocked = true
 
-[node name="WeaponLeft" type="Node2D" parent="ModuleSelect/PartList"]
+[node name="WeaponLeft" type="Node2D" parent="ModuleSelect/ModuleList"]
 modulate = Color( 1, 1, 1, 0 )
 
-[node name="Crop Cannon" parent="ModuleSelect/PartList/WeaponLeft" instance=ExtResource( 13 )]
+[node name="Crop Cannon" parent="ModuleSelect/ModuleList/WeaponLeft" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 2
 cost = 10
 can_unequip = true
 
-[node name="Auto Rifle XV" parent="ModuleSelect/PartList/WeaponLeft" instance=ExtResource( 13 )]
+[node name="Auto Rifle XV" parent="ModuleSelect/ModuleList/WeaponLeft" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 1
 cost = 30
 can_unequip = true
 
-[node name="Rocket Launcher Mk1" parent="ModuleSelect/PartList/WeaponLeft" instance=ExtResource( 13 )]
+[node name="Rocket Launcher Mk1" parent="ModuleSelect/ModuleList/WeaponLeft" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 5
 cost = 60
 can_unequip = true
 
-[node name="WeaponRight" type="Node2D" parent="ModuleSelect/PartList"]
+[node name="WeaponRight" type="Node2D" parent="ModuleSelect/ModuleList"]
 
-[node name="Crop Cannon" parent="ModuleSelect/PartList/WeaponRight" instance=ExtResource( 13 )]
+[node name="Crop Cannon" parent="ModuleSelect/ModuleList/WeaponRight" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 2
 cost = 10
 can_unequip = true
 
-[node name="Auto Rifle XV" parent="ModuleSelect/PartList/WeaponRight" instance=ExtResource( 13 )]
+[node name="Auto Rifle XV" parent="ModuleSelect/ModuleList/WeaponRight" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 1
 cost = 30
 can_unequip = true
 
-[node name="Rocket Launcher Mk1" parent="ModuleSelect/PartList/WeaponRight" instance=ExtResource( 13 )]
+[node name="Rocket Launcher Mk1" parent="ModuleSelect/ModuleList/WeaponRight" instance=ExtResource( 13 )]
 lore = "Starting wings"
 damage_mod = 5
 cost = 60
 can_unequip = true
 
 [node name="ShipInfo" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0.0120932 )
+modulate = Color( 1, 1, 1, 0.00423957 )
 position = Vector2( 1.81653, -127.716 )
-scale = Vector2( 0.0130811, 0.0130811 )
+scale = Vector2( 0.00523533, 0.00523533 )
 
 [node name="Background" type="Sprite" parent="ShipInfo"]
 modulate = Color( 0.443137, 0.443137, 0.443137, 1 )
@@ -2587,6 +2776,7 @@ bus = "SFX"
 [connection signal="Button_Pressed" from="PartSelect/Buttons/Back" to="." method="go_back"]
 [connection signal="Button_Pressed" from="PartSelect/Information/EquipPrompt" to="." method="interact_with_part"]
 [connection signal="Button_Pressed" from="ColorSelect/Buttons/Back" to="." method="go_back"]
+[connection signal="Button_Pressed" from="ModuleSelect/Buttons/Back" to="." method="go_back"]
 [connection signal="Button_Pressed" from="ModuleSelect/Information/EquipPrompt" to="." method="interact_with_part"]
 
 [editable path="AreaMap/Buttons/PartSelect"]
@@ -2602,4 +2792,7 @@ bus = "SFX"
 [editable path="ColorSelect/Buttons/NextColor"]
 [editable path="ColorSelect/Buttons/Back"]
 [editable path="ColorSelect/Buttons/EquipPrompt"]
+[editable path="ModuleSelect/Buttons/PreviousItem"]
+[editable path="ModuleSelect/Buttons/NextItem"]
+[editable path="ModuleSelect/Buttons/Back"]
 [editable path="ModuleSelect/Information/EquipPrompt"]

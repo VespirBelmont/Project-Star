@@ -49,6 +49,9 @@ func change_menu(_new_menu):
 			for button in $ColorSelect/Buttons.get_children():
 				button.disable()
 	
+		"ModuleSelect":
+			for button in $ModuleSelect/Buttons.get_children():
+				button.disable()
 	
 	match _new_menu:
 		"Close":
@@ -150,10 +153,23 @@ func change_menu(_new_menu):
 		"ModuleSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
 			focused_area = area
-			$ModuleSelect.update_area(focused_area)
+			
+			var part_in_use
+			for _part in $PartSelect/PartList.get_node(focused_area).get_children():
+				if _part.equipped:
+					part_in_use = _part.name
+					break
+			
+			var part = $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use)
+			
+			option_current = 0
+			option_max = part.get_node("Modules").get_child_count()-1
 			
 			$Anim.play("ToggleModuleSelect")
 			yield($Anim, "animation_finished")
+			
+			for button in $ModuleSelect/Buttons.get_children():
+				button.enable()
 	
 	current_menu = _new_menu
 	input_cooldown()
@@ -169,6 +185,9 @@ func _process(delta):
 		
 		"ColorSelect":
 			color_selection_controls()
+		
+		"ModuleSelect":
+			module_selection_controls()
 
 func area_map_controls():
 	var options = $AreaMap/Options
@@ -178,6 +197,8 @@ func area_map_controls():
 	
 	var last_option = option_current
 	var method = ""
+	
+	var highlighted_area = $AreaMap/Options.get_child(option_current).name
 	
 	if next_item:
 		option_current += 1
@@ -197,6 +218,19 @@ func area_map_controls():
 				else:
 					option_current -= 1
 				clamp_options()
+	print(highlighted_area)
+	var part_in_use 
+	for part in $PartSelect/PartList.get_node(highlighted_area).get_children():
+		if part.equipped:
+			part_in_use = part
+			break
+	
+	if part_in_use == null:
+		$AreaMap/Buttons/ColorSelect.disable()
+		$AreaMap/Buttons/ModuleSelect.disable()
+	else:
+		$AreaMap/Buttons/ColorSelect.enable()
+		$AreaMap/Buttons/ModuleSelect.enable()
 	
 	if last_option != option_current:
 		hide_ship_areas()
@@ -319,14 +353,53 @@ func update_color(_dir):
 	$VisualManager_Preview.update_color(focused_area, sub_option_current, color.color)
 
 func module_selection_controls():
-	var next_item = Input.is_action_just_pressed("Option_3")
-	var prev_item = Input.is_action_just_pressed("Option_1")
+	var next_item = Input.is_action_just_pressed("Option_2")
+	var prev_item = Input.is_action_just_pressed("Option_4")
+	var interact = Input.is_action_just_pressed("Interact")
+	
+	var dir = 0
 	
 	if next_item:
 		option_current += 1
+		dir = 1
 	if prev_item:
 		option_current -= 1
+		dir = -1
 	clamp_options()
+	
+	
+	var module
+	var part_in_use
+	
+	for _part in $PartSelect/PartList.get_node(focused_area).get_children():
+		if _part.equipped:
+			part_in_use = _part
+			break
+	
+	for _part in $ModuleSelect/ModuleList.get_node(focused_area).get_children():
+		if _part.name == part_in_use.name:
+			module = _part.get_node("Modules").get_child(option_current)
+	
+	var loop_count = option_current
+	if module.unlocked == false:
+		for _mod in $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_child_count()-1:
+			var check_mod = $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_node("Modules").get_child(option_current)
+			
+			if not check_mod.unlocked:
+				option_current += dir
+				clamp_options()
+			
+			if check_mod.unlocked:
+				break;
+	
+	var module_node = $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_node("Modules").get_child(option_current)
+	
+	if module_node == null: return
+	
+	update_module_info(module_node)
+	
+	if interact:
+		interact_with_module()
 
 
 func update_part_info(part_node):
@@ -353,6 +426,21 @@ func update_part_info(part_node):
 		$PartSelect/Information/EquipPrompt/Cost/AmountLabel.text = str(part_node.repair_cost)
 		$PartSelect/Information/EquipPrompt/Cost.show()
 
+func update_module_info(module_node):
+	$ModuleSelect/Information/ModuleName.text = module_node.name
+	$ModuleSelect/Information/Description/Label.text = module_node.description 
+	
+	if module_node.purchased and module_node.equipped == false:
+		$ModuleSelect/Information/EquipPrompt/OptionLabel.text = "Equip"
+		$ModuleSelect/Information/EquipPrompt/Cost.hide()
+	else:
+		$ModuleSelect/Information/EquipPrompt/OptionLabel.text = "Purchase"
+		$ModuleSelect/Information/EquipPrompt/Cost/AmountLabel.text = str(module_node.purchase_cost)
+		$ModuleSelect/Information/EquipPrompt/Cost.show()
+	
+	if module_node.purchased and module_node.equipped == true:
+		$ModuleSelect/Information/EquipPrompt/OptionLabel.text = "Unequip"
+		$ModuleSelect/Information/EquipPrompt/Cost.hide()
 
 func interact_with_part():
 	if current_menu != "PartSelect" or not can_input: 
@@ -387,6 +475,37 @@ func interact_with_part():
 			$Sounds/CouldntPurchase.play()
 	
 	update_part_info(part_node)
+	
+	input_cooldown()
+
+func interact_with_module():
+	if current_menu != "ModuleSelect" or not can_input: 
+		return
+	can_input = false
+	
+	var part_in_use
+	for _part in $PartSelect/PartList.get_node(focused_area).get_children():
+		if _part.equipped:
+			part_in_use = _part
+			break
+	
+	var module_node = $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_node("Modules").get_child(option_current)
+	
+	if module_node.purchased:
+		if module_node.equipped == false:
+			$Sounds/Equipped.play()
+			module_node.equipped = true
+		else:
+			module_node.equipped = false
+	else:
+		if PlayerInfo.player_currency >= module_node.purchase_cost:
+			PlayerInfo.change_currency(-module_node.purchase_cost)
+			module_node.purchased = true
+			$Sounds/Purchased.play()
+		else:
+			$Sounds/CouldntPurchase.play()
+	
+	update_module_info(module_node)
 	
 	input_cooldown()
 
@@ -476,6 +595,10 @@ func go_back():
 			yield($Anim, "animation_finished")
 		
 		"ColorSelect":
+			change_menu("AreaMap")
+			yield($Anim, "animation_finished")
+		
+		"ModuleSelect":
 			change_menu("AreaMap")
 			yield($Anim, "animation_finished")
 
