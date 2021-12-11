@@ -34,6 +34,11 @@ func update_part(_area, _part):
 	if calculate_stats:
 		calculate_stats()
 
+func update_module(_area, _part, _module, _status):
+	var module_node = get_node(_area).get_node(_part).get_node("Modules").get_node(_module)
+	
+	module_node.equipped = _status
+
 func update_color(_area, _detail, _color):
 	for part in get_node(_area).get_children():
 		if part.visible:
@@ -77,7 +82,7 @@ func calculate_stats():
 	emit_signal("SpeedChanged", speed)
 	
 	if get_parent().is_in_group("Player"):
-		var stats = get_parent().get_node("UpgradeSystem/ShipInfo/Stats")
+		var stats = get_parent().get_parent().get_parent().get_node("Interface/Interface/Player_1/UpgradeSystem/ShipInfo/Stats")
 		stats.get_node("Health/MeterProgress").value = health
 		stats.get_node("Speed/MeterProgress").value = speed
 		stats.get_node("Damage/MeterProgress").value = damage
@@ -86,7 +91,6 @@ func calculate_stats():
 func wing_check():
 	for wing in $Wings.get_children():
 		if wing.visible:
-			print("Wing Visible")
 			return true
 	
 	for weapon in $WeaponLeft.get_children():

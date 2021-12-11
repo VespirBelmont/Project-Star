@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Characters/Player/PlayerShipController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CamRig.tscn" type="PackedScene" id=2]
@@ -8,10 +8,11 @@
 [ext_resource path="res://Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Menus/DeathScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Interface/BlankSquare.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/MenuBlur.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/GameManager.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Characters/Enemies/DroneFighter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Ship Scripts/ShipController.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/UIManager.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/UpgradeSystem.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 435.5 )
@@ -182,20 +183,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 66, -206 ), Vector2( 63, -206 ), Vector2( 66, -206 ) ]
 }
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform float lod: hint_range(0.0, 5) = 0.0;
-
-void fragment(){
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
-	COLOR = color;
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/lod = 0.0
 
 [sub_resource type="Animation" id=7]
 length = 0.5
@@ -415,6 +402,13 @@ scroll_speed = 7.0
 position = Vector2( 58, -206 )
 zoom = Vector2( 0.4, 0.4 )
 
+[node name="WaterEffect" parent="CamRig/Cam" index="0" instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.803922 )
+margin_left = -621.0
+margin_top = -359.0
+margin_right = 1433.0
+margin_bottom = 807.0
+
 [node name="TopLimit" parent="CamRig/Limits" index="0"]
 position = Vector2( 550, -83 )
 
@@ -480,13 +474,7 @@ bus = "Music"
 [node name="TestArea" type="Node2D" parent="World"]
 
 [node name="Interface" type="CanvasLayer" parent="."]
-
-[node name="MenuBlur" type="Sprite" parent="Interface"]
-material = SubResource( 4 )
-position = Vector2( 955.258, 543.543 )
-scale = Vector2( 60.7037, 34.9714 )
-texture = ExtResource( 8 )
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 
 [node name="Interface" type="Control" parent="Interface"]
 pause_mode = 2
@@ -509,6 +497,13 @@ health_bar_percents = {
 "Low": 40,
 "Medium": 75
 }
+
+[node name="UpgradeSystem" parent="Interface/Interface/Player_1" instance=ExtResource( 14 )]
+margin_left = 417.62
+margin_top = -83.312
+margin_right = 417.62
+margin_bottom = -83.312
+rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="Player_2" parent="Interface/Interface" instance=ExtResource( 5 )]
 visible = false
@@ -578,9 +573,6 @@ margin_bottom = 212.214
 
 [node name="DeathScreen" parent="Interface/Interface" instance=ExtResource( 7 )]
 
-[node name="CRTShader" parent="Interface" instance=ExtResource( 4 )]
-visible = false
-
 [node name="DroneFighter" parent="." instance=ExtResource( 11 )]
 position = Vector2( 542, 272 )
 collision_mask = 1
@@ -592,12 +584,14 @@ part_setup = {
 "Wings": ""
 }
 
-[connection signal="Button_Pressed" from="Interface/Interface/Player_1/Upgrade" to="Players/P1/UpgradeSystem" method="toggle"]
+[connection signal="Activate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "Workshop" ]]
+[connection signal="Button_Pressed" from="Interface/Interface/Player_1/Workshop" to="Interface/Interface/Player_1/UpgradeSystem" method="toggle"]
+[connection signal="Deactivate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "" ]]
 
 [editable path="Players/P1"]
 [editable path="Players/P1/ShipManager"]
 [editable path="CamRig"]
 [editable path="Interface/Interface/Player_1"]
-[editable path="Interface/Interface/Player_1/Upgrade"]
+[editable path="Interface/Interface/Player_1/Workshop"]
 [editable path="Interface/Interface/Player_2"]
-[editable path="Interface/Interface/Player_2/Upgrade"]
+[editable path="Interface/Interface/Player_2/Workshop"]

@@ -5,7 +5,7 @@
 [ext_resource path="res://Graphics/Interface/PortraitOutline.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Interface/BlankSquare.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Nuts and Bolts.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Graphics/Interface/Emotes/EmotePack.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=8]
 
@@ -268,7 +268,7 @@ margin_right = 307.0
 margin_bottom = 215.0
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 6 )
-text = "P#"
+text = "P Num"
 align = 1
 valign = 2
 __meta__ = {
@@ -322,10 +322,10 @@ region_enabled = true
 region_rect = Rect2( 66, 34, 18, 17 )
 
 [node name="AmountLabel" type="Label" parent="Currency"]
-margin_left = 39.0237
-margin_top = 10.1011
-margin_right = 406.024
-margin_bottom = 173.101
+margin_left = 40.0
+margin_top = 11.0
+margin_right = 550.0
+margin_bottom = 174.0
 rect_scale = Vector2( 0.1, 0.1 )
 custom_fonts/font = SubResource( 6 )
 text = "0"
@@ -368,7 +368,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Upgrade" parent="." instance=ExtResource( 8 )]
+[node name="Workshop" parent="." instance=ExtResource( 8 )]
 margin_left = 25.1438
 margin_top = 126.6
 margin_right = 65.1438
@@ -377,16 +377,19 @@ rect_scale = Vector2( 0.8, 0.8 )
 keyboard_input = "UpgradeMenu"
 controller_input = "UpgradeMenu"
 
-[node name="OptionLabel" parent="Upgrade" index="0"]
-margin_left = 36.968
-margin_top = 15.9961
-margin_right = 830.968
-margin_bottom = 178.996
+[node name="OptionLabel" parent="Workshop" index="0"]
+margin_left = 38.0952
+margin_top = 15.1099
+margin_right = 832.095
+margin_bottom = 178.11
 rect_scale = Vector2( 0.1, 0.1 )
 text = "Workshop"
+align = 0
 
-[node name="PromptManager" parent="Upgrade" index="1"]
+[node name="PromptManager" parent="Workshop" index="1"]
 margin_top = -0.5
 margin_bottom = 39.5
 
-[editable path="Upgrade"]
+[connection signal="Button_Pressed" from="Workshop" to="Workshop" method="toggle_label" binds= [ "Workshop", "Close Workshop" ]]
+
+[editable path="Workshop"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Characters/Ship Parts/ModuleTemplate.gd" type="Script" id=1]
+
+[node name="Ghost Frame" type="Node"]
+script = ExtResource( 1 )
+description = "Need to get away for a second? Or avoid getting demolished by too many projectiles?! Press your ABILITY button and go ghost to avoid all that!"

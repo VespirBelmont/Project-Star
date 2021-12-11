@@ -1,14 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Graphics/SmokeParticles.png" type="Texture" id=1]
-[ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=2]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Part Modules/Boosters.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Boosters.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Ram.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
@@ -499,6 +499,18 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Enable"
+
+[sub_resource type="Animation" id=15]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=16]
+resource_name = "Enable"
+
 [node name="Crop Wings" instance=ExtResource( 5 )]
 health_modifier = 1
 speed_modifier = 2
@@ -616,7 +628,6 @@ script = ExtResource( 7 )
 [node name="Outline" type="Node2D" parent="PreviewSprite" index="0"]
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Outline" index="0"]
-material = ExtResource( 2 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -9 )
 hframes = 4
@@ -628,7 +639,6 @@ frame = 6
 [node name="Frame_1" type="Sprite" parent="PreviewSprite/Detail_1" index="0"]
 visible = false
 modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-material = ExtResource( 2 )
 position = Vector2( -0.514, -1.351 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -637,7 +647,6 @@ region_rect = Rect2( 752.9, 31.9408, 29.1288, 13.8964 )
 [node name="Frame_2" type="Sprite" parent="PreviewSprite/Detail_1" index="1"]
 visible = false
 modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-material = ExtResource( 2 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -646,7 +655,6 @@ region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 [node name="Frame_3" type="Sprite" parent="PreviewSprite/Detail_1" index="2"]
 visible = false
 modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-material = ExtResource( 2 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -654,7 +662,6 @@ region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 
 [node name="Frame_4" type="Sprite" parent="PreviewSprite/Detail_1" index="3"]
 modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-material = ExtResource( 2 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -664,7 +671,6 @@ region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 
 [node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_2" index="0"]
 modulate = Color( 0.729412, 0.501961, 0.301961, 1 )
-material = ExtResource( 2 )
 position = Vector2( -0.361, -0.9 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -674,7 +680,6 @@ region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
 
 [node name="Frame_1" type="Sprite" parent="PreviewSprite/Detail_3" index="0"]
 visible = false
-material = ExtResource( 2 )
 position = Vector2( -0.357, -0.945 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -682,7 +687,6 @@ region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
 
 [node name="Frame_2" type="Sprite" parent="PreviewSprite/Detail_3" index="1"]
 visible = false
-material = ExtResource( 2 )
 position = Vector2( -0.057, -0.886 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -690,14 +694,12 @@ region_rect = Rect2( 786.603, 58.605, 26.6859, 9.55391 )
 
 [node name="Frame_3" type="Sprite" parent="PreviewSprite/Detail_3" index="2"]
 visible = false
-material = ExtResource( 2 )
 position = Vector2( -0.373, -0.955 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
 
 [node name="Frame_4" type="Sprite" parent="PreviewSprite/Detail_3" index="3"]
-material = ExtResource( 2 )
 position = Vector2( 0.252, -0.468 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -716,6 +718,47 @@ position = Vector2( -8.142, 0.734 )
 [node name="RightPos" type="Position2D" parent="WeaponAnchors" index="1"]
 position = Vector2( 8.132, 0.796 )
 
-[node name="Ram" parent="Modules" index="0" instance=ExtResource( 8 )]
+[node name="Ram" parent="Modules" index="0" instance=ExtResource( 9 )]
 
-[node name="Boosters" parent="Modules" index="1" instance=ExtResource( 9 )]
+[node name="Side Thrusters" parent="Modules" index="1" instance=ExtResource( 8 )]
+
+[node name="DodgeRight" type="Control" parent="Modules/Side Thrusters" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyboard_input = "Option_2"
+controller_input = "Option_2"
+
+[node name="Anim" type="AnimationPlayer" parent="Modules/Side Thrusters/DodgeRight" index="0"]
+anims/Disable = SubResource( 13 )
+anims/Enable = SubResource( 14 )
+
+[node name="DodgeLeft" type="Control" parent="Modules/Side Thrusters" index="1"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="Anim" type="AnimationPlayer" parent="Modules/Side Thrusters/DodgeLeft" index="0"]
+root_node = NodePath("../../DodgeRight")
+anims/Disable = SubResource( 15 )
+anims/Enable = SubResource( 16 )
+
+[node name="ButtonTapReset" type="Timer" parent="Modules/Side Thrusters" index="2"]
+one_shot = true
+
+[node name="UseCooldown" type="Timer" parent="Modules/Side Thrusters" index="3"]
+one_shot = true
+
+[connection signal="Button_Pressed" from="Modules/Side Thrusters/DodgeRight" to="Modules/Side Thrusters" method="use_booster" binds= [ "Right" ]]
+[connection signal="Button_Pressed" from="Modules/Side Thrusters/DodgeLeft" to="Modules/Side Thrusters" method="use_booster" binds= [ "Left" ]]
+[connection signal="timeout" from="Modules/Side Thrusters/ButtonTapReset" to="Modules/Side Thrusters" method="reset_taps"]

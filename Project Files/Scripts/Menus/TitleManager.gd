@@ -11,8 +11,8 @@ func play_game():
 	if not can_input: return
 	can_input = false
 	
-	$ShipManager/ShipAnim.play("StartGame")
-	yield($ShipManager/ShipAnim, "animation_finished")
+	$TitleSubAnim.play("Start Game")
+	yield($TitleSubAnim, "animation_finished")
 	$TitleAnim.play_backwards("Fade")
 	yield(get_tree().create_timer(1.2), "timeout")
 	

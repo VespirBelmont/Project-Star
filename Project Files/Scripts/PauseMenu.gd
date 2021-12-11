@@ -18,7 +18,13 @@ func toggle_pause():
 			$PauseAnim.play_backwards("Toggle")
 			yield($PauseAnim, "animation_finished")
 			active = false
+			get_parent().get_parent().change_menu("")
 		false:
+			if get_parent().get_parent().current_menu != "": 
+				cooldown_input()
+				return
+			
+			get_parent().get_parent().change_menu("Pause")
 			paused = true
 			$PauseAnim.play("Toggle")
 			yield($PauseAnim, "animation_finished")

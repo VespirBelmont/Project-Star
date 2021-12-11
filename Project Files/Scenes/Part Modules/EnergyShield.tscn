@@ -4,3 +4,4 @@
 
 [node name="Energy Shield" type="Node"]
 script = ExtResource( 1 )
+description = "Ever wonder why your dying faster than other arcade shooters?! It's because you don't have energy shields yet!"

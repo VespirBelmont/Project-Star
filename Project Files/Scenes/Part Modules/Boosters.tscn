@@ -2,5 +2,6 @@
 
 [ext_resource path="res://Scenes/Characters/Ship Parts/ModuleTemplate.gd" type="Script" id=1]
 
-[node name="Boosters" type="Node"]
+[node name="Side Thrusters" type="Node"]
 script = ExtResource( 1 )
+description = "When you have projectiles coming at you all around, just double tap to the side with a nice booster dodge! "
