@@ -24,8 +24,10 @@ func toggle():
 	
 	if active:
 		active = false
+		$WorkshopMusic.turn_off()
 	else:
 		active = true
+		$WorkshopMusic.turn_on()
 	
 	match active:
 		true:
@@ -341,6 +343,7 @@ func change_color():
 	
 	$ShipPreview.update_color(focused_area, sub_option_current, color)
 	player_ship.update_color(focused_area, sub_option_current, color)
+	$ColorSelect/ChangeColorSound.play()
 
 func update_color(_dir):
 	var area = focused_area
@@ -461,14 +464,22 @@ func interact_with_part():
 	var area = $PartSelect/PartList.get_node(focused_area)
 	var part_node = area.get_child(option_current)
 	
-	if part_node.purchased and part_node.repaired:
-		$Sounds/Equipped.play()
+	#Equip a part
+	if part_node.purchased and part_node.repaired and not part_node.equipped:
+		$PartSelect/EquipSound.play()
 		player_ship.update_part(focused_area, part_node.name)
 		
 		for part in $PartSelect/PartList.get_node(focused_area).get_children():
 			part.equipped = false
 		part_node.equipped = true
-	elif part_node.repaired:
+	
+	#Unequip a Part
+	if part_node.purchased and part_node.repaired and part_node.equipped and part_node.can_unequip:
+		#$PartSelect/UnequipSound.play()
+		pass
+	
+	
+	if not part_node.purchased and part_node.repaired:
 		if PlayerInfo.player_currency >= part_node.cost:
 			PlayerInfo.change_currency(-part_node.cost)
 			part_node.purchased = true
@@ -480,7 +491,7 @@ func interact_with_part():
 		if PlayerInfo.player_currency >= part_node.repair_cost:
 			PlayerInfo.change_currency(-part_node.repair_cost)
 			part_node.repaired = true
-			$Sounds/Purchased.play()
+			$PartSelect/EquipSound.play()
 		else:
 			$Sounds/CouldntPurchase.play()
 	

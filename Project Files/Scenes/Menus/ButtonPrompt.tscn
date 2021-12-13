@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Audio/SFX/Purchased.wav" type="AudioStream" id=1]
+[ext_resource path="res://Audio/SFX/UI/Navigation Blip 2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Menus/PromptManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=4]
@@ -41,6 +41,7 @@ tracks/0/keys = {
 }
 
 [node name="ButtonPrompt" type="Control"]
+modulate = Color( 0.188235, 0.188235, 0.188235, 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 2, 2 )
@@ -48,6 +49,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+pressed_sound = ExtResource( 1 )
+pressed_volume = -5.0
 
 [node name="OptionLabel" type="Label" parent="."]
 margin_left = 34.5
@@ -67,7 +70,8 @@ __meta__ = {
 
 [node name="PressedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = -15.0
+volume_db = -5.0
+pitch_scale = 0.63
 bus = "SFX"
 
 [node name="Anim" type="AnimationPlayer" parent="."]

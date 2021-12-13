@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Menus/UpgradeSystem.gd" type="Script" id=2]
@@ -24,8 +24,15 @@
 [ext_resource path="res://Scenes/Part Modules/Ghost Frame.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://Scenes/HealthIcon.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/MusicManager.gd" type="Script" id=25]
+[ext_resource path="res://Audio/Music/Workshop Symphony.mp3" type="AudioStream" id=26]
 [ext_resource path="res://Scenes/SpeedIcon.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/DamageIcon.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Audio/SFX/UI/Easter Egg.wav" type="AudioStream" id=29]
+[ext_resource path="res://Audio/SFX/UI/PositiveBlip.wav" type="AudioStream" id=30]
+[ext_resource path="res://Audio/SFX/UI/EquipPart.wav" type="AudioStream" id=31]
+[ext_resource path="res://Audio/SFX/UI/Unequip Part.wav" type="AudioStream" id=32]
+[ext_resource path="res://Audio/SFX/UI/Paint Splat.mp3" type="AudioStream" id=33]
 
 [sub_resource type="Shader" id=103]
 code = "shader_type canvas_item;
@@ -1643,6 +1650,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 enabled = false
 keyboard_input = "Interact"
 controller_input = "Interact"
+pressed_sound = ExtResource( 30 )
 
 [node name="OptionLabel" parent="AreaMap/Buttons/PartSelect" index="0"]
 margin_left = 33.79
@@ -1673,6 +1681,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 enabled = false
 keyboard_input = "ColorMenu"
 controller_input = "ColorMenu"
+pressed_sound = ExtResource( 30 )
 
 [node name="OptionLabel" parent="AreaMap/Buttons/ColorSelect" index="0"]
 margin_left = 33.79
@@ -1705,6 +1714,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 enabled = false
 keyboard_input = "ModMenu"
 controller_input = "ModMenu"
+pressed_sound = ExtResource( 30 )
 
 [node name="OptionLabel" parent="AreaMap/Buttons/ModuleSelect" index="0"]
 margin_left = 33.79
@@ -1722,6 +1732,9 @@ margin_top = -4.0
 margin_right = 44.0
 margin_bottom = 36.0
 rect_scale = Vector2( 0.8, 0.8 )
+
+[node name="PressedAudio" parent="AreaMap/Buttons/ModuleSelect" index="2"]
+stream = ExtResource( 29 )
 
 [node name="Anim" parent="AreaMap/Buttons/ModuleSelect" index="3"]
 autoplay = "Enable"
@@ -1756,6 +1769,10 @@ margin_right = 44.0
 margin_bottom = 36.0
 rect_scale = Vector2( 0.8, 0.8 )
 
+[node name="PressedAudio" parent="AreaMap/Buttons/PrevArea" index="2"]
+volume_db = -10.0
+pitch_scale = 0.37
+
 [node name="Anim" parent="AreaMap/Buttons/PrevArea" index="3"]
 autoplay = "Enable"
 anims/Disable = SubResource( 98 )
@@ -1789,6 +1806,10 @@ margin_right = 44.0
 margin_bottom = 36.0
 rect_scale = Vector2( 0.8, 0.8 )
 
+[node name="PressedAudio" parent="AreaMap/Buttons/NextArea" index="2"]
+volume_db = -10.0
+pitch_scale = 0.37
+
 [node name="Anim" parent="AreaMap/Buttons/NextArea" index="3"]
 autoplay = "Enable"
 anims/Disable = SubResource( 100 )
@@ -1796,6 +1817,20 @@ anims/Enable = SubResource( 101 )
 
 [node name="PartSelect" type="Node2D" parent="."]
 position = Vector2( -4, -56 )
+
+[node name="EquipSound" type="AudioStreamPlayer" parent="PartSelect"]
+stream = ExtResource( 31 )
+volume_db = 3.0
+bus = "Music"
+script = ExtResource( 25 )
+target_volume = -5.0
+
+[node name="UnequipSound" type="AudioStreamPlayer" parent="PartSelect"]
+stream = ExtResource( 32 )
+volume_db = 3.0
+bus = "Music"
+script = ExtResource( 25 )
+target_volume = -5.0
 
 [node name="Buttons" type="Node2D" parent="PartSelect"]
 position = Vector2( -226, 213.995 )
@@ -2042,6 +2077,8 @@ margin_bottom = 59.5
 rect_scale = Vector2( 0.3, 0.3 )
 keyboard_input = "Interact"
 controller_input = "Interact"
+pressed_sound = null
+pressed_volume = -60.0
 
 [node name="OptionLabel" parent="PartSelect/Information/EquipPrompt" index="0"]
 margin_left = 75.0
@@ -2054,6 +2091,9 @@ margin_left = 183.333
 margin_top = -5.0
 margin_right = 223.333
 margin_bottom = 35.0
+
+[node name="PressedAudio" parent="PartSelect/Information/EquipPrompt" index="2"]
+volume_db = -80.0
 
 [node name="Cost" type="Node2D" parent="PartSelect/Information/EquipPrompt"]
 position = Vector2( -88.3333, 18.3333 )
@@ -2485,7 +2525,7 @@ __meta__ = {
 
 [node name="PressedAudio" type="AudioStreamPlayer" parent="ColorSelect/Buttons/EquipPrompt"]
 stream = ExtResource( 9 )
-volume_db = -15.0
+volume_db = -80.0
 bus = "SFX"
 
 [node name="Anim" type="AnimationPlayer" parent="ColorSelect/Buttons/EquipPrompt"]
@@ -2652,6 +2692,9 @@ unlocked = true
 script = ExtResource( 3 )
 unlocked = true
 
+[node name="ChangeColorSound" type="AudioStreamPlayer" parent="ColorSelect"]
+stream = ExtResource( 33 )
+
 [node name="ModuleSelect" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.001, 0.001 )
@@ -2803,6 +2846,8 @@ margin_bottom = 31.0
 rect_scale = Vector2( 0.3, 0.3 )
 keyboard_input = "Interact"
 controller_input = "Interact"
+pressed_sound = null
+pressed_volume = -80.0
 
 [node name="OptionLabel" parent="ModuleSelect/Information/EquipPrompt" index="0"]
 modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
@@ -3137,6 +3182,13 @@ bus = "SFX"
 stream = ExtResource( 11 )
 volume_db = -10.0
 bus = "SFX"
+
+[node name="WorkshopMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+volume_db = -50.0
+bus = "Music"
+script = ExtResource( 25 )
+target_volume = -15.0
 
 [connection signal="Button_Pressed" from="AreaMap/Buttons/PartSelect" to="." method="change_menu" binds= [ "PartSelect" ]]
 [connection signal="Button_Pressed" from="AreaMap/Buttons/ColorSelect" to="." method="change_menu" binds= [ "ColorSelect" ]]

@@ -10,6 +10,9 @@ export var enabled = true
 export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer") var keyboard_input
 export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer") var controller_input
 
+export (AudioStream) var pressed_sound
+export (float) var pressed_volume
+
 var can_input = true
 
 var activated = false
@@ -19,6 +22,11 @@ func _ready():
 		enable()
 	else:
 		disable()
+	
+	if pressed_sound == null: return
+	
+	$PressedAudio.stream = pressed_sound
+	$PressedAudio.volume_db = pressed_volume
 
 func _input(event):
 	if not enabled or not can_input: return

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Paint Splat.mp3-9c2ef0110a686b8fc32ed7a19c69557c.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/UI/Paint Splat.mp3"
+dest_files=[ "res://.import/Paint Splat.mp3-9c2ef0110a686b8fc32ed7a19c69557c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
