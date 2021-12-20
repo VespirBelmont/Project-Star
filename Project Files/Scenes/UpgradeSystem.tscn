@@ -24,7 +24,7 @@
 [ext_resource path="res://Scenes/Part Modules/Ghost Frame.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=23]
 [ext_resource path="res://Scenes/HealthIcon.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scenes/MusicManager.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/MusicManager.gd" type="Script" id=25]
 [ext_resource path="res://Audio/Music/Workshop Symphony.mp3" type="AudioStream" id=26]
 [ext_resource path="res://Scenes/SpeedIcon.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/DamageIcon.tscn" type="PackedScene" id=28]
@@ -556,7 +556,7 @@ tracks/2/keys = {
 
 [sub_resource type="DynamicFont" id=49]
 size = 130
-font_data = ExtResource( 17 )
+font_data = ExtResource( 23 )
 
 [sub_resource type="Animation" id=50]
 resource_name = "Disable"
@@ -615,7 +615,7 @@ tracks/2/keys = {
 
 [sub_resource type="DynamicFont" id=69]
 size = 130
-font_data = ExtResource( 17 )
+font_data = ExtResource( 23 )
 
 [sub_resource type="Animation" id=79]
 length = 0.5
@@ -953,32 +953,308 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=106]
 resource_name = "ToggleColorSelect"
-length = 0.9
+length = 2.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorSelect:modulate")
+tracks/0/path = NodePath("Anim:playback_speed")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ 1.3 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Anim:playback_speed")
+tracks/1/path = NodePath("AreaMap/Background2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ Vector2( 18.7499, 57.7426 ), Vector2( 18.7499, 81.3886 ), Vector2( 18.7499, 126.722 ), Vector2( 18.7499, 49.3885 ), Vector2( 18.7499, 273.388 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AreaMap/Buttons/PartSelect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -125, 110 ), Vector2( -125, 129.333 ), Vector2( -125, 110.25 ), Vector2( -125, 149.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AreaMap/Buttons/ColorSelect:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -55, 110 ), Vector2( -55, 129.333 ), Vector2( -55, 110.25 ), Vector2( -55, 152 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AreaMap/Buttons/ModuleSelect:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 18, 110 ), Vector2( 18, 121.333 ), Vector2( 18, 128.25 ), Vector2( 18, 109.563 ), Vector2( 18, 150.5 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AreaMap/Buttons/PrevArea:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.8, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -237, -113 ), Vector2( -253, -113 ), Vector2( -349.57, -113 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.8, 0.9, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -237.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -351.5, 39.25 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AreaMap/Options/Frame:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -397, 6.66666 ), Vector2( -427.667, 6.66666 ), Vector2( -367.667, 6.66666 ), Vector2( -551.666, 6.66666 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("AreaMap/Options/WeaponLeft:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.2, 0.5, 0.7, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -397, 49.3333 ), Vector2( -427.667, 49.3333 ), Vector2( -367.667, 49.3333 ), Vector2( -527.666, 49.3333 ), Vector2( -551.45, 49.3333 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("AreaMap/Options/WeaponRight:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.3, 0.5, 0.7, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -397, 92 ), Vector2( -427.667, 92 ), Vector2( -367.667, 92 ), Vector2( -527.666, 92 ), Vector2( -556.784, 92 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AreaMap/Options/Wings:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -397, 134.667 ), Vector2( -427.667, 134.667 ), Vector2( -367.667, 134.667 ), Vector2( -527.666, 134.667 ), Vector2( -553.45, 134.667 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("PartSelect/Information:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("ShipInfo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("PartSelect/Buttons:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("AreaMap/Background3:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1313.33, 267.344 ), Vector2( 1313.33, 291.344 ), Vector2( 1313.33, 337.344 ), Vector2( 1313.33, 257.344 ), Vector2( 1313.33, 484.344 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("ColorSelect/Information/Background:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -33.5226, -51.0569 ), Vector2( -33.5226, -4.2569 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("ColorSelect/Information/Background2:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -58.8, 208.4 ), Vector2( -58.8, 157.2 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("ColorSelect/Information/ColorName:rect_position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 57.9775, -110.157 ), Vector2( 57.9775, -62.1569 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("ColorSelect/Information/DetailName:rect_position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 52.9995, 153.203 ), Vector2( 53, 103.6 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("ColorSelect/Buttons/PreviousDetail:rect_position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -221.333, 146.333 ), Vector2( -221.333, 58.3333 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("ColorSelect/Buttons/NextDetail:rect_position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 105, 149.333 ), Vector2( 105, 61.3333 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("ColorSelect/Buttons/PreviousColor:rect_position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -167.333, -292 ), Vector2( -167.333, -212 ) ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("ColorSelect/Buttons/NextColor:rect_position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 56, -290.667 ), Vector2( 56, -210.667 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("ColorSelect/Buttons/Back:rect_position")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -109, 173.333 ), Vector2( -109, 88 ) ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("ColorSelect/Buttons/EquipPrompt:rect_position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 1.4, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 102.667, 171.667 ), Vector2( 102.667, 86.3333 ) ]
 }
 
 [sub_resource type="Animation" id=43]
@@ -1202,7 +1478,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 1.4, 1.7, 2, 2.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 12, 160 ), Vector2( 12, -72 ), Vector2( 12, 80 ), Vector2( 12, -40 ) ]
+"values": [ Vector2( 12, 208 ), Vector2( 12, -72 ), Vector2( 12, 80 ), Vector2( 12, -40 ) ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("PartSelect/Buttons:position")
@@ -1325,7 +1601,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 1.1, 1.3, 1.5, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -315, -113 ), Vector2( -231, -113 ), Vector2( -253, -113 ), Vector2( -237, -113 ) ]
+"values": [ Vector2( -333, -113 ), Vector2( -231, -113 ), Vector2( -253, -113 ), Vector2( -237, -113 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
@@ -1337,7 +1613,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 1.1, 1.3, 1.5, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -315.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -237.5, 39.25 ) ]
+"values": [ Vector2( -331.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -237.5, 39.25 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("AreaMap/Options/Frame:position")
@@ -1742,9 +2018,9 @@ anims/Disable = SubResource( 87 )
 anims/Enable = SubResource( 88 )
 
 [node name="PrevArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
-margin_left = -309.839
+margin_left = -317.296
 margin_top = -113.0
-margin_right = -269.839
+margin_right = -277.296
 margin_bottom = -73.0
 rect_scale = Vector2( 1, 1 )
 enabled = false
@@ -1779,9 +2055,9 @@ anims/Disable = SubResource( 98 )
 anims/Enable = SubResource( 99 )
 
 [node name="NextArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
-margin_left = -310.339
+margin_left = -316.104
 margin_top = 39.25
-margin_right = -270.339
+margin_right = -276.104
 margin_bottom = 79.25
 rect_scale = Vector2( 1, 1 )
 enabled = false
@@ -1832,68 +2108,8 @@ bus = "Music"
 script = ExtResource( 25 )
 target_volume = -5.0
 
-[node name="Buttons" type="Node2D" parent="PartSelect"]
-position = Vector2( -226, 213.995 )
-
-[node name="PrevPart" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -146.0
-margin_top = 371.0
-margin_right = -106.0
-margin_bottom = 411.0
-rect_scale = Vector2( 3, 3 )
-enabled = false
-keyboard_input = "Option_4"
-controller_input = "Option_4"
-
-[node name="OptionLabel" parent="PartSelect/Buttons/PrevPart" index="0"]
-visible = false
-margin_left = -1.0
-margin_top = -13.0
-margin_right = 902.0
-margin_bottom = 316.0
-rect_scale = Vector2( 0.05, 0.05 )
-text = "Previous
-Part"
-
-[node name="NextPart" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = 552.0
-margin_top = 364.0
-margin_right = 592.0
-margin_bottom = 404.0
-rect_scale = Vector2( 3, 3 )
-enabled = false
-keyboard_input = "Option_2"
-controller_input = "Option_2"
-
-[node name="OptionLabel" parent="PartSelect/Buttons/NextPart" index="0"]
-visible = false
-margin_left = 0.0
-margin_top = -20.0
-margin_right = 903.0
-margin_bottom = 309.0
-rect_scale = Vector2( 0.05, 0.05 )
-text = "Next 
-Part"
-
-[node name="Back" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -34.0
-margin_top = 466.0
-margin_right = 6.0
-margin_bottom = 506.0
-rect_scale = Vector2( 1.3, 1.3 )
-enabled = false
-keyboard_input = "Option_3"
-controller_input = "Option_3"
-
-[node name="OptionLabel" parent="PartSelect/Buttons/Back" index="0"]
-margin_left = 22.5001
-margin_top = 0.0
-margin_right = 389.5
-margin_bottom = 163.0
-text = "Back"
-
 [node name="Information" type="Node2D" parent="PartSelect"]
-position = Vector2( 727.272, 115 )
+position = Vector2( 747, 115 )
 scale = Vector2( 5, 5 )
 
 [node name="Background" type="Node2D" parent="PartSelect/Information"]
@@ -2117,6 +2333,66 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Buttons" type="Node2D" parent="PartSelect"]
+position = Vector2( -226, 222 )
+
+[node name="PrevPart" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = -146.0
+margin_top = 371.0
+margin_right = -106.0
+margin_bottom = 411.0
+rect_scale = Vector2( 3, 3 )
+enabled = false
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="OptionLabel" parent="PartSelect/Buttons/PrevPart" index="0"]
+visible = false
+margin_left = -1.0
+margin_top = -13.0
+margin_right = 902.0
+margin_bottom = 316.0
+rect_scale = Vector2( 0.05, 0.05 )
+text = "Previous
+Part"
+
+[node name="NextPart" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = 552.0
+margin_top = 364.0
+margin_right = 592.0
+margin_bottom = 404.0
+rect_scale = Vector2( 3, 3 )
+enabled = false
+keyboard_input = "Option_2"
+controller_input = "Option_2"
+
+[node name="OptionLabel" parent="PartSelect/Buttons/NextPart" index="0"]
+visible = false
+margin_left = 0.0
+margin_top = -20.0
+margin_right = 903.0
+margin_bottom = 309.0
+rect_scale = Vector2( 0.05, 0.05 )
+text = "Next 
+Part"
+
+[node name="Back" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
+margin_left = -34.0
+margin_top = 466.0
+margin_right = 6.0
+margin_bottom = 506.0
+rect_scale = Vector2( 1.3, 1.3 )
+enabled = false
+keyboard_input = "Back"
+controller_input = "Back"
+
+[node name="OptionLabel" parent="PartSelect/Buttons/Back" index="0"]
+margin_left = 22.5001
+margin_top = 0.0
+margin_right = 389.5
+margin_bottom = 163.0
+text = "Back"
+
 [node name="PartList" type="Node2D" parent="PartSelect"]
 
 [node name="Frame" type="Node" parent="PartSelect/PartList"]
@@ -2141,7 +2417,6 @@ lore = "This frame can withstand higher pressure allowing you fly higher than ev
 health_mod = 1
 speed_mod = 2
 cost = 10
-unlocked = true
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Frame/Jet Frame"]
 
@@ -2154,7 +2429,6 @@ lore = "Ever wonder why not ever ship flies at supersonic speeds? Their frame wo
 health_mod = 1
 speed_mod = 2
 cost = 30
-unlocked = true
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Frame/Supersonic Frame"]
 
@@ -2167,13 +2441,25 @@ lore = "You ready for space travel!? This frame will be able to take on the pres
 health_mod = 1
 speed_mod = 2
 cost = 100
-unlocked = true
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Frame/Star Frame"]
 
 [node name="Ram" parent="PartSelect/PartList/Frame/Star Frame/Modules" instance=ExtResource( 1 )]
 
 [node name="Energy Shield" parent="PartSelect/PartList/Frame/Star Frame/Modules" instance=ExtResource( 15 )]
+
+[node name="Drone Frame" parent="PartSelect/PartList/Frame" instance=ExtResource( 13 )]
+lore = "Drone Frame Info"
+health_mod = 1
+speed_mod = 2
+cost = 100
+repaired = false
+
+[node name="Modules" type="Node" parent="PartSelect/PartList/Frame/Drone Frame"]
+
+[node name="Ram" parent="PartSelect/PartList/Frame/Drone Frame/Modules" instance=ExtResource( 1 )]
+
+[node name="Energy Shield" parent="PartSelect/PartList/Frame/Drone Frame/Modules" instance=ExtResource( 15 )]
 
 [node name="Wings" type="Node" parent="PartSelect/PartList"]
 
@@ -2199,7 +2485,6 @@ speed_mod = 4
 cost = 10
 purchased = true
 can_unequip = true
-unlocked = true
 repaired = false
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Wings/Jet Wings"]
@@ -2215,7 +2500,6 @@ speed_mod = 5
 cost = 30
 purchased = true
 can_unequip = true
-unlocked = true
 repaired = false
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Wings/Supersonic Wings"]
@@ -2230,7 +2514,7 @@ health_mod = 3
 speed_mod = 6
 cost = 60
 can_unequip = true
-unlocked = true
+repaired = false
 
 [node name="Modules" type="Node" parent="PartSelect/PartList/Wings/Star Wings"]
 
@@ -2283,7 +2567,6 @@ cost = 60
 can_unequip = true
 
 [node name="ColorSelect" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 
 [node name="Background" type="Sprite" parent="ColorSelect"]
 visible = false
@@ -2294,11 +2577,11 @@ z_index = -1
 texture = ExtResource( 7 )
 
 [node name="Information" type="Node2D" parent="ColorSelect"]
-position = Vector2( -208, -145 )
-scale = Vector2( 2, 2 )
+position = Vector2( -503, -158 )
+scale = Vector2( 5, 5 )
 
 [node name="Background" type="Node2D" parent="ColorSelect/Information"]
-position = Vector2( -33.5226, -4.65686 )
+position = Vector2( -33.5226, -50.6802 )
 
 [node name="Sprite" type="Sprite" parent="ColorSelect/Information/Background"]
 modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
@@ -2312,11 +2595,41 @@ position = Vector2( 143.225, -53.8541 )
 scale = Vector2( 3.30547, 0.313187 )
 texture = ExtResource( 7 )
 
+[node name="Background2" type="Node2D" parent="ColorSelect/Information"]
+position = Vector2( -58.8, 207.988 )
+
+[node name="Sprite" type="Sprite" parent="ColorSelect/Information/Background2"]
+modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
+position = Vector2( 168.967, -50.0925 )
+scale = Vector2( 5.05209, 0.705784 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="ColorSelect/Information/Background2"]
+modulate = Color( 0.717647, 0.647059, 0.4, 1 )
+position = Vector2( 168.569, -50.1325 )
+scale = Vector2( 4.88945, 0.545785 )
+texture = ExtResource( 7 )
+
 [node name="ColorName" type="Label" parent="ColorSelect/Information"]
 margin_left = 57.9775
-margin_top = -62.1569
+margin_top = -109.771
 margin_right = 2145.98
-margin_bottom = 100.843
+margin_bottom = 90.2297
+rect_scale = Vector2( 0.05, 0.05 )
+custom_fonts/font = SubResource( 27 )
+text = "Color Name"
+align = 1
+valign = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetailName" type="Label" parent="ColorSelect/Information"]
+margin_left = 52.9995
+margin_top = 152.804
+margin_right = 2141.0
+margin_bottom = 352.804
 rect_scale = Vector2( 0.05, 0.05 )
 custom_fonts/font = SubResource( 27 )
 text = "Color Name"
@@ -2346,14 +2659,14 @@ __meta__ = {
 }
 
 [node name="Buttons" type="Node2D" parent="ColorSelect"]
-position = Vector2( 14, -94 )
+position = Vector2( 3, 79 )
+scale = Vector2( 3, 3 )
 
 [node name="PreviousDetail" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -58.0
-margin_top = -144.0
-margin_right = -18.0
-margin_bottom = -104.0
-rect_scale = Vector2( 1.3, 1.3 )
+margin_left = -221.333
+margin_top = 145.625
+margin_right = -181.333
+margin_bottom = 185.625
 enabled = false
 keyboard_input = "Option_1"
 controller_input = "Option_1"
@@ -2380,11 +2693,10 @@ anims/Disable = SubResource( 52 )
 anims/RESET = SubResource( 53 )
 
 [node name="NextDetail" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -54.0
-margin_top = 43.0
-margin_right = -14.0
-margin_bottom = 83.0
-rect_scale = Vector2( 1.2, 1.2 )
+margin_left = 105.0
+margin_top = 148.625
+margin_right = 145.0
+margin_bottom = 188.625
 enabled = false
 keyboard_input = "Option_3"
 controller_input = "Option_3"
@@ -2411,10 +2723,10 @@ anims/Disable = SubResource( 54 )
 anims/RESET = SubResource( 55 )
 
 [node name="PreviousColor" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -209.0
-margin_top = -209.0
-margin_right = -169.0
-margin_bottom = -169.0
+margin_left = -167.333
+margin_top = -291.356
+margin_right = -127.333
+margin_bottom = -251.356
 enabled = false
 keyboard_input = "Option_4"
 controller_input = "Option_4"
@@ -2441,10 +2753,10 @@ anims/Disable = SubResource( 56 )
 anims/RESET = SubResource( 57 )
 
 [node name="NextColor" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = 73.0
-margin_top = -211.0
-margin_right = 113.0
-margin_bottom = -171.0
+margin_left = 56.0
+margin_top = -290.023
+margin_right = 96.0
+margin_bottom = -250.023
 enabled = false
 keyboard_input = "Option_2"
 controller_input = "Option_2"
@@ -2471,20 +2783,20 @@ anims/Disable = SubResource( 58 )
 anims/RESET = SubResource( 59 )
 
 [node name="Back" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
-margin_left = -119.0
-margin_top = -21.0
-margin_right = -79.0
-margin_bottom = 19.0
-rect_scale = Vector2( 0.4, 0.4 )
+margin_left = -109.0
+margin_top = 172.646
+margin_right = -69.0
+margin_bottom = 212.646
+rect_scale = Vector2( 0.5, 0.5 )
 enabled = false
-keyboard_input = "ColorMenu"
-controller_input = "ColorMenu"
+keyboard_input = "Back"
+controller_input = "Back"
 
 [node name="OptionLabel" parent="ColorSelect/Buttons/Back" index="0"]
-margin_left = -5.00024
-margin_top = 25.0
-margin_right = 362.0
-margin_bottom = 188.0
+margin_left = -12.0
+margin_top = 23.3335
+margin_right = 355.0
+margin_bottom = 186.333
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 49 )
 text = "Back"
@@ -2495,11 +2807,11 @@ anims/Disable = SubResource( 50 )
 anims/RESET = SubResource( 51 )
 
 [node name="EquipPrompt" type="Control" parent="ColorSelect/Buttons"]
-margin_left = -124.0
-margin_top = -73.0
-margin_right = -84.0001
-margin_bottom = -33.0
-rect_scale = Vector2( 0.7, 0.7 )
+margin_left = 102.667
+margin_top = 170.98
+margin_right = 142.667
+margin_bottom = 210.98
+rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2509,10 +2821,10 @@ controller_input = "Interact"
 
 [node name="OptionLabel" type="Label" parent="ColorSelect/Buttons/EquipPrompt"]
 modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
-margin_left = -12.8571
-margin_top = 25.7142
-margin_right = 463.143
-margin_bottom = 188.715
+margin_left = -2.6665
+margin_top = 22.0
+margin_right = 473.334
+margin_bottom = 185.001
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 69 )
 text = "Equip"
@@ -2766,8 +3078,8 @@ margin_right = 8.0
 margin_bottom = 134.0
 rect_scale = Vector2( 0.4, 0.4 )
 enabled = false
-keyboard_input = "Option_3"
-controller_input = "Option_3"
+keyboard_input = "Back"
+controller_input = "Back"
 
 [node name="OptionLabel" parent="ModuleSelect/Buttons/Back" index="0"]
 modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
@@ -3033,7 +3345,7 @@ cost = 60
 can_unequip = true
 
 [node name="ShipInfo" type="Node2D" parent="."]
-position = Vector2( 12, 151.709 )
+position = Vector2( 12, 208 )
 scale = Vector2( 4, 4 )
 
 [node name="Background" type="Sprite" parent="ShipInfo"]
@@ -3161,7 +3473,7 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Anim" type="AnimationPlayer" parent="."]
 reset_on_save = false
 playback_speed = 1.3
-anims/ToggleColorSelect = SubResource( 42 )
+anims/ToggleColorSelect = SubResource( 106 )
 anims/ToggleModuleSelect = SubResource( 43 )
 anims/TogglePartSelect = SubResource( 102 )
 anims/ToggleSystem = SubResource( 84 )
@@ -3193,8 +3505,8 @@ target_volume = -15.0
 [connection signal="Button_Pressed" from="AreaMap/Buttons/PartSelect" to="." method="change_menu" binds= [ "PartSelect" ]]
 [connection signal="Button_Pressed" from="AreaMap/Buttons/ColorSelect" to="." method="change_menu" binds= [ "ColorSelect" ]]
 [connection signal="Button_Pressed" from="AreaMap/Buttons/ModuleSelect" to="." method="change_menu" binds= [ "ModuleSelect" ]]
-[connection signal="Button_Pressed" from="PartSelect/Buttons/Back" to="." method="go_back"]
 [connection signal="Button_Pressed" from="PartSelect/Information/EquipPrompt" to="." method="interact_with_part"]
+[connection signal="Button_Pressed" from="PartSelect/Buttons/Back" to="." method="go_back"]
 [connection signal="Button_Pressed" from="ColorSelect/Buttons/Back" to="." method="go_back"]
 [connection signal="Button_Pressed" from="ColorSelect/Buttons/EquipPrompt" to="ColorSelect/Buttons/EquipPrompt/PromptManager" method="button_pressed"]
 [connection signal="Button_Pressed" from="ColorSelect/Buttons/EquipPrompt" to="ColorSelect/Buttons/EquipPrompt/PressedAudio" method="play"]
@@ -3207,10 +3519,10 @@ target_volume = -15.0
 [editable path="AreaMap/Buttons/ModuleSelect"]
 [editable path="AreaMap/Buttons/PrevArea"]
 [editable path="AreaMap/Buttons/NextArea"]
+[editable path="PartSelect/Information/EquipPrompt"]
 [editable path="PartSelect/Buttons/PrevPart"]
 [editable path="PartSelect/Buttons/NextPart"]
 [editable path="PartSelect/Buttons/Back"]
-[editable path="PartSelect/Information/EquipPrompt"]
 [editable path="ColorSelect/Buttons/PreviousDetail"]
 [editable path="ColorSelect/Buttons/NextDetail"]
 [editable path="ColorSelect/Buttons/PreviousColor"]

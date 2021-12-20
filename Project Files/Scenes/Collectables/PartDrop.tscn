@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Collectables/CollectableCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Shaders/HologramShader.material" type="Material" id=4]
+[ext_resource path="res://Scenes/Collectables/PartDrop.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 11 )
+
+[node name="PartDrop" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+
+[node name="AreaCollider" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="PartList" type="Node2D" parent="." index="1"]
+
+[node name="Jet Frame" type="Node2D" parent="PartList" index="0"]
+visible = false
+
+[node name="Outline" type="Node2D" parent="PartList/Jet Frame" index="0"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Jet Frame/Outline" index="0"]
+modulate = Color( 0.227451, 0.239216, 0.254902, 1 )
+material = ExtResource( 4 )
+position = Vector2( 0.12, -1.12 )
+scale = Vector2( 1, 0.984 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 6.28951, 3.86858, 13.5561, 22.8195 )
+
+[node name="Detail_1" type="Node2D" parent="PartList/Jet Frame" index="1"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Jet Frame/Detail_1" index="0"]
+modulate = Color( 0.588235, 0.588235, 0.588235, 1 )
+material = ExtResource( 4 )
+position = Vector2( -0.394, -0.919 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 180.227, 23.5124, 10.5173, 22.1078 )
+
+[node name="Detail_2" type="Node2D" parent="PartList/Jet Frame" index="2"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Jet Frame/Detail_2" index="0"]
+modulate = Color( 0.211765, 0.278431, 0.333333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 0.315, -0.708 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 190.959, 24.1563, 8.58556, 21.2492 )
+
+[node name="Supersonic Frame" type="Node2D" parent="PartList" index="1"]
+visible = false
+
+[node name="Outline" type="Node2D" parent="PartList/Supersonic Frame" index="0"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Supersonic Frame/Outline" index="0"]
+modulate = Color( 0.262745, 0.352941, 0.364706, 1 )
+scale = Vector2( 1, 0.984 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 31.9015, 4.90252, 11.0708, 23.0454 )
+
+[node name="Detail_1" type="Node2D" parent="PartList/Supersonic Frame" index="1"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Supersonic Frame/Detail_1" index="0"]
+modulate = Color( 0.615686, 0.705882, 0.713726, 1 )
+position = Vector2( -0.502, -0.846 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 185.943, 72.7847, 9.93741, 23.7393 )
+
+[node name="Detail_2" type="Node2D" parent="PartList/Supersonic Frame" index="2"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Supersonic Frame/Detail_2" index="0"]
+modulate = Color( 0.419608, 0.427451, 0.52549, 1 )
+position = Vector2( -0.584, -0.923 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 195.881, 73.1527, 7.91312, 22.8192 )
+
+[node name="Detail_3" type="Node2D" parent="PartList/Supersonic Frame" index="3"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Supersonic Frame/Detail_3" index="0"]
+modulate = Color( 0.890196, 0.898039, 0.901961, 1 )
+position = Vector2( -1.137, -0.939 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 204.53, 73.1527, 3.49648, 22.8192 )
+
+[node name="Star Frame" type="Node2D" parent="PartList" index="2"]
+visible = false
+
+[node name="Outline" type="Node2D" parent="PartList/Star Frame" index="0"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Star Frame/Outline" index="0"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+position = Vector2( 0.211, -1.12 )
+scale = Vector2( 1, 0.984 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 58.7343, -1.47179, 10.7546, 32.2637 )
+
+[node name="Detail_1" type="Node2D" parent="PartList/Star Frame" index="1"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Star Frame/Detail_1" index="0"]
+modulate = Color( 0.756863, 0.419608, 0.419608, 1 )
+position = Vector2( -0.017, -0.933 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 276.021, 20.1623, 7.69946, 29.6017 )
+
+[node name="Detail_2" type="Node2D" parent="PartList/Star Frame" index="2"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Star Frame/Detail_2" index="0"]
+modulate = Color( 0.427451, 0.458824, 0.545098, 1 )
+position = Vector2( -0.519, 0.406 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 284.416, 23.3245, 7.94217, 25.9573 )
+
+[node name="Detail_3" type="Node2D" parent="PartList/Star Frame" index="3"]
+
+[node name="Sprite" type="Sprite" parent="PartList/Star Frame/Detail_3" index="0"]
+modulate = Color( 0.839216, 0.839216, 0.839216, 1 )
+position = Vector2( 0.095, 0.357 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 294.101, 23.3245, 7.74844, 25.9573 )
+
+[connection signal="Collected" from="." to="." method="unlock_part"]

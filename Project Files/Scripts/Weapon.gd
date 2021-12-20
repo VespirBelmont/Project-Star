@@ -15,7 +15,7 @@ export (Array, String, "Player", "Enemy", "Hazard") var target = ["Enemy"]
 
 export (bool) var reload_feedback_active = true
 
-export (String, "SmallShake", "MediumShake", "LauncherShake") var cam_fx
+export (String, "None", "SmallShake", "MediumShake", "LauncherShake") var cam_fx
 
 func shoot():
 	if not can_fire: 
@@ -24,10 +24,10 @@ func shoot():
 	
 	var projectile = projectile_tscn.instance()
 	$Bullets.add_child(projectile)
-	projectile.setup(damage_modifier, shoot_direction, shoot_speed, target)
+	projectile.setup(damage_modifier, shoot_direction * get_parent().get_parent().get_parent().scale, shoot_speed, target)
 	projectile.global_position = $ProjectileSpawnPos.global_position
 	
-	if cam_fx != "":
+	if cam_fx != "None":
 		var cam_anim = get_parent().get_parent().get_parent().get_parent().get_parent().get_node("CamRig/Anim")
 		cam_anim.play(cam_fx)
 	

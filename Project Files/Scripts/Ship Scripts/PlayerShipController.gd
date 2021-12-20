@@ -43,7 +43,7 @@ func control_check():
 		if not $Audio/Brake.playing:
 			$Audio/Brake.play()
 	
-	if $ShipManager.wing_check() and move_module.velocity.y < 0:
+	if $ShipManager.wing_check():
 		move_module.velocity.y -= move_module.auto_move_speed
 	
 	if shoot_left:

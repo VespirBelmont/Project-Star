@@ -4,7 +4,7 @@ var damage = 1
 var targets
 
 var move_speed = 1
-var move_direction : Vector2
+var move_direction = Vector2(0, 0)
 
 export (float) var movement_delay = 1.5
 export (float) var delay_speed_mod = 0.3

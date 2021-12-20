@@ -6,7 +6,15 @@ export (float) var scroll_speed = 5
 
 func _ready():
 	setup_limits()
+	
+	set_process(false)
 
+
+func run_cam():
+	set_process(true)
+
+func stop_cam():
+	set_process(false)
 
 func setup_limits():
 	#$Cam.limit_top = $Limits/TopLimit.global_position.y

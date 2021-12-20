@@ -7,8 +7,8 @@ signal Deactivate
 
 export var enabled = true
 
-export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer") var keyboard_input
-export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer") var controller_input
+export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer", "Back") var keyboard_input
+export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "StartGame", "UpgradeMenu", "ColorMenu", "ModMenu", "Interact", "ShipRandomizer", "Back") var controller_input
 
 export (AudioStream) var pressed_sound
 export (float) var pressed_volume

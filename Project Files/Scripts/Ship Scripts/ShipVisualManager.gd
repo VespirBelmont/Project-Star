@@ -42,18 +42,21 @@ func update_module(_area, _part, _module, _status):
 func update_color(_area, _detail, _color):
 	for part in get_node(_area).get_children():
 		if part.visible:
-			for detail in part.get_node("GameplaySprite").get_children():
+			var detail_node = part.get_node("SpriteList").get_child(_detail)
+			for sprite in detail_node.get_children():
+				if sprite is Sprite:
+					sprite.modulate = _color
+			
+			return
+			
+			for detail in part.get_node("SpriteList").get_children():
 				var detail_name = "Detail_%s" % _detail
 				if detail.name == detail_name:
 					for sprite in detail.get_children():
 						if sprite is Sprite:
 							sprite.modulate = _color
-			for detail in part.get_node("PreviewSprite").get_children():
-				var detail_name = "Detail_%s" % _detail
-				if detail.name == detail_name:
-					for sprite in detail.get_children():
-						if sprite is Sprite:
-							sprite.modulate = _color
+
+
 func calculate_stats():
 	health = 0
 	speed = 0

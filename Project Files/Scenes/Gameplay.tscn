@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Characters/Player/PlayerShipController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CamRig.tscn" type="PackedScene" id=2]
@@ -8,10 +8,9 @@
 [ext_resource path="res://Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Menus/DeathScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Interface/BlankSquare.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/PilotManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/GameManager.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Characters/Enemies/DroneFighter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/Ship Scripts/ShipController.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/UIManager.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/UIManager.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/UpgradeSystem.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -385,18 +384,22 @@ script = ExtResource( 10 )
 [node name="Players" type="Node" parent="."]
 
 [node name="P1" parent="Players" instance=ExtResource( 1 )]
-position = Vector2( 561.835, 466.218 )
-
-[node name="InstantMoveSystem" parent="Players/P1/Modules" index="0"]
-move_speeds = {
-"Run": 120.0,
-"Sprint": 0.0,
-"Walk": 0.0
+position = Vector2( 532, 378 )
+collision_mask = 4
+part_setup = {
+"Frame": "Crop Frame",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
 }
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="LootPool" type="Node" parent="."]
 
 [node name="CamRig" parent="." instance=ExtResource( 2 )]
 position = Vector2( 479, 469 )
-scroll_speed = 7.0
+scroll_speed = 30.0
 
 [node name="Cam" parent="CamRig" index="0"]
 position = Vector2( 58, -206 )
@@ -472,7 +475,7 @@ bus = "Music"
 
 [node name="World" type="Node" parent="."]
 
-[node name="TestArea" type="Node2D" parent="World"]
+[node name="StartingArea" type="Node2D" parent="World"]
 
 [node name="Interface" type="CanvasLayer" parent="."]
 script = ExtResource( 13 )
@@ -573,25 +576,20 @@ margin_bottom = 212.214
 [node name="PauseMenu" parent="Interface/Interface" instance=ExtResource( 6 )]
 
 [node name="DeathScreen" parent="Interface/Interface" instance=ExtResource( 7 )]
+margin_left = -89.0
+margin_top = 19.0
+margin_right = -49.0
+margin_bottom = 59.0
 
-[node name="DroneFighter" parent="." instance=ExtResource( 11 )]
-visible = false
-position = Vector2( 542, 272 )
-collision_mask = 1
-script = ExtResource( 12 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "Auto Rifle XV",
-"Wings": ""
-}
+[node name="LaunchSequence" type="Node" parent="."]
+
+[node name="PilotManager" parent="LaunchSequence" instance=ExtResource( 9 )]
+position = Vector2( 485, 379 )
 
 [connection signal="Activate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "Workshop" ]]
 [connection signal="Button_Pressed" from="Interface/Interface/Player_1/Workshop" to="Interface/Interface/Player_1/UpgradeSystem" method="toggle"]
 [connection signal="Deactivate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "" ]]
 
-[editable path="Players/P1"]
-[editable path="Players/P1/ShipManager"]
 [editable path="CamRig"]
 [editable path="Interface/Interface/Player_1"]
 [editable path="Interface/Interface/Player_1/Workshop"]

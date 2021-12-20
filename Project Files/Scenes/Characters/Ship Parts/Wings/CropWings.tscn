@@ -1,31 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Graphics/SmokeParticles.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Characters/Ship Parts/Wings/WingPartTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=7]
-[ext_resource path="res://Boosters.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Ram.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=11]
-
-[sub_resource type="Gradient" id=7]
-colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
-
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
-
-[sub_resource type="ParticlesMaterial" id=4]
-trail_divisor = 4
-flag_disable_z = true
-gravity = Vector3( 0, 3, 0 )
-angular_velocity = 28.24
-angular_velocity_random = 0.45
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.1
-color_ramp = SubResource( 8 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Fly"
@@ -263,269 +242,118 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Fly"
-length = 0.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 6, 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../Detail_3/Frame_1:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../Detail_1/Frame_1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../../Detail_1/Frame_2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../../Detail_3/Frame_2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../Detail_1/Frame_3:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../../Detail_3/Frame_3:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../Detail_1/Frame_4:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../../Detail_3/Frame_4:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, true ]
-}
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
 
-[sub_resource type="Animation" id=12]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 6 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../PreviewSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 4 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../Detail_1/Frame_1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../../Detail_3/Frame_1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../../Detail_3/Frame_2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../Detail_1/Frame_2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../../Detail_3/Frame_3:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../Detail_1/Frame_3:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../../Detail_3/Frame_4:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../../Detail_1/Frame_4:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="Animation" id=13]
-resource_name = "Disable"
+[sub_resource type="ParticlesMaterial" id=4]
+trail_divisor = 4
+flag_disable_z = true
+gravity = Vector3( 0, 3, 0 )
+angular_velocity = 28.24
+angular_velocity_random = 0.45
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.1
+color_ramp = SubResource( 8 )
 
-[sub_resource type="Animation" id=14]
-resource_name = "Enable"
+[node name="Crop Wings" instance=ExtResource( 2 )]
+has_particles = true
 
-[sub_resource type="Animation" id=15]
-resource_name = "Disable"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("../SpriteList/Outline/Sprite")
+anims/Fly = SubResource( 9 )
+anims/RESET = SubResource( 10 )
 
-[sub_resource type="Animation" id=16]
-resource_name = "Enable"
+[node name="Outline" type="Node2D" parent="SpriteList" index="0"]
 
-[node name="Crop Wings" instance=ExtResource( 5 )]
-health_modifier = 1
-speed_modifier = 2
+[node name="Sprite" type="Sprite" parent="SpriteList/Outline" index="0"]
+texture = ExtResource( 3 )
+offset = Vector2( 0, -9 )
+hframes = 4
+vframes = 4
+frame = 6
 
-[node name="Particles" type="Node2D" parent="." index="0"]
+[node name="Detail_1" type="Node2D" parent="SpriteList" index="1"]
 
-[node name="TrailParticles2" parent="Particles" index="0" instance=ExtResource( 4 )]
-position = Vector2( 8, 5 )
-amount = 100
-lifetime = 8.0
-speed_scale = 3.0
-process_material = SubResource( 4 )
-texture = ExtResource( 1 )
+[node name="Frame_1" type="Sprite" parent="SpriteList/Detail_1" index="0"]
+visible = false
+modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+position = Vector2( -0.514, -1.351 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 752.9, 31.9408, 29.1288, 13.8964 )
 
-[node name="TrailParticles3" parent="Particles" index="1" instance=ExtResource( 4 )]
+[node name="Frame_2" type="Sprite" parent="SpriteList/Detail_1" index="1"]
+visible = false
+modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+position = Vector2( -0.217, -1.373 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
+
+[node name="Frame_3" type="Sprite" parent="SpriteList/Detail_1" index="2"]
+visible = false
+modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+position = Vector2( -0.217, -1.373 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
+
+[node name="Frame_4" type="Sprite" parent="SpriteList/Detail_1" index="3"]
+modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+position = Vector2( -0.217, -1.373 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
+
+[node name="Detail_2" type="Node2D" parent="SpriteList" index="2"]
+
+[node name="Sprite" type="Sprite" parent="SpriteList/Detail_2" index="0"]
+modulate = Color( 0.729412, 0.501961, 0.301961, 1 )
+position = Vector2( -0.361, -0.9 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
+
+[node name="Detail_3" type="Node2D" parent="SpriteList" index="3"]
+
+[node name="Frame_1" type="Sprite" parent="SpriteList/Detail_3" index="0"]
+visible = false
+position = Vector2( -0.357, -0.945 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
+
+[node name="Frame_2" type="Sprite" parent="SpriteList/Detail_3" index="1"]
+visible = false
+position = Vector2( -0.057, -0.886 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 786.603, 58.605, 26.6859, 9.55391 )
+
+[node name="Frame_3" type="Sprite" parent="SpriteList/Detail_3" index="2"]
+visible = false
+position = Vector2( -0.373, -0.955 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
+
+[node name="Frame_4" type="Sprite" parent="SpriteList/Detail_3" index="3"]
+position = Vector2( 0.252, -0.468 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 787.216, 59.0416, 26.0734, 9.49912 )
+
+[node name="LeftPos" parent="WeaponAnchors" index="0"]
+position = Vector2( -8, 1 )
+
+[node name="Particles" parent="." index="3"]
+z_index = -1
+
+[node name="TrailParticles3" parent="Particles" index="0" instance=ExtResource( 4 )]
 position = Vector2( -8, 5 )
 amount = 100
 lifetime = 8.0
@@ -533,232 +361,10 @@ speed_scale = 3.0
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 
-[node name="GameplaySprite" type="Node2D" parent="." index="1"]
-script = ExtResource( 7 )
-
-[node name="Outline" type="Node2D" parent="GameplaySprite" index="0"]
-
-[node name="Sprite" type="Sprite" parent="GameplaySprite/Outline" index="0"]
-texture = ExtResource( 3 )
-offset = Vector2( 0, -9 )
-hframes = 4
-vframes = 4
-frame = 6
-
-[node name="Detail_1" type="Node2D" parent="GameplaySprite" index="1"]
-
-[node name="Frame_1" type="Sprite" parent="GameplaySprite/Detail_1" index="0"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.514, -1.351 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 752.9, 31.9408, 29.1288, 13.8964 )
-
-[node name="Frame_2" type="Sprite" parent="GameplaySprite/Detail_1" index="1"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Frame_3" type="Sprite" parent="GameplaySprite/Detail_1" index="2"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Frame_4" type="Sprite" parent="GameplaySprite/Detail_1" index="3"]
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Detail_2" type="Node2D" parent="GameplaySprite" index="2"]
-
-[node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_2" index="0"]
-modulate = Color( 0.729412, 0.501961, 0.301961, 1 )
-position = Vector2( -0.361, -0.9 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
-
-[node name="Detail_3" type="Node2D" parent="GameplaySprite" index="3"]
-
-[node name="Frame_1" type="Sprite" parent="GameplaySprite/Detail_3" index="0"]
-visible = false
-position = Vector2( -0.357, -0.945 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
-
-[node name="Frame_2" type="Sprite" parent="GameplaySprite/Detail_3" index="1"]
-visible = false
-position = Vector2( -0.057, -0.886 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.603, 58.605, 26.6859, 9.55391 )
-
-[node name="Frame_3" type="Sprite" parent="GameplaySprite/Detail_3" index="2"]
-visible = false
-position = Vector2( -0.373, -0.955 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
-
-[node name="Frame_4" type="Sprite" parent="GameplaySprite/Detail_3" index="3"]
-position = Vector2( 0.252, -0.468 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 787.216, 59.0416, 26.0734, 9.49912 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameplaySprite" index="4"]
-root_node = NodePath("../Outline/Sprite")
-anims/Fly = SubResource( 9 )
-anims/RESET = SubResource( 10 )
-
-[node name="PreviewSprite" type="Node2D" parent="." index="2"]
-visible = false
-script = ExtResource( 7 )
-
-[node name="Outline" type="Node2D" parent="PreviewSprite" index="0"]
-
-[node name="Sprite" type="Sprite" parent="PreviewSprite/Outline" index="0"]
-texture = ExtResource( 3 )
-offset = Vector2( 0, -9 )
-hframes = 4
-vframes = 4
-frame = 6
-
-[node name="Detail_1" type="Node2D" parent="PreviewSprite" index="1"]
-
-[node name="Frame_1" type="Sprite" parent="PreviewSprite/Detail_1" index="0"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.514, -1.351 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 752.9, 31.9408, 29.1288, 13.8964 )
-
-[node name="Frame_2" type="Sprite" parent="PreviewSprite/Detail_1" index="1"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Frame_3" type="Sprite" parent="PreviewSprite/Detail_1" index="2"]
-visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Frame_4" type="Sprite" parent="PreviewSprite/Detail_1" index="3"]
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
-position = Vector2( -0.217, -1.373 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
-
-[node name="Detail_2" type="Node2D" parent="PreviewSprite" index="2"]
-
-[node name="Sprite" type="Sprite" parent="PreviewSprite/Detail_2" index="0"]
-modulate = Color( 0.729412, 0.501961, 0.301961, 1 )
-position = Vector2( -0.361, -0.9 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
-
-[node name="Detail_3" type="Node2D" parent="PreviewSprite" index="3"]
-
-[node name="Frame_1" type="Sprite" parent="PreviewSprite/Detail_3" index="0"]
-visible = false
-position = Vector2( -0.357, -0.945 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
-
-[node name="Frame_2" type="Sprite" parent="PreviewSprite/Detail_3" index="1"]
-visible = false
-position = Vector2( -0.057, -0.886 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 786.603, 58.605, 26.6859, 9.55391 )
-
-[node name="Frame_3" type="Sprite" parent="PreviewSprite/Detail_3" index="2"]
-visible = false
-position = Vector2( -0.373, -0.955 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
-
-[node name="Frame_4" type="Sprite" parent="PreviewSprite/Detail_3" index="3"]
-position = Vector2( 0.252, -0.468 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 787.216, 59.0416, 26.0734, 9.49912 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PreviewSprite" index="4"]
-root_node = NodePath("../Outline/Sprite")
-anims/Fly = SubResource( 11 )
-anims/RESET = SubResource( 12 )
-
-[node name="WeaponAnchors" type="Node2D" parent="." index="3"]
-
-[node name="LeftPos" type="Position2D" parent="WeaponAnchors" index="0"]
-position = Vector2( -8.142, 0.734 )
-
-[node name="RightPos" type="Position2D" parent="WeaponAnchors" index="1"]
-position = Vector2( 8.132, 0.796 )
-
-[node name="Ram" parent="Modules" index="0" instance=ExtResource( 9 )]
-
-[node name="Side Thrusters" parent="Modules" index="1" instance=ExtResource( 8 )]
-
-[node name="DodgeRight" type="Control" parent="Modules/Side Thrusters" index="0"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-keyboard_input = "Option_2"
-controller_input = "Option_2"
-
-[node name="Anim" type="AnimationPlayer" parent="Modules/Side Thrusters/DodgeRight" index="0"]
-anims/Disable = SubResource( 13 )
-anims/Enable = SubResource( 14 )
-
-[node name="DodgeLeft" type="Control" parent="Modules/Side Thrusters" index="1"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-keyboard_input = "Option_4"
-controller_input = "Option_4"
-
-[node name="Anim" type="AnimationPlayer" parent="Modules/Side Thrusters/DodgeLeft" index="0"]
-root_node = NodePath("../../DodgeRight")
-anims/Disable = SubResource( 15 )
-anims/Enable = SubResource( 16 )
-
-[node name="ButtonTapReset" type="Timer" parent="Modules/Side Thrusters" index="2"]
-one_shot = true
-
-[node name="UseCooldown" type="Timer" parent="Modules/Side Thrusters" index="3"]
-one_shot = true
-
-[connection signal="Button_Pressed" from="Modules/Side Thrusters/DodgeRight" to="Modules/Side Thrusters" method="use_booster" binds= [ "Right" ]]
-[connection signal="Button_Pressed" from="Modules/Side Thrusters/DodgeLeft" to="Modules/Side Thrusters" method="use_booster" binds= [ "Left" ]]
-[connection signal="timeout" from="Modules/Side Thrusters/ButtonTapReset" to="Modules/Side Thrusters" method="reset_taps"]
+[node name="TrailParticles2" parent="Particles" index="1" instance=ExtResource( 4 )]
+position = Vector2( 8, 5 )
+amount = 100
+lifetime = 8.0
+speed_scale = 3.0
+process_material = SubResource( 4 )
+texture = ExtResource( 1 )

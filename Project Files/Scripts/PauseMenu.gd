@@ -37,7 +37,6 @@ func toggle_settings():
 	if not can_input or not active: return
 	can_input = false
 	
-	print("Settings")
 	cooldown_input()
 
 func quit_game():

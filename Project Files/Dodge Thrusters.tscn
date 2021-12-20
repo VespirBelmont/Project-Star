@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/BoosterModule.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=13]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Enable"
+
+[sub_resource type="Animation" id=15]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=16]
+resource_name = "Enable"
+
+[node name="Side Thrusters" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="DodgeRight" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyboard_input = "Option_2"
+controller_input = "Option_2"
+
+[node name="Anim" type="AnimationPlayer" parent="DodgeRight"]
+anims/Disable = SubResource( 13 )
+anims/Enable = SubResource( 14 )
+
+[node name="DodgeLeft" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+keyboard_input = "Option_4"
+controller_input = "Option_4"
+
+[node name="Anim" type="AnimationPlayer" parent="DodgeLeft"]
+root_node = NodePath("../../DodgeRight")
+anims/Disable = SubResource( 15 )
+anims/Enable = SubResource( 16 )
+
+[node name="ButtonTapReset" type="Timer" parent="."]
+one_shot = true
+
+[node name="UseCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="Button_Pressed" from="DodgeRight" to="." method="use_booster" binds= [ "Right" ]]
+[connection signal="Button_Pressed" from="DodgeLeft" to="." method="use_booster" binds= [ "Left" ]]
+[connection signal="timeout" from="ButtonTapReset" to="." method="reset_taps"]

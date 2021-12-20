@@ -1,21 +1,29 @@
 extends Control
 
-var active = false
-var can_input = true
+var active = false #This tells us if the menu is active
+var can_input = true #This tells us whether input can be used or not
 
-var current_menu = "Close"
-var focused_area = ""
-var focused_part = ""
+var current_menu = "Close" #This is the current menu being looked at
+var focused_area = "" #This is the area of the ship that's being edited
+var focused_part = "" #This is the specific part of the ship being edited
 
-var option_max = 0
-var option_current = 0
+#These are the primary options used to select items in menus
+var option_max = 0 #The maximum an option can be
+var option_current = 0 #The current option
 
-var sub_option_max = 0
-var sub_option_current = 0
+#These are optional sub options for extra precision in menus
+var sub_option_max = 0 #The maximum a sub option can be
+var sub_option_current = 0  #The current sub option
 
-var player_ship
+var player_ship #This will be the player's ship node
+
+
+#VARIABLES END HERE FRIEND!
+
+
 
 func _ready():
+	#We get the player ship node right away because it's used a lot
 	player_ship = get_parent().get_parent().get_parent().get_parent().get_node("Players/P1/ShipManager")
 
 func toggle():
@@ -49,6 +57,10 @@ func change_menu(_new_menu):
 		"AreaMap":
 			for button in $AreaMap/Buttons.get_children():
 				button.disable()
+			
+			var options = $AreaMap/Options
+			for opt in options.get_children():
+				opt.get_node("Anim").play("Disable")
 		
 		"PartSelect":
 			for button in $PartSelect/Buttons.get_children():
@@ -92,10 +104,13 @@ func change_menu(_new_menu):
 		
 		"AreaMap":
 			revert_to_equipped()
+			$AreaMap/Options.get_child(option_current).get_node("Anim").play("Enable")
 			
 			match current_menu:
 				"Close":
 					$Anim.play("ToggleSystem")
+					
+					
 					yield($Anim, "animation_finished")
 				
 				"PartSelect":
@@ -150,8 +165,8 @@ func change_menu(_new_menu):
 			option_max = $ColorSelect/ColorList.get_child_count() - 1
 			option_current = 0
 			
-			sub_option_max = part.get_detail_count()
-			sub_option_current = 1
+			sub_option_max = part.get_detail_count() - 1
+			sub_option_current = 0
 			update_color(1)
 			
 			
@@ -278,6 +293,7 @@ func part_selection_controls():
 		dir = -1
 	clamp_options()
 	
+	
 	var part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
 	
 	var loop_count = option_current
@@ -331,6 +347,8 @@ func color_selection_controls():
 	clamp_options()
 	
 	update_color(dir)
+	
+	$ColorSelect/Information/DetailName.text = player_ship.get_part(focused_area).get_node("SpriteList").get_child(sub_option_current).name
 	
 	if interact:
 		change_color()
@@ -533,9 +551,21 @@ func interact_with_module():
 	
 	input_cooldown()
 
+
+func unlock_part(part_area, part_name):
+	var part = $PartSelect/PartList.get_node(part_area).get_node(part_name)
+	
+	if part.unlocked:
+		part.repaired = true
+	else:
+		part.unlocked = true
+
+
 func input_cooldown():
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.001), "timeout")
 	can_input = true
+
+
 
 func hide_ship_areas():
 	var options = $AreaMap/Options
@@ -595,18 +625,17 @@ func revert_to_equipped():
 			$ShipPreview.unequip_all("WeaponRight")
 
 func revert_color(revert_area, revert_part):
-	
-	for detail in player_ship.get_node(revert_area).get_node(revert_part).get_node("GameplaySprite").get_children():
-		if "Detail" in detail.name:
-			for sprite in detail.get_children():
-				if sprite is Sprite:
-					var target_color = sprite.modulate
-					
-					for _detail in $ShipPreview.get_node(revert_area).get_node(revert_part).get_node("GameplaySprite").get_children():
-						if _detail.name == detail.name:
-							for _sprite in _detail.get_children():
-								if _sprite.name == sprite.name:
-									_sprite.modulate = target_color
+	for detail in player_ship.get_node(revert_area).get_node(revert_part).get_node("SpriteList").get_children():
+		for sprite in detail.get_children():
+			if sprite is Sprite:
+				var target_color = sprite.modulate
+				
+				for _detail in $ShipPreview.get_node(revert_area).get_node(revert_part).get_node("SpriteList").get_children():
+					if _detail.name == detail.name:
+						for _sprite in _detail.get_children():
+							if _sprite.name == sprite.name:
+								_sprite.modulate = target_color
+
 
 func go_back():
 	match current_menu:
@@ -629,7 +658,7 @@ func clamp_options():
 		option_current = 0
 
 func clamp_sub_options():
-	if sub_option_current < 1:
+	if sub_option_current < 0:
 		sub_option_current = sub_option_max
 	if sub_option_current > sub_option_max:
-		sub_option_current = 1
+		sub_option_current = 0

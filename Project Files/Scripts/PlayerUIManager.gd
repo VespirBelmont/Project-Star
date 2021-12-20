@@ -18,7 +18,7 @@ export var health_bar_percents = {
 
 func _ready():
 	PlayerInfo.connect("CurrencyUpdated", self, "update_currency")
-	PlayerInfo.change_currency(500)
+	PlayerInfo.change_currency(0)
 
 func setup(_player_node):
 	player_node = _player_node

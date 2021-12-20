@@ -8,7 +8,6 @@ func _ready():
 	setup_game()
 
 func setup_game():
-	
 	#This collects the player information
 	for player in $Players.get_children():
 		match player.player_id:
@@ -34,6 +33,12 @@ func quit_game():
 func players_dead():
 	game_over = true
 	$Interface/Interface/DeathScreen.death_intiate()
+
+func _process(delta):
+	if $Players/P1.move_module.velocity != Vector2():
+		if not $CamRig.is_processing():
+			$CamRig.run_cam()
+			set_process(false)
 
 
 func restart_game():

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=7]
+
+[node name="WingTemplate" instance=ExtResource( 5 )]
+health_modifier = 1
+speed_modifier = 2
+
+[node name="SpriteList" type="Node2D" parent="." index="0"]
+script = ExtResource( 7 )
+
+[node name="WeaponAnchors" type="Node2D" parent="." index="1"]
+
+[node name="LeftPos" type="Position2D" parent="WeaponAnchors" index="0"]
+position = Vector2( -8.142, 0.734 )
+
+[node name="RightPos" type="Position2D" parent="WeaponAnchors" index="1"]
+position = Vector2( 8.132, 0.796 )
+
+[node name="Particles" type="Node2D" parent="." index="2"]

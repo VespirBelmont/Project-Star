@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Metal Tap.wav-4adf88b17e6f94d9c297589f510f5abe.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Metal Tap.wav"
+dest_files=[ "res://.import/Metal Tap.wav-4adf88b17e6f94d9c297589f510f5abe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
