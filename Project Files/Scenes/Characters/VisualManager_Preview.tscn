@@ -6,6 +6,7 @@
 calculate_stats = false
 
 [node name="Crop Wings" parent="Wings" index="0"]
+visible = true
 position = Vector2( -0.826, 0 )
 has_particles = false
 

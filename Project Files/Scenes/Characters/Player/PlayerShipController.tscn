@@ -44,9 +44,12 @@ move_speeds = {
 "Sprint": 0.0,
 "Walk": 0.0
 }
-auto_move_speed = 25
+accelerate_speed = 25
+brake_speed = 50
+auto_move_speed = 35
 
 [node name="HealthSystem" parent="Modules" index="1"]
+pause_mode = 2
 health_max = 10
 
 [node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
@@ -56,7 +59,11 @@ shape = SubResource( 5 )
 [node name="CamFX" type="Node" parent="Modules" index="2"]
 script = ExtResource( 4 )
 
+[node name="Crop Wings" parent="ShipManager/Wings" index="0"]
+visible = true
+
 [node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+visible = true
 target = [ "Enemy", "Hazard" ]
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]

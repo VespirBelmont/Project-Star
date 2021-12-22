@@ -2,7 +2,6 @@ extends Node
 
 
 func play_sound(_sound_name):
-	print(_sound_name)
 	self.get_node(_sound_name).play()
 
 

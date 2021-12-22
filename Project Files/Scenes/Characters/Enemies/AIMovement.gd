@@ -7,9 +7,14 @@ export (float) var switch_dir_time_min
 export (float) var switch_dir_time_max
 
 func _ready():
+	set_physics_process(false)
+
+func start_up():
 	var switch_time = rand_range(switch_dir_time_min, switch_dir_time_max)
 	$SwitchDirectionTimer.wait_time = switch_time
 	$SwitchDirectionTimer.start()
+	
+	set_physics_process(true)
 
 
 func _physics_process(delta):

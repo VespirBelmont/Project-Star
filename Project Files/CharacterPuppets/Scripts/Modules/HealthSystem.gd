@@ -38,9 +38,8 @@ func change_health_max(_new_max):
 #This handles damaging the character
 func take_damage(damage, knockback, damage_pos):
 	if not active:
-		print("Not active")
 		return
-	print("Take damage")
+	
 	emit_signal("Hurt")
 	#Reduce the current health with the modify stat method
 	health_current = clamp(health_current - damage, 0, health_max)

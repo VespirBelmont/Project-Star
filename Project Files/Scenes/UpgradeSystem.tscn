@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Scenes/Part Modules/Ram.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Menus/UpgradeSystem.gd" type="Script" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://Audio/SFX/UI/EquipPart.wav" type="AudioStream" id=31]
 [ext_resource path="res://Audio/SFX/UI/Unequip Part.wav" type="AudioStream" id=32]
 [ext_resource path="res://Audio/SFX/UI/Paint Splat.mp3" type="AudioStream" id=33]
+[ext_resource path="res://Audio/SFX/UI/Purchase.mp3" type="AudioStream" id=34]
 
 [sub_resource type="Shader" id=103]
 code = "shader_type canvas_item;
@@ -182,6 +183,42 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=107]
+resource_name = "Disable"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Repair:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.286275, 0.286275, 0.286275, 1 ) ]
+}
+
+[sub_resource type="Animation" id=108]
+resource_name = "Enable"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Repair:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=10]
+size = 130
+font_data = ExtResource( 17 )
+
 [sub_resource type="Animation" id=85]
 resource_name = "Disable"
 length = 0.5
@@ -317,10 +354,6 @@ size = 200
 outline_size = 6
 outline_color = Color( 0.454902, 0.454902, 0.454902, 1 )
 font_data = ExtResource( 18 )
-
-[sub_resource type="DynamicFont" id=10]
-size = 130
-font_data = ExtResource( 17 )
 
 [sub_resource type="Animation" id=52]
 resource_name = "Disable"
@@ -1256,6 +1289,18 @@ tracks/24/keys = {
 "update": 0,
 "values": [ Vector2( 102.667, 171.667 ), Vector2( 102.667, 86.3333 ) ]
 }
+tracks/25/type = "value"
+tracks/25/path = NodePath("AreaMap/Options/Repair:position")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0.6, 0.8, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -397, 181.334 ), Vector2( -413, 181.334 ), Vector2( -399.667, 181.334 ), Vector2( -541, 181.334 ) ]
+}
 
 [sub_resource type="Animation" id=43]
 resource_name = "ToggleModuleSelect"
@@ -1504,6 +1549,18 @@ tracks/14/keys = {
 "update": 0,
 "values": [ Vector2( 1313.33, 267.344 ), Vector2( 1313.33, 291.344 ), Vector2( 1313.33, 337.344 ), Vector2( 1313.33, 257.344 ), Vector2( 1313.33, 484.344 ) ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("AreaMap/Options/Repair:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0.5, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -398.467, 181.334 ), Vector2( -425.133, 181.334 ), Vector2( -401.133, 181.334 ), Vector2( -553.133, 181.334 ) ]
+}
 
 [sub_resource type="Animation" id=84]
 length = 1.7
@@ -1686,6 +1743,18 @@ tracks/14/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.735 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("AreaMap/Options/Repair:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 0.9, 1.2, 1.3, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -554.333, 181.334 ), Vector2( -402.333, 181.334 ), Vector2( -423.667, 181.334 ), Vector2( -386.333, 181.334 ), Vector2( -397, 181.334 ) ]
 }
 
 [node name="UpgradeSystem" type="Control"]
@@ -1913,6 +1982,76 @@ reset_on_save = false
 anims/Disable = SubResource( 96 )
 anims/Enable = SubResource( 97 )
 
+[node name="Repair" type="Node2D" parent="AreaMap/Options"]
+modulate = Color( 0.286275, 0.286275, 0.286275, 1 )
+position = Vector2( -554.333, 181.334 )
+script = ExtResource( 4 )
+
+[node name="Background" type="Node2D" parent="AreaMap/Options/Repair"]
+
+[node name="Border" type="Sprite" parent="AreaMap/Options/Repair/Background"]
+modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
+position = Vector2( 143.068, -42.3641 )
+scale = Vector2( 3.43343, 1.18881 )
+texture = ExtResource( 7 )
+
+[node name="InsideBacking" type="Sprite" parent="AreaMap/Options/Repair/Background"]
+modulate = Color( 0.717647, 0.647059, 0.4, 1 )
+position = Vector2( 143.225, -42.1041 )
+scale = Vector2( 3.30547, 1.04756 )
+texture = ExtResource( 7 )
+
+[node name="StatBack" type="Sprite" parent="AreaMap/Options/Repair/Background"]
+modulate = Color( 0.745098, 0.701961, 0.552941, 1 )
+position = Vector2( 142.959, -42.5098 )
+scale = Vector2( 3.17067, 0.90625 )
+texture = ExtResource( 7 )
+
+[node name="AreaLabel" type="Label" parent="AreaMap/Options/Repair"]
+margin_left = 93.3334
+margin_top = -56.3337
+margin_right = 837.333
+margin_bottom = 246.666
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 6 )
+text = "Repair"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Anim" type="AnimationPlayer" parent="AreaMap/Options/Repair"]
+root_node = NodePath("../../WeaponLeft")
+reset_on_save = false
+anims/Disable = SubResource( 107 )
+anims/Enable = SubResource( 108 )
+
+[node name="Cost" type="Node2D" parent="AreaMap/Options/Repair"]
+position = Vector2( 193.333, -49.0003 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Icon" type="Sprite" parent="AreaMap/Options/Repair/Cost"]
+position = Vector2( -19.0717, 2.48808 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 66, 34, 18, 17 )
+
+[node name="AmountLabel" type="Label" parent="AreaMap/Options/Repair/Cost"]
+margin_left = -28.5715
+margin_top = 14.762
+margin_right = 338.429
+margin_bottom = 177.762
+rect_scale = Vector2( 0.1, 0.1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Buttons" type="Node2D" parent="AreaMap"]
 position = Vector2( 112, 70 )
 scale = Vector2( 4, 4 )
@@ -2018,9 +2157,9 @@ anims/Disable = SubResource( 87 )
 anims/Enable = SubResource( 88 )
 
 [node name="PrevArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
-margin_left = -317.296
+margin_left = -325.35
 margin_top = -113.0
-margin_right = -277.296
+margin_right = -285.35
 margin_bottom = -73.0
 rect_scale = Vector2( 1, 1 )
 enabled = false
@@ -2055,9 +2194,9 @@ anims/Disable = SubResource( 98 )
 anims/Enable = SubResource( 99 )
 
 [node name="NextArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
-margin_left = -316.104
+margin_left = -324.0
 margin_top = 39.25
-margin_right = -276.104
+margin_right = -284.0
 margin_bottom = 79.25
 rect_scale = Vector2( 1, 1 )
 enabled = false
@@ -2077,9 +2216,9 @@ align = 0
 
 [node name="PromptManager" parent="AreaMap/Buttons/NextArea" index="1"]
 margin_left = 4.0
-margin_top = -4.0
+margin_top = 34.0
 margin_right = 44.0
-margin_bottom = 36.0
+margin_bottom = 74.0
 rect_scale = Vector2( 0.8, 0.8 )
 
 [node name="PressedAudio" parent="AreaMap/Buttons/NextArea" index="2"]
@@ -2469,6 +2608,7 @@ health_mod = 1
 speed_mod = 2
 cost = 0
 purchased = true
+equipped = true
 can_unequip = true
 unlocked = true
 
@@ -2528,6 +2668,8 @@ repaired = false
 lore = "Your parents built this to shoot out bursts of water over their crops. Now you can use this gun to take down your enemies!"
 damage_mod = 2
 cost = 10
+purchased = true
+equipped = true
 can_unequip = true
 unlocked = true
 
@@ -2581,7 +2723,7 @@ position = Vector2( -503, -158 )
 scale = Vector2( 5, 5 )
 
 [node name="Background" type="Node2D" parent="ColorSelect/Information"]
-position = Vector2( -33.5226, -50.6802 )
+position = Vector2( -33.5226, -49.7198 )
 
 [node name="Sprite" type="Sprite" parent="ColorSelect/Information/Background"]
 modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
@@ -2596,7 +2738,7 @@ scale = Vector2( 3.30547, 0.313187 )
 texture = ExtResource( 7 )
 
 [node name="Background2" type="Node2D" parent="ColorSelect/Information"]
-position = Vector2( -58.8, 207.988 )
+position = Vector2( -58.8, 206.937 )
 
 [node name="Sprite" type="Sprite" parent="ColorSelect/Information/Background2"]
 modulate = Color( 0.964706, 0.764706, 0.384314, 0.435294 )
@@ -2612,9 +2754,9 @@ texture = ExtResource( 7 )
 
 [node name="ColorName" type="Label" parent="ColorSelect/Information"]
 margin_left = 57.9775
-margin_top = -109.771
+margin_top = -108.786
 margin_right = 2145.98
-margin_bottom = 90.2297
+margin_bottom = 91.2151
 rect_scale = Vector2( 0.05, 0.05 )
 custom_fonts/font = SubResource( 27 )
 text = "Color Name"
@@ -2627,9 +2769,9 @@ __meta__ = {
 
 [node name="DetailName" type="Label" parent="ColorSelect/Information"]
 margin_left = 52.9995
-margin_top = 152.804
+margin_top = 151.786
 margin_right = 2141.0
-margin_bottom = 352.804
+margin_bottom = 351.786
 rect_scale = Vector2( 0.05, 0.05 )
 custom_fonts/font = SubResource( 27 )
 text = "Color Name"
@@ -2664,9 +2806,9 @@ scale = Vector2( 3, 3 )
 
 [node name="PreviousDetail" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = -221.333
-margin_top = 145.625
+margin_top = 143.819
 margin_right = -181.333
-margin_bottom = 185.625
+margin_bottom = 183.819
 enabled = false
 keyboard_input = "Option_1"
 controller_input = "Option_1"
@@ -2694,9 +2836,9 @@ anims/RESET = SubResource( 53 )
 
 [node name="NextDetail" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = 105.0
-margin_top = 148.625
+margin_top = 146.819
 margin_right = 145.0
-margin_bottom = 188.625
+margin_bottom = 186.819
 enabled = false
 keyboard_input = "Option_3"
 controller_input = "Option_3"
@@ -2724,9 +2866,9 @@ anims/RESET = SubResource( 55 )
 
 [node name="PreviousColor" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = -167.333
-margin_top = -291.356
+margin_top = -289.714
 margin_right = -127.333
-margin_bottom = -251.356
+margin_bottom = -249.714
 enabled = false
 keyboard_input = "Option_4"
 controller_input = "Option_4"
@@ -2754,9 +2896,9 @@ anims/RESET = SubResource( 57 )
 
 [node name="NextColor" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = 56.0
-margin_top = -290.023
+margin_top = -288.381
 margin_right = 96.0
-margin_bottom = -250.023
+margin_bottom = -248.381
 enabled = false
 keyboard_input = "Option_2"
 controller_input = "Option_2"
@@ -2784,9 +2926,9 @@ anims/RESET = SubResource( 59 )
 
 [node name="Back" parent="ColorSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = -109.0
-margin_top = 172.646
+margin_top = 170.895
 margin_right = -69.0
-margin_bottom = 212.646
+margin_bottom = 210.895
 rect_scale = Vector2( 0.5, 0.5 )
 enabled = false
 keyboard_input = "Back"
@@ -2808,9 +2950,9 @@ anims/RESET = SubResource( 51 )
 
 [node name="EquipPrompt" type="Control" parent="ColorSelect/Buttons"]
 margin_left = 102.667
-margin_top = 170.98
+margin_top = 169.229
 margin_right = 142.667
-margin_bottom = 210.98
+margin_bottom = 209.229
 rect_scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 20 )
 __meta__ = {
@@ -3486,7 +3628,7 @@ volume_db = -5.0
 bus = "SFX"
 
 [node name="Purchased" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 9 )
+stream = ExtResource( 34 )
 volume_db = -10.0
 bus = "SFX"
 
@@ -3502,7 +3644,7 @@ bus = "Music"
 script = ExtResource( 25 )
 target_volume = -15.0
 
-[connection signal="Button_Pressed" from="AreaMap/Buttons/PartSelect" to="." method="change_menu" binds= [ "PartSelect" ]]
+[connection signal="Button_Pressed" from="AreaMap/Buttons/PartSelect" to="." method="area_map_interact"]
 [connection signal="Button_Pressed" from="AreaMap/Buttons/ColorSelect" to="." method="change_menu" binds= [ "ColorSelect" ]]
 [connection signal="Button_Pressed" from="AreaMap/Buttons/ModuleSelect" to="." method="change_menu" binds= [ "ModuleSelect" ]]
 [connection signal="Button_Pressed" from="PartSelect/Information/EquipPrompt" to="." method="interact_with_part"]

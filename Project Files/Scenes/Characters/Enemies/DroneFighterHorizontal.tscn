@@ -11,6 +11,11 @@ part_setup = {
 "WeaponRight": "",
 "Wings": ""
 }
+drop_rates = {
+"Currency": 70,
+"Hazard": 30,
+"Part": 25
+}
 
 [node name="InstantMoveSystem" parent="Modules" index="0"]
 move_speeds = {
@@ -48,6 +53,8 @@ movement_direction = Vector2( 0, 1 )
 move_speed = 20.0
 switch_dir_time_min = 0.5
 switch_dir_time_max = 2.0
+
+[connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 
 [editable path="Modules/HealthSystem"]
 [editable path="ShipManager"]

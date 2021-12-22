@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Collectables/PartDrop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/DroneFighterVertical.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Characters/Enemies/DroneFighterHorizontal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Collectables/NutsBolts.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Characters/Enemies/DroneFighter.gd" type="Script" id=5]
+
+[node name="EnemyList" type="Node"]
+
+[node name="Elevation_1" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_1"]
+
+[node name="DroneFighterVertical" type="KinematicBody2D" parent="Elevation_1/Standard" groups=["Enemy"] instance=ExtResource( 2 )]
+position = Vector2( -591, 66 )
+scale = Vector2( 0.8, -0.8 )
+z_index = -1
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 5 )
+part_setup = {
+"Frame": "Drone Frame",
+"WeaponLeft": "Auto Rifle XV",
+"WeaponRight": "",
+"Wings": ""
+}
+currency_drop = ExtResource( 4 )
+part_drop_node = ExtResource( 1 )
+part_drops = [ "Jet Frame", "Supersonic Frame", "Star Frame" ]
+hazard_drops = {
+}
+drop_rates = {
+"Currency": 60,
+"Hazard": 50,
+"Part": 55
+}
+
+[node name="DroneFighterHorizontal" type="KinematicBody2D" parent="Elevation_1/Standard" groups=["Enemy"] instance=ExtResource( 3 )]
+position = Vector2( -660, 54 )
+rotation = -1.5708
+scale = Vector2( 0.8, -0.8 )
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 5 )
+part_setup = {
+"Frame": "Drone Frame",
+"WeaponLeft": "Auto Rifle XV",
+"WeaponRight": "",
+"Wings": ""
+}
+currency_drop = ExtResource( 4 )
+part_drop_node = ExtResource( 1 )
+part_drops = [ "Jet Frame", "Supersonic Frame", "Star Frame" ]
+hazard_drops = {
+}
+drop_rates = {
+"Currency": 60,
+"Hazard": 50,
+"Part": 55
+}
+
+[node name="Bosses" type="Node" parent="Elevation_1"]
+
+[node name="Elevation_2" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_2"]
+
+[node name="Elevation_6" type="Node" parent="Elevation_2/Standard"]
+
+[node name="Standard" type="Node" parent="Elevation_2/Standard/Elevation_6"]
+
+[node name="Bosses" type="Node" parent="Elevation_2/Standard/Elevation_6"]
+
+[node name="Bosses" type="Node" parent="Elevation_2"]
+
+[node name="Elevation_3" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_3"]
+
+[node name="Bosses" type="Node" parent="Elevation_3"]
+
+[node name="Elevation_4" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_4"]
+
+[node name="Bosses" type="Node" parent="Elevation_4"]
+
+[node name="Elevation_5" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_5"]
+
+[node name="Bosses" type="Node" parent="Elevation_5"]
+
+[connection signal="enemy_activated" from="Elevation_1/Standard/DroneFighterVertical" to="Elevation_1/Standard/DroneFighterVertical/Combat/ShootTimer" method="start_up"]
+[connection signal="enemy_activated" from="Elevation_1/Standard/DroneFighterVertical" to="Elevation_1/Standard/DroneFighterVertical/Movement" method="start_up"]
+[connection signal="enemy_activated" from="Elevation_1/Standard/DroneFighterHorizontal" to="Elevation_1/Standard/DroneFighterHorizontal/Combat/ShootTimer" method="start_up"]
+[connection signal="enemy_activated" from="Elevation_1/Standard/DroneFighterHorizontal" to="Elevation_1/Standard/DroneFighterHorizontal/Movement" method="start_up"]

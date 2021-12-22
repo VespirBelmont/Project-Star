@@ -435,7 +435,6 @@ tracks/1/keys = {
 [node name="DroneFighterVertical" instance=ExtResource( 1 )]
 scale = Vector2( 0.8, -0.8 )
 z_index = -1
-collision_layer = 2
 part_setup = {
 "Frame": "Drone Frame",
 "WeaponLeft": "Auto Rifle XV",
@@ -443,13 +442,12 @@ part_setup = {
 "Wings": ""
 }
 drop_rates = {
-"Currency": 1,
-"Hazard": 1,
-"Part": 100
+"Currency": 70,
+"Hazard": 35,
+"Part": 25
 }
 
 [node name="InstantMoveSystem" parent="Modules" index="0"]
-default_move_state_mod = "Run"
 move_speeds = {
 "Run": 30.0,
 "Sprint": 0.0,
@@ -474,8 +472,6 @@ movement_direction = Vector2( 1, 0 )
 move_speed = 20.0
 switch_dir_time_min = 0.5
 switch_dir_time_max = 4.0
-
-[connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 
 [editable path="Modules/HealthSystem"]
 [editable path="ShipManager"]

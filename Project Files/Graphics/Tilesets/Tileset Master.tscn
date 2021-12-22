@@ -1,0 +1,424 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Graphics/Environment/Farm/Top Down/tiles/tiles.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Environment/Farm/Top Down/Buildings/buildings.png" type="Texture" id=3]
+
+[node name="Tileset Master" type="Node"]
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="House_1" type="Sprite" parent="Buildings"]
+position = Vector2( -132, 59 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 464, 32, 64, 80 )
+
+[node name="House_2" type="Sprite" parent="Buildings"]
+position = Vector2( -44, 66 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1328, 704, 96, 64 )
+
+[node name="Barn_1" type="Sprite" parent="Buildings"]
+position = Vector2( -127, 151 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 112, 80, 80 )
+
+[node name="Barn_2" type="Sprite" parent="Buildings"]
+position = Vector2( -48, 151 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 80, 112, 80, 80 )
+
+[node name="Barn_3" type="Sprite" parent="Buildings"]
+position = Vector2( 29, 149 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 400, 112, 80, 80 )
+
+[node name="Barn_4" type="Sprite" parent="Buildings"]
+position = Vector2( 111, 148 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 592, 112, 80, 80 )
+
+[node name="Barn_5" type="Sprite" parent="Buildings"]
+position = Vector2( 187, 147 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 784, 112, 80, 80 )
+
+[node name="Silo_1" type="Sprite" parent="Buildings"]
+position = Vector2( -132, 234 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 976, 112, 48, 80 )
+
+[node name="Silo_2" type="Sprite" parent="Buildings"]
+position = Vector2( -57, 232 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1024, 112, 48, 80 )
+
+[node name="Silo_3" type="Sprite" parent="Buildings"]
+position = Vector2( 20, 236 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1072, 112, 48, 80 )
+
+[node name="Silo_4" type="Sprite" parent="Buildings"]
+position = Vector2( 104, 236 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1120, 112, 48, 80 )
+
+[node name="Silo_5" type="Sprite" parent="Buildings"]
+position = Vector2( 186, 236 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1168, 112, 48, 80 )
+
+[node name="Silo_6" type="Sprite" parent="Buildings"]
+position = Vector2( 257, 237 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1216, 112, 48, 80 )
+
+[node name="Silo_7" type="Sprite" parent="Buildings"]
+position = Vector2( 322, 235 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1264, 112, 48, 80 )
+
+[node name="Silo_8" type="Sprite" parent="Buildings"]
+position = Vector2( 379, 237 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1312, 112, 48, 80 )
+
+[node name="Grass Spring" type="Node2D" parent="."]
+
+[node name="Grass_TopCorner_Left" type="Sprite" parent="Grass Spring"]
+position = Vector2( -148, -39 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 224, 96, 16, 16 )
+
+[node name="Grass_BottomCorner_Left" type="Sprite" parent="Grass Spring"]
+position = Vector2( -149, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 224, 128, 16, 16 )
+
+[node name="Grass_TopCorner_Right" type="Sprite" parent="Grass Spring"]
+position = Vector2( -96, -41 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 256, 96, 16, 16 )
+
+[node name="Grass_BottomCorner_Right" type="Sprite" parent="Grass Spring"]
+position = Vector2( -96, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 256, 128, 16, 16 )
+
+[node name="Grass_TopMiddle" type="Sprite" parent="Grass Spring"]
+position = Vector2( -121, -40 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 240, 96, 16, 16 )
+
+[node name="Grass_BottomMiddle" type="Sprite" parent="Grass Spring"]
+position = Vector2( -121, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 240, 128, 16, 16 )
+
+[node name="Grass_LeftMiddle" type="Sprite" parent="Grass Spring"]
+position = Vector2( -149, -21 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 224, 112, 16, 16 )
+
+[node name="Grass_RightMiddle" type="Sprite" parent="Grass Spring"]
+position = Vector2( -96, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 256, 112, 16, 16 )
+
+[node name="Grass_Fill" type="Sprite" parent="Grass Spring"]
+position = Vector2( -121, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 240, 112, 16, 16 )
+
+[node name="Winter" type="Node2D" parent="."]
+position = Vector2( 97, 1 )
+
+[node name="SnowGrass_TopCorner_Left" type="Sprite" parent="Winter"]
+position = Vector2( -148, -39 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 48, 16, 16 )
+
+[node name="SnowGrass_BottomCorner_Left" type="Sprite" parent="Winter"]
+position = Vector2( -149, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 80, 16, 16 )
+
+[node name="SnowGrass_TopCorner_Right" type="Sprite" parent="Winter"]
+position = Vector2( -96, -41 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 48, 16, 16 )
+
+[node name="SnowGrass_BottomCorner_Right" type="Sprite" parent="Winter"]
+position = Vector2( -96, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 80, 16, 16 )
+
+[node name="SnowGrass_TopMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -121, -40 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 48, 16, 16 )
+
+[node name="SnowGrass_BottomMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -121, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 80, 16, 16 )
+
+[node name="SnowGrass_LeftMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -149, -21 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 64, 16, 16 )
+
+[node name="SnowGrass_RightMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -96, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 64, 16, 16 )
+
+[node name="SnowGrass_Fill" type="Sprite" parent="Winter"]
+position = Vector2( -121, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 64, 16, 16 )
+
+[node name="Snow_TopCorner_Left" type="Sprite" parent="Winter"]
+position = Vector2( -64, -41 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 336, 16, 16 )
+
+[node name="Snow_BottomCorner_Left" type="Sprite" parent="Winter"]
+position = Vector2( -65, -3 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 368, 16, 16 )
+
+[node name="Snow_TopCorner_Right" type="Sprite" parent="Winter"]
+position = Vector2( -12, -43 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 336, 16, 16 )
+
+[node name="Snow_BottomCorner_Right" type="Sprite" parent="Winter"]
+position = Vector2( -12, -3 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 368, 16, 16 )
+
+[node name="Snow_TopMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -37, -42 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 336, 16, 16 )
+
+[node name="Snow_BottomMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -37, -3 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 368, 16, 16 )
+
+[node name="Snow_LeftMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -65, -23 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 656, 352, 16, 16 )
+
+[node name="Snow_RightMiddle" type="Sprite" parent="Winter"]
+position = Vector2( -12, -22 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688, 352, 16, 16 )
+
+[node name="Snow_Fill" type="Sprite" parent="Winter"]
+position = Vector2( -37, -22 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 672, 352, 16, 16 )
+
+[node name="SnowTree_1" type="Sprite" parent="Winter"]
+position = Vector2( -32, 88 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 752, 432, 32, 32 )
+
+[node name="SnowTree_2" type="Sprite" parent="Winter"]
+position = Vector2( -64, 86 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 720, 432, 32, 32 )
+
+[node name="Rock_1" type="Sprite" parent="Winter"]
+position = Vector2( -33, 57 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 768, 528, 16, 16 )
+
+[node name="Rock_2" type="Sprite" parent="Winter"]
+position = Vector2( -64, 61 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 784, 528, 16, 16 )
+
+[node name="Snowman_1" type="Sprite" parent="Winter"]
+position = Vector2( -65, 32 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 816, 592, 16, 32 )
+
+[node name="Snowman_2" type="Sprite" parent="Winter"]
+position = Vector2( -34, 31 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 800, 592, 16, 32 )
+
+[node name="Snowman_3" type="Sprite" parent="Winter"]
+position = Vector2( -9, 28 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 784, 592, 16, 32 )
+
+[node name="Snowman_4" type="Sprite" parent="Winter"]
+position = Vector2( 15, 29 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 768, 592, 16, 32 )
+
+[node name="Desert" type="Node2D" parent="."]
+position = Vector2( -2, -71 )
+
+[node name="DesertGrass_TopCorner_Left" type="Sprite" parent="Desert"]
+position = Vector2( -148, -39 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 96, 16, 16 )
+
+[node name="DesertGrass_BottomCorner_Left" type="Sprite" parent="Desert"]
+position = Vector2( -149, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 128, 16, 16 )
+
+[node name="DesertGrass_TopCorner_Right" type="Sprite" parent="Desert"]
+position = Vector2( -96, -41 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 96, 16, 16 )
+
+[node name="DesertGrass_BottomCorner_Right" type="Sprite" parent="Desert"]
+position = Vector2( -96, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 128, 16, 16 )
+
+[node name="DesertGrass_TopMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -121, -40 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 96, 16, 16 )
+
+[node name="DesertGrass_BottomMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -121, -1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 128, 16, 16 )
+
+[node name="DesertGrass_LeftMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -149, -21 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 112, 16, 16 )
+
+[node name="DesertGrass_RightMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -96, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 112, 16, 16 )
+
+[node name="DesertGrass_Fill" type="Sprite" parent="Desert"]
+position = Vector2( -121, -20 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 112, 16, 16 )
+
+[node name="Desert_TopCorner_Left2" type="Sprite" parent="Desert"]
+position = Vector2( -51, -40 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 336, 16, 16 )
+
+[node name="Desert_BottomCorner_Left" type="Sprite" parent="Desert"]
+position = Vector2( -52, -2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 368, 16, 16 )
+
+[node name="Desert_TopCorner_Right" type="Sprite" parent="Desert"]
+position = Vector2( 1, -42 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 336, 16, 16 )
+
+[node name="Desert_BottomCorner_Right" type="Sprite" parent="Desert"]
+position = Vector2( 1, -2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 368, 16, 16 )
+
+[node name="Desert_TopMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -24, -41 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 336, 16, 16 )
+
+[node name="Desert_BottomMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -24, -2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 368, 16, 16 )
+
+[node name="Desert_LeftMiddle" type="Sprite" parent="Desert"]
+position = Vector2( -52, -22 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 432, 352, 16, 16 )
+
+[node name="Desert_RightMiddle" type="Sprite" parent="Desert"]
+position = Vector2( 1, -21 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 352, 16, 16 )
+
+[node name="Desert_Fill" type="Sprite" parent="Desert"]
+position = Vector2( -22, -22 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 448, 352, 16, 16 )

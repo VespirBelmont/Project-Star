@@ -118,7 +118,6 @@ func change_menu(_new_menu):
 					yield($Anim, "animation_finished")
 				
 				"ColorSelect":
-					print("Play Backwards")
 					$Anim.play_backwards("ToggleColorSelect")
 					yield($Anim, "animation_finished")
 				
@@ -136,7 +135,7 @@ func change_menu(_new_menu):
 					$AreaMap/Options/WeaponLeft.available = false
 					$AreaMap/Options/WeaponRight.available = false
 			
-			option_max = 3
+			option_max = 4
 			option_current = 0
 			focused_area = ""
 			hide_ship_areas()
@@ -199,6 +198,22 @@ func change_menu(_new_menu):
 	current_menu = _new_menu
 	input_cooldown()
 
+func area_map_interact():
+	var type = $AreaMap/Options.get_child(option_current).name
+	if type == "Repair":
+		repair()
+	else:
+		change_menu("PartSelect")
+
+func repair():
+	var cost = int($AreaMap/Options/Repair/Cost/AmountLabel.text)
+	
+	if PlayerInfo.player_currency >= cost:
+		player_ship.get_parent().get_node("Modules/HealthSystem").heal(1)
+		PlayerInfo.change_currency(-cost)
+		$Sounds/Purchased.play()
+	else:
+		$Sounds/CouldntPurchase.play()
 
 func _process(delta):
 	match current_menu:
@@ -249,10 +264,11 @@ func area_map_controls():
 				clamp_options()
 	
 	var part_in_use 
-	for part in $PartSelect/PartList.get_node(highlighted_area).get_children():
-		if part.equipped:
-			part_in_use = part
-			break
+	if options.get_child(option_current).name != "Repair" and highlighted_area != "Repair":
+		for part in $PartSelect/PartList.get_node(highlighted_area).get_children():
+			if part.equipped:
+				part_in_use = part
+				break
 	
 	if part_in_use == null:
 		$AreaMap/Buttons/ColorSelect.disable()
@@ -267,6 +283,11 @@ func area_map_controls():
 	if last_option != option_current or not options.get_child(option_current).visible:
 		options.get_child(last_option).get_node("Anim").play("Disable")
 		options.get_child(option_current).get_node("Anim").play("Enable")
+		
+		if options.get_child(option_current).name != "Repair":
+			$AreaMap/Buttons/PartSelect/OptionLabel.text = "Parts"
+		if options.get_child(option_current).name == "Repair":
+			$AreaMap/Buttons/PartSelect/OptionLabel.text = "Repair"
 	
 	if last_option == option_current: return
 	
@@ -293,7 +314,7 @@ func part_selection_controls():
 		dir = -1
 	clamp_options()
 	
-	
+	print("Focused Area: ", focused_area)
 	var part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
 	
 	var loop_count = option_current
@@ -568,6 +589,8 @@ func input_cooldown():
 
 
 func hide_ship_areas():
+	return
+	
 	var options = $AreaMap/Options
 	
 	for opt in options.get_children():
@@ -662,3 +685,4 @@ func clamp_sub_options():
 		sub_option_current = sub_option_max
 	if sub_option_current > sub_option_max:
 		sub_option_current = 0
+

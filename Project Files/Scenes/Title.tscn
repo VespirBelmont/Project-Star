@@ -5,7 +5,7 @@
 [ext_resource path="res://Graphics/Shaders/StarShader.material" type="Material" id=3]
 [ext_resource path="res://Scripts/Menus/TitleManager.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Gameplay.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Audio/Music/Barn Night (Without Vocal).wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/Music/Barn Night.wav" type="AudioStream" id=6]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Buildings/Big Barn Red.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/Shaders/CRTShader.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Audio/SFX/TitleTakeOff.wav" type="AudioStream" id=9]

@@ -16,7 +16,7 @@ func toggle_pause():
 		true:
 			paused = false
 			$PauseAnim.play_backwards("Toggle")
-			yield($PauseAnim, "animation_finished")
+			#yield($PauseAnim, "animation_finished")
 			active = false
 			get_parent().get_parent().change_menu("")
 		false:
@@ -27,7 +27,7 @@ func toggle_pause():
 			get_parent().get_parent().change_menu("Pause")
 			paused = true
 			$PauseAnim.play("Toggle")
-			yield($PauseAnim, "animation_finished")
+			#yield($PauseAnim, "animation_finished")
 			active = true
 	get_tree().paused = paused
 	

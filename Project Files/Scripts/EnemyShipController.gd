@@ -1,5 +1,7 @@
 extends "res://Scripts/Ship Scripts/ShipController.gd"
 
+signal enemy_activated
+
 export (PackedScene) var currency_drop
 export (PackedScene) var part_drop_node
 
@@ -12,11 +14,16 @@ export var hazard_drops = {
 
 var dropped_loot = false
 
+var active = false
 export var drop_rates = {
 							"Currency": 70,
 							"Part": 20,
 							"Hazard": 40
 						}
+
+func start_up():
+	active = true
+	emit_signal("enemy_activated")
 
 func set_state(_state):
 	if state == "Dead": return
@@ -64,8 +71,8 @@ func create_loot():
 			pass
 	
 	if drop_node != null:
-		parent.add_child(drop_node)
-		drop_node.global_position = self.global_position
+		parent.call_deferred("add_child", drop_node)
+		drop_node.set_deferred("global_position", self.global_position)
 		
 		if drop_type == "Part":
-			drop_node.setup(part_drops)
+			drop_node.call_deferred("setup", part_drops)

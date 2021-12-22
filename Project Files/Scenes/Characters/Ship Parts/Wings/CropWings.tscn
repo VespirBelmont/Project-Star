@@ -270,6 +270,7 @@ anims/RESET = SubResource( 10 )
 [node name="Outline" type="Node2D" parent="SpriteList" index="0"]
 
 [node name="Sprite" type="Sprite" parent="SpriteList/Outline" index="0"]
+modulate = Color( 0.65098, 0.529412, 0.372549, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -9 )
 hframes = 4
@@ -280,7 +281,7 @@ frame = 6
 
 [node name="Frame_1" type="Sprite" parent="SpriteList/Detail_1" index="0"]
 visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+modulate = Color( 0.772549, 0.596078, 0.372549, 1 )
 position = Vector2( -0.514, -1.351 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -288,7 +289,7 @@ region_rect = Rect2( 752.9, 31.9408, 29.1288, 13.8964 )
 
 [node name="Frame_2" type="Sprite" parent="SpriteList/Detail_1" index="1"]
 visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+modulate = Color( 0.772549, 0.596078, 0.372549, 1 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -296,14 +297,14 @@ region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 
 [node name="Frame_3" type="Sprite" parent="SpriteList/Detail_1" index="2"]
 visible = false
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+modulate = Color( 0.772549, 0.596078, 0.372549, 1 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 
 [node name="Frame_4" type="Sprite" parent="SpriteList/Detail_1" index="3"]
-modulate = Color( 0.929688, 0.700897, 0.406738, 1 )
+modulate = Color( 0.772549, 0.596078, 0.372549, 1 )
 position = Vector2( -0.217, -1.373 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -312,7 +313,7 @@ region_rect = Rect2( 786.188, 31.9408, 27.2068, 13.8964 )
 [node name="Detail_2" type="Node2D" parent="SpriteList" index="2"]
 
 [node name="Sprite" type="Sprite" parent="SpriteList/Detail_2" index="0"]
-modulate = Color( 0.729412, 0.501961, 0.301961, 1 )
+modulate = Color( 0.768627, 0.564706, 0.301961, 1 )
 position = Vector2( -0.361, -0.9 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -322,6 +323,7 @@ region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
 
 [node name="Frame_1" type="Sprite" parent="SpriteList/Detail_3" index="0"]
 visible = false
+modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( -0.357, -0.945 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -329,6 +331,7 @@ region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
 
 [node name="Frame_2" type="Sprite" parent="SpriteList/Detail_3" index="1"]
 visible = false
+modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( -0.057, -0.886 )
 texture = ExtResource( 6 )
 region_enabled = true
@@ -336,12 +339,14 @@ region_rect = Rect2( 786.603, 58.605, 26.6859, 9.55391 )
 
 [node name="Frame_3" type="Sprite" parent="SpriteList/Detail_3" index="2"]
 visible = false
+modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( -0.373, -0.955 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
 
 [node name="Frame_4" type="Sprite" parent="SpriteList/Detail_3" index="3"]
+modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( 0.252, -0.468 )
 texture = ExtResource( 6 )
 region_enabled = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Snappy Bird [Test].mp3-d9086c1dad9c3968368ba9414187cfac.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Elevation 2/Snappy Bird [Test].mp3"
+dest_files=[ "res://.import/Snappy Bird [Test].mp3-d9086c1dad9c3968368ba9414187cfac.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
