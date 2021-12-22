@@ -11,19 +11,19 @@ resource_name = "Fly"
 length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("../../Detail_3/Frame_1:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7 ]
+"values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../Detail_3/Frame_1:visible")
+tracks/1/path = NodePath("../../Detail_1/Frame_1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -35,19 +35,19 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../../Detail_1/Frame_1:visible")
+tracks/2/path = NodePath("../../Detail_1/Frame_2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false, true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../../Detail_1/Frame_2:visible")
+tracks/3/path = NodePath("../../Detail_3/Frame_2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -59,19 +59,19 @@ tracks/3/keys = {
 "values": [ false, true, false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../../Detail_3/Frame_2:visible")
+tracks/4/path = NodePath("../../Detail_1/Frame_3:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../../Detail_1/Frame_3:visible")
+tracks/5/path = NodePath("../../Detail_3/Frame_3:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -83,40 +83,40 @@ tracks/5/keys = {
 "values": [ false, true, false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("../../Detail_3/Frame_3:visible")
+tracks/6/path = NodePath("../../Detail_1/Frame_4:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../Detail_1/Frame_4:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../../Detail_3/Frame_4:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
 tracks/8/type = "value"
-tracks/8/path = NodePath("../../Detail_3/Frame_4:visible")
+tracks/8/path = NodePath(".:region_rect")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, false, true ]
+"values": [ Rect2( 2, 47, 28, 12 ), Rect2( 34, 47, 28, 12 ), Rect2( 66, 47, 28, 12 ), Rect2( 98, 47, 28, 12 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -241,6 +241,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath(".:region_rect")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 34, 47, 28, 12 ) ]
+}
 
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
@@ -263,19 +275,19 @@ color_ramp = SubResource( 8 )
 has_particles = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
-root_node = NodePath("../SpriteList/Outline/Sprite")
+root_node = NodePath("../SpriteList/Outline/OutlineSprite")
 anims/Fly = SubResource( 9 )
 anims/RESET = SubResource( 10 )
 
 [node name="Outline" type="Node2D" parent="SpriteList" index="0"]
 
-[node name="Sprite" type="Sprite" parent="SpriteList/Outline" index="0"]
+[node name="OutlineSprite" type="Sprite" parent="SpriteList/Outline" index="0"]
 modulate = Color( 0.65098, 0.529412, 0.372549, 1 )
+position = Vector2( -0.008, 8.746 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -9 )
-hframes = 4
-vframes = 4
-frame = 6
+region_enabled = true
+region_rect = Rect2( 34, 47, 28, 12 )
 
 [node name="Detail_1" type="Node2D" parent="SpriteList" index="1"]
 

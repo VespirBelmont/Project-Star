@@ -39,22 +39,19 @@ func generate_wave():
 			reset_wave_count()
 	
 	waves_until_boss -= 1
+	print("Wave Generated")
 
 
 func generate_enemy(_position):
 	var elevation_level = get_parent().get_node("World").elevation_level
 	var enemy_list = $EnemyList.get_node("Elevation_%s" % elevation_level)
 	var new_enemy
+	var parent = get_parent().get_node("Enemies")
 	
 	if waves_until_boss <= 0:
 		new_enemy = enemy_list.get_node("Bosses").get_child(randi()%(enemy_list.get_node("Bosses").get_child_count()-1)).duplicate()
 	else:
-		new_enemy = enemy_list.get_node("Standard").get_child(randi()%(enemy_list.get_node("Standard").get_child_count()-1)).duplicate()
-	
-	var parent = get_parent().get_node("Enemies")
-	parent.call_deferred("add_child", new_enemy)
-	new_enemy.call_deferred("start_up")
-	new_enemy.set_deferred('global_position', _position)
+		new_enemy = $EnemyList.create_enemy(elevation_level, parent, _position)
 
 func reset_wave_count():
 	waves_until_boss = waves_between_bosses

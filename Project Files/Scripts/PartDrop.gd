@@ -1,4 +1,4 @@
-extends "res://Scenes/Collectables/CollectableCore.gd"
+extends "res://Scripts/CollectableCore.gd"
 
 var dropped_part = ""
 

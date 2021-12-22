@@ -26,6 +26,7 @@ func setup_game():
 		$Players/P1/Modules/HealthSystem.connect("Healed", $Interface/Interface/Player_1, "update_health")
 		$Players/P1/Modules/HealthSystem.heal(999)
 
+
 func quit_game():
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/Title.tscn")

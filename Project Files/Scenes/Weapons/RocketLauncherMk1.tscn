@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Weapons/WeaponTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Audio/SFX/Shooting Sounds/Rocket Launcher Mk 1 - Fire.wav" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/Weapons/Projectiles/Rocket.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Part Modules/BulletSplit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Part Modules/Workshop Modules/BulletSplit_Workshop.tscn" type="PackedScene" id=5]
 
 [node name="Rocket Launcher Mk1" instance=ExtResource( 2 )]
 position = Vector2( 0, 0 )

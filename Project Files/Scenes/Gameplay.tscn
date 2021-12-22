@@ -520,6 +520,8 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="WaveGenerator" parent="." instance=ExtResource( 11 )]
+spawn_move_speed = 50.0
+distance_limit = 220.0
 
 [node name="Players" type="Node" parent="."]
 
@@ -590,12 +592,18 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="Filters" type="Node2D" parent="CamRig"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ExplosionFilter" type="Sprite" parent="CamRig/Filters"]
 modulate = Color( 1, 0.592157, 0.435294, 0.0509804 )
 position = Vector2( 76.5, -210 )
 scale = Vector2( 37.2188, 20.9375 )
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Anim" type="AnimationPlayer" parent="CamRig"]
 autoplay = "Default"

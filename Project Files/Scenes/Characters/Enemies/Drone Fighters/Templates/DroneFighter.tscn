@@ -1,14 +1,15 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Characters/Enemies/DroneFighter.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Characters/Enemies/TimerRandomizer.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Characters/Enemies/AIMovement.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/AudioClipPlayer.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/TimerRandomizer.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/DroneFighter.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AIMovement.gd" type="Script" id=4]
 
-[node name="DroneFighter" instance=ExtResource( 1 )]
-collision_layer = 2
-script = ExtResource( 2 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.5, 18 )
+
+[node name="DroneFighter" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
 part_setup = {
 "Frame": "Drone Frame",
 "WeaponLeft": "Auto Rifle XV",
@@ -23,15 +24,18 @@ drop_rates = {
 }
 
 [node name="InstantMoveSystem" parent="Modules" index="0"]
-default_move_state_mod = "Run"
 move_speeds = {
-"Run": 30.0,
+"Run": 50.0,
 "Sprint": 0.0,
 "Walk": 0.0
 }
 
 [node name="HealthSystem" parent="Modules" index="1"]
 health_max = 2
+
+[node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
 
 [node name="Crop Frame" parent="ShipManager/Frame" index="0"]
 visible = false
@@ -43,16 +47,13 @@ z_index = -2
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
 visible = true
 
-[node name="Death" parent="Audio" index="3"]
-script = ExtResource( 5 )
-
 [node name="Anim" parent="DeathExplosion" index="1"]
 autoplay = ""
 
 [node name="Combat" type="Node" parent="." index="7"]
 
 [node name="ShootTimer" type="Timer" parent="Combat" index="0"]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 min_time = 1.0
 max_time = 2.0
 
@@ -65,7 +66,6 @@ script = ExtResource( 4 )
 [connection signal="enemy_activated" from="." to="Movement" method="start_up"]
 [connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
 [connection signal="Hurt" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Hurt" ]]
-[connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 [connection signal="timeout" from="Combat/ShootTimer" to="." method="shoot" binds= [ "Left" ]]
 [connection signal="timeout" from="Movement/SwitchDirectionTimer" to="Movement" method="switch_direction"]
 
