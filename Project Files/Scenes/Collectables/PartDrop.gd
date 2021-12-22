@@ -26,6 +26,8 @@ func setup(available_parts):
 	for part in $PartList.get_children():
 		if part.name == chosen_part:
 			part.show()
+	
+	$AreaCollider.set_deferred("disabled", false)
 
 func unlock_part(body):
 	$AreaCollider.set_deferred("disabled", true)

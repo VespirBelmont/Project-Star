@@ -14,7 +14,7 @@
 [ext_resource path="res://Graphics/Environment/Farm/Top Down/Buildings/buildings.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/UIManager.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/UpgradeSystem.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/WorldGenerator.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/WorldGenerator.gd" type="Script" id=15]
 
 [sub_resource type="Shader" id=103]
 code = "shader_type canvas_item;
@@ -697,18 +697,6 @@ position = Vector2( 36.8369, 18.2367 )
 margin_left = -16.4136
 margin_right = 350.587
 align = 2
-
-[node name="AmountLabel" parent="Interface/Interface/Player_2/Score" index="0"]
-margin_left = -10.4849
-margin_top = 58.3745
-margin_right = 666.515
-margin_bottom = 221.375
-
-[node name="HeaderLabel" parent="Interface/Interface/Player_2/Score" index="1"]
-margin_left = 11.1992
-margin_top = 49.2139
-margin_right = 688.199
-margin_bottom = 212.214
 
 [node name="PauseMenu" parent="Interface/Interface" instance=ExtResource( 6 )]
 

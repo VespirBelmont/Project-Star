@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/WaveGenerator.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/WaveGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/WaveTemplates.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemyList.tscn" type="PackedScene" id=3]
 

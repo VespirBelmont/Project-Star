@@ -10,7 +10,9 @@
 [ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=6]
-size = 130
+size = 131
+outline_size = 7
+outline_color = Color( 0.14902, 0.14902, 0.14902, 1 )
 font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=8]
@@ -322,67 +324,33 @@ region_enabled = true
 region_rect = Rect2( 66, 34, 18, 17 )
 
 [node name="AmountLabel" type="Label" parent="Currency"]
-margin_left = 40.0
-margin_top = 11.0
-margin_right = 550.0
-margin_bottom = 174.0
-rect_scale = Vector2( 0.1, 0.1 )
+margin_left = 41.2671
+margin_top = 6.42798
+margin_right = 551.267
+margin_bottom = 169.428
+rect_scale = Vector2( 0.2, 0.2 )
+custom_colors/font_color = Color( 1, 0.931915, 0.621094, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Score" type="Control" parent="."]
-visible = false
-margin_left = 17.3529
-margin_top = 82.76
-margin_right = 57.3529
-margin_bottom = 122.76
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AmountLabel" type="Label" parent="Score"]
-margin_left = 3.0
-margin_top = 58.0
-margin_right = 680.0
-margin_bottom = 221.0
-rect_scale = Vector2( 0.1, 0.1 )
-custom_fonts/font = SubResource( 6 )
-text = "0"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HeaderLabel" type="Label" parent="Score"]
-margin_left = 21.6876
-margin_top = 50.3379
-margin_right = 698.688
-margin_bottom = 213.338
-rect_scale = Vector2( 0.05, 0.05 )
-custom_fonts/font = SubResource( 6 )
-text = "Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Workshop" parent="." instance=ExtResource( 8 )]
-margin_left = 25.1438
-margin_top = 126.6
-margin_right = 65.1438
-margin_bottom = 166.6
+modulate = Color( 1, 1, 1, 1 )
+margin_left = 16.12
+margin_top = 127.188
+margin_right = 56.12
+margin_bottom = 167.188
 rect_scale = Vector2( 0.8, 0.8 )
 keyboard_input = "UpgradeMenu"
 controller_input = "UpgradeMenu"
 
 [node name="OptionLabel" parent="Workshop" index="0"]
-margin_left = 38.0952
-margin_top = 15.1099
-margin_right = 832.095
-margin_bottom = 178.11
-rect_scale = Vector2( 0.1, 0.1 )
+margin_left = 39.375
+margin_top = 5.0
+margin_right = 833.375
+margin_bottom = 168.0
 text = "Workshop"
 align = 0
 

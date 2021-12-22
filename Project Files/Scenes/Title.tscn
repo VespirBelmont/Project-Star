@@ -15,7 +15,7 @@
 [ext_resource path="res://Audio/SFX/UI/Easter Egg.wav" type="AudioStream" id=13]
 [ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=14]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Moon and Farm.png" type="Texture" id=15]
-[ext_resource path="res://Scenes/SpriteRandomizer.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/SpriteRandomizer.gd" type="Script" id=16]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Objects/tree (5).png" type="Texture" id=17]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Objects/tree (4).png" type="Texture" id=18]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Objects/sign (4).png" type="Texture" id=19]

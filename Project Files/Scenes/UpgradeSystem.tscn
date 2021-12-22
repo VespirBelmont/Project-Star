@@ -1059,7 +1059,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.8, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -237, -113 ), Vector2( -253, -113 ), Vector2( -349.57, -113 ) ]
+"values": [ Vector2( -237, -130.25 ), Vector2( -253, -130.25 ), Vector2( -349.57, -130.25 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
@@ -1071,7 +1071,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0.8, 0.9, 1, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -237.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -351.5, 39.25 ) ]
+"values": [ Vector2( -237.5, 21.25 ), Vector2( -253.5, 21.25 ), Vector2( -231.5, 21.25 ), Vector2( -351.5, 21.25 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("AreaMap/Options/Frame:position")
@@ -1439,7 +1439,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.8, 0.9, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -237, -113 ), Vector2( -253, -113 ), Vector2( -231, -113 ), Vector2( -315, -113 ) ]
+"values": [ Vector2( -237, -130.25 ), Vector2( -253, -130.25 ), Vector2( -231, -130.25 ), Vector2( -315, -130.25 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
@@ -1451,7 +1451,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0.8, 0.9, 1, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -237.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -315.5, 39.25 ) ]
+"values": [ Vector2( -237.5, 21.25 ), Vector2( -253.5, 21.25 ), Vector2( -231.5, 21.25 ), Vector2( -315.5, 21.25 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("AreaMap/Options/Frame:position")
@@ -1577,43 +1577,43 @@ tracks/0/keys = {
 "values": [ 1.3 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("AreaMap/Options:position")
+tracks/1/path = NodePath("AreaMap/Background2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.8 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -104 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AreaMap/Background2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 18.7499, 249.388 ), Vector2( 18.7499, 25.3885 ), Vector2( 18.7499, 102.722 ), Vector2( 18.7499, 57.3886 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("ShipPreview:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShipPreview:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 39, -900 ), Vector2( 39, 60 ), Vector2( 39, -84 ), Vector2( 39, -28 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("AreaMap/Buttons/PartSelect:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -125, 158 ), Vector2( -125, 102 ), Vector2( -125, 121.333 ), Vector2( -125, 110 ) ]
+}
 tracks/4/type = "value"
-tracks/4/path = NodePath("AreaMap/Buttons/PartSelect:rect_position")
+tracks/4/path = NodePath("AreaMap/Buttons/ColorSelect:rect_position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1622,10 +1622,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -125, 158 ), Vector2( -125, 102 ), Vector2( -125, 121.333 ), Vector2( -125, 110 ) ]
+"values": [ Vector2( -55, 158 ), Vector2( -55, 102 ), Vector2( -55, 121.333 ), Vector2( -55, 110 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("AreaMap/Buttons/ColorSelect:rect_position")
+tracks/5/path = NodePath("AreaMap/Buttons/ModuleSelect:rect_position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1634,22 +1634,22 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -55, 158 ), Vector2( -55, 102 ), Vector2( -55, 121.333 ), Vector2( -55, 110 ) ]
+"values": [ Vector2( 18, 158 ), Vector2( 18, 102 ), Vector2( 18, 121.333 ), Vector2( 18, 110 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("AreaMap/Buttons/ModuleSelect:rect_position")
+tracks/6/path = NodePath("AreaMap/Buttons/PrevArea:rect_position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
+"times": PoolRealArray( 1.1, 1.3, 1.5, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 18, 158 ), Vector2( 18, 102 ), Vector2( 18, 121.333 ), Vector2( 18, 110 ) ]
+"values": [ Vector2( -333, -130.25 ), Vector2( -231, -130.25 ), Vector2( -253, -130.25 ), Vector2( -237, -130.25 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("AreaMap/Buttons/PrevArea:rect_position")
+tracks/7/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -1658,99 +1658,87 @@ tracks/7/keys = {
 "times": PoolRealArray( 1.1, 1.3, 1.5, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -333, -113 ), Vector2( -231, -113 ), Vector2( -253, -113 ), Vector2( -237, -113 ) ]
+"values": [ Vector2( -331.5, 21.25 ), Vector2( -231.5, 21.25 ), Vector2( -253.5, 21.25 ), Vector2( -237.5, 21.25 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("AreaMap/Buttons/NextArea:rect_position")
+tracks/8/path = NodePath("AreaMap/Options/Frame:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 1.1, 1.3, 1.5, 1.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -331.5, 39.25 ), Vector2( -231.5, 39.25 ), Vector2( -253.5, 39.25 ), Vector2( -237.5, 39.25 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("AreaMap/Options/Frame:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
 "times": PoolRealArray( 0, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -551.666, 6.66666 ), Vector2( -367.667, 6.66666 ), Vector2( -427.667, 6.66666 ), Vector2( -397, 6.66666 ) ]
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("AreaMap/Options/WeaponLeft:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/path = NodePath("AreaMap/Options/WeaponLeft:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
 "times": PoolRealArray( 0, 0.2, 0.6, 0.8, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -551.45, 49.3333 ), Vector2( -527.666, 49.3333 ), Vector2( -367.667, 49.3333 ), Vector2( -427.667, 49.3333 ), Vector2( -397, 49.3333 ) ]
 }
-tracks/11/type = "value"
-tracks/11/path = NodePath("AreaMap/Options/WeaponRight:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
+tracks/10/type = "value"
+tracks/10/path = NodePath("AreaMap/Options/WeaponRight:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
 "times": PoolRealArray( 0, 0.3, 0.7, 0.9, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -556.784, 92 ), Vector2( -527.666, 92 ), Vector2( -367.667, 92 ), Vector2( -427.667, 92 ), Vector2( -397, 92 ) ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("AreaMap/Options/Wings:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
+tracks/11/type = "value"
+tracks/11/path = NodePath("AreaMap/Options/Wings:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8, 1, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -553.45, 134.667 ), Vector2( -527.666, 134.667 ), Vector2( -367.667, 134.667 ), Vector2( -427.667, 134.667 ), Vector2( -397, 134.667 ) ]
 }
-tracks/13/type = "value"
-tracks/13/path = NodePath("AreaMap/Background3:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
+tracks/12/type = "value"
+tracks/12/path = NodePath("AreaMap/Background3:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
 "times": PoolRealArray( 0, 0.5, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1313.33, 457.344 ), Vector2( 1313.33, 232.344 ), Vector2( 1313.33, 312.344 ), Vector2( 1313.33, 268.344 ) ]
 }
-tracks/14/type = "value"
-tracks/14/path = NodePath("Blur:material:shader_param/lod")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
+tracks/13/type = "value"
+tracks/13/path = NodePath("Blur:material:shader_param/lod")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.735 ]
 }
-tracks/15/type = "value"
-tracks/15/path = NodePath("AreaMap/Options/Repair:position")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
+tracks/14/type = "value"
+tracks/14/path = NodePath("AreaMap/Options/Repair:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
 "times": PoolRealArray( 0, 0.9, 1.2, 1.3, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -1797,7 +1785,7 @@ texture = ExtResource( 7 )
 offset = Vector2( -47.1927, 122.069 )
 
 [node name="Options" type="Node2D" parent="AreaMap"]
-position = Vector2( 0, -104 )
+position = Vector2( 0, -168 )
 scale = Vector2( 3, 3 )
 z_index = 1
 
@@ -2158,9 +2146,9 @@ anims/Enable = SubResource( 88 )
 
 [node name="PrevArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
 margin_left = -325.35
-margin_top = -113.0
+margin_top = -130.25
 margin_right = -285.35
-margin_bottom = -73.0
+margin_bottom = -90.25
 rect_scale = Vector2( 1, 1 )
 enabled = false
 keyboard_input = "Option_1"
@@ -2195,9 +2183,9 @@ anims/Enable = SubResource( 99 )
 
 [node name="NextArea" parent="AreaMap/Buttons" instance=ExtResource( 14 )]
 margin_left = -324.0
-margin_top = 39.25
+margin_top = 21.25
 margin_right = -284.0
-margin_bottom = 79.25
+margin_bottom = 61.25
 rect_scale = Vector2( 1, 1 )
 enabled = false
 keyboard_input = "Option_3"
@@ -2248,7 +2236,7 @@ script = ExtResource( 25 )
 target_volume = -5.0
 
 [node name="Information" type="Node2D" parent="PartSelect"]
-position = Vector2( 747, 115 )
+position = Vector2( 710.2, 115 )
 scale = Vector2( 5, 5 )
 
 [node name="Background" type="Node2D" parent="PartSelect/Information"]
@@ -2473,7 +2461,7 @@ __meta__ = {
 }
 
 [node name="Buttons" type="Node2D" parent="PartSelect"]
-position = Vector2( -226, 222 )
+position = Vector2( -226, 207.067 )
 
 [node name="PrevPart" parent="PartSelect/Buttons" instance=ExtResource( 14 )]
 margin_left = -146.0
@@ -2756,7 +2744,7 @@ texture = ExtResource( 7 )
 margin_left = 57.9775
 margin_top = -108.786
 margin_right = 2145.98
-margin_bottom = 91.2151
+margin_bottom = 91.2155
 rect_scale = Vector2( 0.05, 0.05 )
 custom_fonts/font = SubResource( 27 )
 text = "Color Name"
@@ -3487,7 +3475,7 @@ cost = 60
 can_unequip = true
 
 [node name="ShipInfo" type="Node2D" parent="."]
-position = Vector2( 12, 208 )
+position = Vector2( 12, 189.334 )
 scale = Vector2( 4, 4 )
 
 [node name="Background" type="Sprite" parent="ShipInfo"]

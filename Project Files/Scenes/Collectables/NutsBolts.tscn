@@ -116,6 +116,7 @@ region_rect = Rect2( 102, 35, 14, 15 )
 [node name="AreaCollider" parent="." index="1"]
 position = Vector2( 1.5, 1 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Anim" type="AnimationPlayer" parent="." index="2"]
 reset_on_save = false

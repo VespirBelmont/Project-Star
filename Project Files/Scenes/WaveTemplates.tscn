@@ -28,7 +28,7 @@ position = Vector2( 486, 91 )
 position = Vector2( 5, -99 )
 
 [node name="Enemy_2" type="Position2D" parent="SmallWave_2"]
-position = Vector2( -324, -32 )
+position = Vector2( -439, -285 )
 
 [node name="Enemy_3" type="Position2D" parent="SmallWave_2"]
 position = Vector2( 384, -49 )
@@ -41,10 +41,10 @@ position = Vector2( 486, 91 )
 position = Vector2( -6, -53 )
 
 [node name="Enemy_2" type="Position2D" parent="SmallWave_3"]
-position = Vector2( -353, -83 )
+position = Vector2( -413, -149 )
 
 [node name="Enemy_3" type="Position2D" parent="SmallWave_3"]
-position = Vector2( 248, -4 )
+position = Vector2( 440, -220 )
 
 [node name="SmallWave_4" type="Node2D" parent="."]
 visible = false
@@ -58,6 +58,19 @@ position = Vector2( -371, -137 )
 
 [node name="Enemy_3" type="Position2D" parent="SmallWave_4"]
 position = Vector2( 379, -125 )
+
+[node name="SmallWave_5" type="Node2D" parent="."]
+visible = false
+position = Vector2( 486, 91 )
+
+[node name="Enemy_1" type="Position2D" parent="SmallWave_5"]
+position = Vector2( 4, -331 )
+
+[node name="Enemy_2" type="Position2D" parent="SmallWave_5"]
+position = Vector2( -205, -92 )
+
+[node name="Enemy_3" type="Position2D" parent="SmallWave_5"]
+position = Vector2( 192, -258 )
 
 [node name="MediumWave_1" type="Node2D" parent="."]
 visible = false
@@ -83,19 +96,19 @@ visible = false
 position = Vector2( 486, 91 )
 
 [node name="Enemy_1" type="Position2D" parent="MediumWave_2"]
-position = Vector2( 24, -122 )
+position = Vector2( -25, -237 )
 
 [node name="Enemy_2" type="Position2D" parent="MediumWave_2"]
-position = Vector2( -360, -92 )
+position = Vector2( -430, -188 )
 
 [node name="Enemy_3" type="Position2D" parent="MediumWave_2"]
-position = Vector2( 512, 29 )
+position = Vector2( 352, -80 )
 
 [node name="Enemy_4" type="Position2D" parent="MediumWave_2"]
-position = Vector2( 477, -101 )
+position = Vector2( 164, -144 )
 
 [node name="Enemy_5" type="Position2D" parent="MediumWave_2"]
-position = Vector2( -374, -15 )
+position = Vector2( -233, -69 )
 
 [node name="MediumWave_3" type="Node2D" parent="."]
 visible = false
@@ -115,6 +128,25 @@ position = Vector2( 354, -101 )
 
 [node name="Enemy_5" type="Position2D" parent="MediumWave_3"]
 position = Vector2( 174, -28 )
+
+[node name="MediumWave_4" type="Node2D" parent="."]
+visible = false
+position = Vector2( 486, 91 )
+
+[node name="Enemy_1" type="Position2D" parent="MediumWave_4"]
+position = Vector2( -187, -284 )
+
+[node name="Enemy_2" type="Position2D" parent="MediumWave_4"]
+position = Vector2( -469, -193 )
+
+[node name="Enemy_3" type="Position2D" parent="MediumWave_4"]
+position = Vector2( 553, -85 )
+
+[node name="Enemy_4" type="Position2D" parent="MediumWave_4"]
+position = Vector2( 308, -159 )
+
+[node name="Enemy_5" type="Position2D" parent="MediumWave_4"]
+position = Vector2( 15, -232 )
 
 [node name="LargeWave_1" type="Node2D" parent="."]
 visible = false
@@ -183,6 +215,39 @@ position = Vector2( 171, 2 )
 
 [node name="Enemy_10" type="Position2D" parent="LargeWave_2"]
 position = Vector2( -124, 2 )
+
+[node name="LargeWave_3" type="Node2D" parent="."]
+position = Vector2( 486, 91 )
+
+[node name="Enemy_1" type="Position2D" parent="LargeWave_3"]
+position = Vector2( -394, -250 )
+
+[node name="Enemy_2" type="Position2D" parent="LargeWave_3"]
+position = Vector2( -487, -15 )
+
+[node name="Enemy_3" type="Position2D" parent="LargeWave_3"]
+position = Vector2( 593, -236 )
+
+[node name="Enemy_4" type="Position2D" parent="LargeWave_3"]
+position = Vector2( 583, 15 )
+
+[node name="Enemy_5" type="Position2D" parent="LargeWave_3"]
+position = Vector2( 275, -193 )
+
+[node name="Enemy_6" type="Position2D" parent="LargeWave_3"]
+position = Vector2( -25, -199 )
+
+[node name="Enemy_7" type="Position2D" parent="LargeWave_3"]
+position = Vector2( -262, -124 )
+
+[node name="Enemy_8" type="Position2D" parent="LargeWave_3"]
+position = Vector2( -124, -78 )
+
+[node name="Enemy_9" type="Position2D" parent="LargeWave_3"]
+position = Vector2( 153, -56 )
+
+[node name="Enemy_10" type="Position2D" parent="LargeWave_3"]
+position = Vector2( 436, -124 )
 
 [node name="Boundaries" type="Node2D" parent="."]
 

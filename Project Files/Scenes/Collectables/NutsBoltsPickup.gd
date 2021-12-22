@@ -27,6 +27,8 @@ func _ready():
 		value = currency_values.CopperNut
 	
 	$Sprites.get_node(chosen_value).show()
+	
+	$AreaCollider.set_deferred("disabled", false)
 
 func add_currency(body):
 	PlayerInfo.change_currency(value)
