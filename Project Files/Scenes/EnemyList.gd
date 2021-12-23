@@ -37,7 +37,5 @@ func create_enemy(elevation, parent, _position):
 	parent.call_deferred("add_child", new_enemy)
 	new_enemy.call_deferred("start_up")
 	new_enemy.set_deferred('global_position', _position)
-	
-	print("Enemy Count: ", parent.get_child_count())
 
 

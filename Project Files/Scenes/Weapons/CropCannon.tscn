@@ -81,9 +81,7 @@ position = Vector2( -0.073, -3.34313 )
 
 [node name="Shoot" parent="Audio" index="0"]
 stream = ExtResource( 2 )
-volume_db = -13.0
 pitch_scale = 1.09
-bus = "SFX"
 
 [node name="ReloadedLabel" parent="." index="6"]
 visible = false

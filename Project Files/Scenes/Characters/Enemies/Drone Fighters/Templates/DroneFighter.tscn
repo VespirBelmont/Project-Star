@@ -66,6 +66,7 @@ script = ExtResource( 4 )
 [connection signal="enemy_activated" from="." to="Movement" method="start_up"]
 [connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
 [connection signal="Hurt" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Hurt" ]]
+[connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 [connection signal="timeout" from="Combat/ShootTimer" to="." method="shoot" binds= [ "Left" ]]
 [connection signal="timeout" from="Movement/SwitchDirectionTimer" to="Movement" method="switch_direction"]
 

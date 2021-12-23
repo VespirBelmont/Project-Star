@@ -208,6 +208,10 @@ func area_map_interact():
 func repair():
 	var cost = int($AreaMap/Options/Repair/Cost/AmountLabel.text)
 	
+	if player_ship.get_parent().get_node("Modules/HealthSystem").health_current == player_ship.get_parent().get_node("Modules/HealthSystem").health_max:
+		$Sounds/CouldntPurchase.play()
+		return
+	
 	if PlayerInfo.player_currency >= cost:
 		player_ship.get_parent().get_node("Modules/HealthSystem").heal(1)
 		PlayerInfo.change_currency(-cost)
@@ -314,7 +318,6 @@ func part_selection_controls():
 		dir = -1
 	clamp_options()
 	
-	print("Focused Area: ", focused_area)
 	var part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
 	
 	var loop_count = option_current

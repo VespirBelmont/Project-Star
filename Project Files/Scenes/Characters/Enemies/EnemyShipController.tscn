@@ -362,7 +362,7 @@ cam_fx = "None"
 
 [node name="Hurt" parent="Audio" index="2"]
 stream = ExtResource( 8 )
-volume_db = 24.0
+bus = "SFX"
 
 [node name="Death" parent="Audio" index="3"]
 audio_clips = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ) ]

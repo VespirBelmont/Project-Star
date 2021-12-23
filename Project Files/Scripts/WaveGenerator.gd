@@ -39,7 +39,6 @@ func generate_wave():
 			reset_wave_count()
 	
 	waves_until_boss -= 1
-	print("Wave Generated")
 
 
 func generate_enemy(_position):

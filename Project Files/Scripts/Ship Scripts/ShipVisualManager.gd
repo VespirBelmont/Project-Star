@@ -47,14 +47,14 @@ func update_color(_area, _detail, _color):
 				if sprite is Sprite:
 					sprite.modulate = _color
 			
-			return
+			#return
 			
-			for detail in part.get_node("SpriteList").get_children():
-				var detail_name = "Detail_%s" % _detail
-				if detail.name == detail_name:
-					for sprite in detail.get_children():
-						if sprite is Sprite:
-							sprite.modulate = _color
+			#for detail in part.get_node("SpriteList").get_children():
+				#var detail_name = "Detail_%s" % _detail
+				#if detail.name == detail_name:
+					#for sprite in detail.get_children():
+						#if sprite is Sprite:
+							#sprite.modulate = _color
 
 
 func calculate_stats():

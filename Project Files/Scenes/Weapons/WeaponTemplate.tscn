@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Parts/Weapons/Weapons.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/SHMUP Tiles.png" type="Texture" id=3]
-[ext_resource path="res://Audio/SFX/Shooting Sounds/Cant Fire.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/Weapons/Projectiles/BasicBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -75,10 +74,9 @@ anims/RESET = SubResource( 2 )
 [node name="Audio" type="Node" parent="."]
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Audio"]
+bus = "SFX"
 
-[node name="CantFire" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 4 )
-volume_db = -5.0
+[node name="CantFire" type="AudioStreamPlayer2D" parent="Audio"]
 bus = "SFX"
 
 [node name="ReloadedLabel" type="Sprite" parent="."]

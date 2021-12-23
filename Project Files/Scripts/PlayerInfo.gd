@@ -2,10 +2,9 @@ extends Node
 
 signal CurrencyUpdated
 
-var player_currency = 0
+var player_currency = 500
 
 
 func change_currency(_amount):
-	print("Nuts 'N Bolts Collected: ", _amount)
 	player_currency += _amount
 	emit_signal("CurrencyUpdated", player_currency)

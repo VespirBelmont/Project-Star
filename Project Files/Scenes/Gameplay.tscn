@@ -537,6 +537,9 @@ part_setup = {
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="MiddlePos" type="Position2D" parent="Enemies"]
+position = Vector2( 552, 358 )
+
 [node name="LootPool" type="Node" parent="."]
 
 [node name="CamRig" parent="." instance=ExtResource( 2 )]
@@ -619,7 +622,6 @@ anims/SmallShake = SubResource( 14 )
 [node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 3 )
 volume_db = -13.0
-autoplay = true
 bus = "Music"
 
 [node name="Interface" type="CanvasLayer" parent="."]

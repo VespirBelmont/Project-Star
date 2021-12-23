@@ -36,12 +36,16 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
 [node name="Accelerate" type="AudioStreamPlayer" parent="Audio" index="0"]
+bus = "SFX"
 
 [node name="Brake" type="AudioStreamPlayer" parent="Audio" index="1"]
+bus = "SFX"
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Audio" index="2"]
+bus = "SFX"
 
 [node name="Death" type="AudioStreamPlayer" parent="Audio" index="3"]
+bus = "SFX"
 script = ExtResource( 4 )
 audio_clips = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 8 ) ]
 

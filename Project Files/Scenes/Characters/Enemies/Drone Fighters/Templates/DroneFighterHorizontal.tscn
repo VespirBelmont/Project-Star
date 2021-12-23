@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Templates/DroneFighter.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Animation" id=8]
+resource_name = "Hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ShipManager:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.45098, 0.45098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="DroneFighterHorizontal" instance=ExtResource( 1 )]
 rotation = -1.5708
@@ -48,12 +64,16 @@ shoot_direction = Vector2( 1, 0 )
 [node name="Cerberus Cannon" parent="ShipManager/WeaponRight" index="3"]
 shoot_direction = Vector2( 1, 0 )
 
+[node name="Anim" parent="DeathExplosion" index="1"]
+anims/Hurt = SubResource( 8 )
+
 [node name="Movement" parent="." index="8"]
 movement_direction = Vector2( 0, 1 )
 move_speed = 20.0
 switch_dir_time_min = 0.5
 switch_dir_time_max = 2.0
 
+[connection signal="enemy_activated" from="." to="." method="check_horizontal_direction"]
 [connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 
 [editable path="Modules/HealthSystem"]

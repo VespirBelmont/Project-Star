@@ -1,22 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Templates/DroneFighterHorizontal.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Collectables/PartDrop.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Collectables/NutsBolts.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/AIMovement.gd" type="Script" id=4]
 
-[node name="GruntDrone_Horizontal" groups=["Enemy"] instance=ExtResource( 1 )]
+[sub_resource type="Animation" id=8]
+resource_name = "Hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ShipManager:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.45098, 0.45098, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="GruntDrone_Horizontal" instance=ExtResource( 1 )]
 scale = Vector2( 1, -1 )
-collision_layer = 2
-collision_mask = 0
 part_setup = {
 "Frame": "Drone Frame",
 "WeaponLeft": "Auto Rifle XV",
 "WeaponRight": "",
 "Wings": ""
 }
-currency_drop = ExtResource( 3 )
-part_drop_node = ExtResource( 2 )
 drop_rates = {
 "Currency": 70,
 "Hazard": 30,
@@ -48,12 +58,24 @@ visible = false
 [node name="Sprite" parent="ShipManager/Frame/Drone Frame/GameplaySprite/Detail_4" index="0"]
 modulate = Color( 0.984314, 0.85098, 0.85098, 1 )
 
+[node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+visible = false
+target = [ "Player", "Hazard" ]
+cam_fx = "None"
+
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
 visible = true
 position = Vector2( 0, 0 )
 z_index = 0
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
+
+[node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
+target = [ "Player", "Hazard" ]
+cam_fx = "None"
+
+[node name="Anim" parent="DeathExplosion" index="1"]
+anims/Hurt = SubResource( 8 )
 
 [node name="Movement" parent="." index="8"]
 script = ExtResource( 4 )
