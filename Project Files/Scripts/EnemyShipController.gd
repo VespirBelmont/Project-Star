@@ -1,12 +1,17 @@
 extends "res://Scripts/Ship Scripts/ShipController.gd"
 
 signal enemy_activated
+signal Dead
 
 export (PackedScene) var currency_drop
 export (PackedScene) var part_drop_node
+export (PackedScene) var explosion_effect
 
+var player_node
 
 export (Array, String) var part_drops = []
+
+export var distance_until_delete = 200
 
 export var hazard_drops = {
 								
@@ -29,17 +34,32 @@ func set_state(_state):
 	if state == "Dead": return
 	
 	match _state:
+		"Hurt":
+			pass
+		
 		"Dead":
-			$Modules/HealthSystem.disable()
+			emit_signal("Dead")
 			
-			$DeathExplosion/Anim.play("Explode")
+			$Modules/HealthSystem.disable()
+			$Anim.play("Death")
+			var explosion = explosion_effect.instance()
+			get_parent().add_child(explosion)
+			explosion.global_position = self.global_position
 			create_loot()
-			yield($DeathExplosion/Anim, "animation_finished")
+			yield($Anim, "animation_finished")
+			self.hide()
 			self.queue_free()
 	
 	state = _state
 
-
+func check_if_obsolete():
+	var player_pos = PlayerInfo.player_pos.y
+	var self_pos = self.global_position.y
+	var distance = player_pos - self_pos
+	
+	
+	if distance <= distance_until_delete:
+		destroy()
 
 func create_loot():
 	if dropped_loot: return
@@ -72,7 +92,9 @@ func create_loot():
 	
 	if drop_node != null:
 		parent.call_deferred("add_child", drop_node)
-		drop_node.set_deferred("global_position", self.global_position)
+		drop_node.get_node("DropNode").set_deferred("global_position", self.global_position)
 		
 		if drop_type == "Part":
 			drop_node.call_deferred("setup", part_drops)
+
+

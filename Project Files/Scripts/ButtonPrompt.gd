@@ -13,6 +13,8 @@ export (String, "Option_1", "Option_2", "Option_3", "Option_4", "PauseGame", "St
 export (AudioStream) var pressed_sound
 export (float) var pressed_volume
 
+export (float) var input_cooldown = 0.2
+
 var can_input = true
 
 var activated = false
@@ -48,7 +50,8 @@ func _input(event):
 			emit_signal("Activate")
 		emit_signal("Button_Pressed")
 	
-	yield(get_tree().create_timer(0.2), "timeout")
+	if input_cooldown > 0:
+		yield(get_tree().create_timer(input_cooldown), "timeout")
 	can_input = true
 
 func toggle_label(label_1, label_2):

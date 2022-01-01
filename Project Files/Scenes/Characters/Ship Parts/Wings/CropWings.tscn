@@ -4,6 +4,7 @@
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/WingPartTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/Dodge Thrusters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=9]
@@ -119,141 +120,6 @@ tracks/8/keys = {
 "values": [ Rect2( 2, 47, 28, 12 ), Rect2( 34, 47, 28, 12 ), Rect2( 66, 47, 28, 12 ), Rect2( 98, 47, 28, 12 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 6 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../PreviewSprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 4 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../Detail_1/Frame_1:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../../Detail_3/Frame_1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../../Detail_3/Frame_2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../Detail_1/Frame_2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../../Detail_3/Frame_3:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../../Detail_1/Frame_3:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../../Detail_3/Frame_4:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../../Detail_1/Frame_4:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath(".:region_rect")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 34, 47, 28, 12 ) ]
-}
-
 [sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.945313, 0.945313, 0.945313, 1, 1, 0.702057, 0.59375, 1 )
 
@@ -276,8 +142,8 @@ has_particles = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 root_node = NodePath("../SpriteList/Outline/OutlineSprite")
+reset_on_save = false
 anims/Fly = SubResource( 9 )
-anims/RESET = SubResource( 10 )
 
 [node name="Outline" type="Node2D" parent="SpriteList" index="0"]
 
@@ -287,12 +153,11 @@ position = Vector2( -0.008, 8.746 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -9 )
 region_enabled = true
-region_rect = Rect2( 34, 47, 28, 12 )
+region_rect = Rect2( 2, 47, 28, 12 )
 
 [node name="Detail_1" type="Node2D" parent="SpriteList" index="1"]
 
 [node name="Frame_1" type="Sprite" parent="SpriteList/Detail_1" index="0"]
-visible = false
 modulate = Color( 0.772549, 0.596078, 0.372549, 1 )
 position = Vector2( -0.514, -1.351 )
 texture = ExtResource( 6 )
@@ -334,7 +199,6 @@ region_rect = Rect2( 753.61, 45.3839, 28.0733, 11.9571 )
 [node name="Detail_3" type="Node2D" parent="SpriteList" index="3"]
 
 [node name="Frame_1" type="Sprite" parent="SpriteList/Detail_3" index="0"]
-visible = false
 modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( -0.357, -0.945 )
 texture = ExtResource( 6 )
@@ -358,6 +222,7 @@ region_enabled = true
 region_rect = Rect2( 753.61, 59.0416, 28.0733, 8.52195 )
 
 [node name="Frame_4" type="Sprite" parent="SpriteList/Detail_3" index="3"]
+visible = false
 modulate = Color( 0.423529, 0.47451, 0.670588, 1 )
 position = Vector2( 0.252, -0.468 )
 texture = ExtResource( 6 )
@@ -385,3 +250,5 @@ lifetime = 8.0
 speed_scale = 3.0
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
+
+[node name="Side Thrusters" parent="Modules" index="0" instance=ExtResource( 5 )]

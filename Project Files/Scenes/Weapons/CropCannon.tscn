@@ -63,6 +63,7 @@ tracks/1/keys = {
 [node name="Crop Cannon" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
 damage_modifier = 2
+shoot_speed = 140.0
 reload_feedback_active = false
 cam_fx = "MediumShake"
 
@@ -74,6 +75,7 @@ position = Vector2( -0.073, -2.55817 )
 
 [node name="Sprite" parent="." index="3"]
 position = Vector2( -0.073, -0.356819 )
+scale = Vector2( 2, 1 )
 region_rect = Rect2( 2, 3, 4, 8 )
 
 [node name="MuzzleFlashSprite" parent="." index="4"]

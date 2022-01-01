@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/BoosterModule.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
+[ext_resource path="res://Audio/SFX/Module Not Ready.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SFX/Module Ready.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Dodge Thruster Activate.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=13]
 resource_name = "Disable"
@@ -15,8 +18,11 @@ resource_name = "Disable"
 [sub_resource type="Animation" id=16]
 resource_name = "Enable"
 
-[node name="Side Thrusters" type="Node2D"]
+[node name="Dodge Thrusters" type="Node2D"]
 script = ExtResource( 1 )
+equipped = true
+boost_power = 200.0
+boost_duration = 0.5
 
 [node name="DodgeRight" type="Control" parent="."]
 margin_right = 40.0
@@ -28,6 +34,7 @@ __meta__ = {
 }
 keyboard_input = "Option_2"
 controller_input = "Option_2"
+input_cooldown = 0.01
 
 [node name="Anim" type="AnimationPlayer" parent="DodgeRight"]
 anims/Disable = SubResource( 13 )
@@ -43,6 +50,7 @@ __meta__ = {
 }
 keyboard_input = "Option_4"
 controller_input = "Option_4"
+input_cooldown = 0.01
 
 [node name="Anim" type="AnimationPlayer" parent="DodgeLeft"]
 root_node = NodePath("../../DodgeRight")
@@ -50,11 +58,31 @@ anims/Disable = SubResource( 15 )
 anims/Enable = SubResource( 16 )
 
 [node name="ButtonTapReset" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 
 [node name="UseCooldown" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ReadySound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 4 )
+volume_db = -5.0
+bus = "SFX"
+
+[node name="NotReadySound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 3 )
+volume_db = -3.0
+pitch_scale = 0.61
+bus = "SFX"
+
+[node name="ActivateSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 5 )
+bus = "SFX"
 
 [connection signal="Button_Pressed" from="DodgeRight" to="." method="use_booster" binds= [ "Right" ]]
 [connection signal="Button_Pressed" from="DodgeLeft" to="." method="use_booster" binds= [ "Left" ]]
 [connection signal="timeout" from="ButtonTapReset" to="." method="reset_taps"]
+[connection signal="timeout" from="UseCooldown" to="." method="cooled_down"]

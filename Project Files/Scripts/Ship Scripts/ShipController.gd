@@ -35,4 +35,6 @@ func shoot(_side):
 			if side_weapon.visible:
 				side_weapon.shoot()
 
+func destroy():
+	self.call_deferred("free")
 

@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Templates/DroneFighterVertical.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Collectables/PartDrop.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Collectables/NutsBolts.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/AudioClipPlayer.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/AIMovement.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=8]
 resource_name = "Hurt"
@@ -22,18 +18,14 @@ tracks/0/keys = {
 "values": [ Color( 1, 0.45098, 0.45098, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="GruntDrone_Vertical" groups=["Enemy"] instance=ExtResource( 1 )]
+[node name="GruntDrone_Vertical" instance=ExtResource( 1 )]
 scale = Vector2( 1, -1 )
-collision_layer = 2
-collision_mask = 0
 part_setup = {
 "Frame": "Drone Frame",
 "WeaponLeft": "Auto Rifle XV",
 "WeaponRight": "",
 "Wings": ""
 }
-currency_drop = ExtResource( 3 )
-part_drop_node = ExtResource( 2 )
 drop_rates = {
 "Currency": 70,
 "Hazard": 35,
@@ -50,6 +42,9 @@ move_speeds = {
 [node name="HealthSystem" parent="Modules" index="1"]
 health_max = 3
 
+[node name="ShipManager" parent="." index="4"]
+modulate = Color( 1, 1, 1, 1 )
+
 [node name="Sprite" parent="ShipManager/Frame/Drone Frame/GameplaySprite/Outline2" index="0"]
 modulate = Color( 0.215686, 0.164706, 0.164706, 1 )
 
@@ -62,18 +57,10 @@ modulate = Color( 1, 0.584314, 0.584314, 1 )
 [node name="Sprite" parent="ShipManager/Frame/Drone Frame/GameplaySprite/Detail_4" index="0"]
 modulate = Color( 0.984314, 0.85098, 0.85098, 1 )
 
-[node name="Hurt" parent="Audio" index="2"]
-script = null
-
-[node name="Death" parent="Audio" index="3"]
-script = ExtResource( 4 )
-
 [node name="Anim" parent="DeathExplosion" index="1"]
-reset_on_save = false
 anims/Hurt = SubResource( 8 )
 
 [node name="Movement" parent="." index="8"]
-script = ExtResource( 5 )
 move_speed = 40.0
 switch_dir_time_max = 3.0
 

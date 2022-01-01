@@ -10,6 +10,7 @@ export var currency_values = {
 							}
 
 func _ready():
+	yield(get_tree().create_timer(0.2), "timeout")
 	randomize()
 	var chosen_value
 	
@@ -26,11 +27,13 @@ func _ready():
 		chosen_value = "CopperNut"
 		value = currency_values.CopperNut
 	
-	$Sprites.get_node(chosen_value).show()
 	
-	$AreaCollider.set_deferred("disabled", false)
+	$DropNode/Sprites.get_node(chosen_value).show()
+	
+	$DropNode/AreaCollider.set_deferred("disabled", false)
 
-func add_currency(body):
+
+func add_currency(_body):
 	PlayerInfo.change_currency(value)
 	$Anim.play("Collected")
 	yield($Anim, "animation_finished")

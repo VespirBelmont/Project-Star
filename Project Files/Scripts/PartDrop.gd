@@ -23,14 +23,14 @@ func setup(available_parts):
 	if chosen_part == null:
 		return
 	
-	for part in $PartList.get_children():
+	for part in $DropNode/PartList.get_children():
 		if part.name == chosen_part:
 			part.show()
 	
-	$AreaCollider.set_deferred("disabled", false)
+	$DropNode/AreaCollider.set_deferred("disabled", false)
 
 func unlock_part(body):
-	$AreaCollider.set_deferred("disabled", true)
+	$DropNode/AreaCollider.set_deferred("disabled", true)
 	var area
 	
 	if "Frame" in dropped_part:

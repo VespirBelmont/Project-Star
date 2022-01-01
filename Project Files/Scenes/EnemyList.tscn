@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Scenes/Collectables/PartDrop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/EnemyToken.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Grunts/GruntDrone_Vertical.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/EnemyList.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Collectables/NutsBolts.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/EnemyList.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveSkyMine_Strong.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Adept/AdeptDrone_Vertical.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Elite/EliteDrone_Vertical.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Elite/EliteDrone_Horizontal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Grunts/GruntDrone_Horizontal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Characters/Enemies/Drone Fighters/Adept/AdeptDrone_Horizontal.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/DroneFighter.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveMine_Weak.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveSkyMine_Mild.tscn" type="PackedScene" id=11]
 
 [node name="EnemyList" type="Node"]
 script = ExtResource( 3 )
@@ -18,107 +19,39 @@ script = ExtResource( 3 )
 
 [node name="Grunt" type="Node" parent="Elevation_1"]
 
-[node name="GruntDrone_Horizontal" parent="Elevation_1/Grunt" groups=["Enemy"] instance=ExtResource( 8 )]
-position = Vector2( -1367, 154 )
-collision_layer = 2
-collision_mask = 0
-script = ExtResource( 10 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-currency_drop = ExtResource( 4 )
-part_drop_node = ExtResource( 1 )
-part_drops = [ "Jet Frame", "Supersonic Frame", "Star Frame" ]
-drop_rates = {
-"Currency": 70,
-"Hazard": 30,
-"Part": 25
-}
+[node name="DroneFighter_V" parent="Elevation_1/Grunt" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 2 )
 
-[node name="GruntDrone_Vertical" parent="Elevation_1/Grunt" instance=ExtResource( 2 )]
-position = Vector2( -1320, 156 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-drop_rates = {
-"Currency": 70,
-"Hazard": 35,
-"Part": 25
-}
+[node name="DroneFighter_H" parent="Elevation_1/Grunt" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 8 )
+
+[node name="StandardSkyMine" parent="Elevation_1/Grunt" instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 8 )
+
+[node name="CorrosiveSkyMine_Weak" parent="Elevation_1/Grunt" instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 10 )
 
 [node name="Adept" type="Node" parent="Elevation_1"]
 
-[node name="GruntDrone_Vertical" parent="Elevation_1/Adept" instance=ExtResource( 5 )]
-position = Vector2( -1322, 212 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-drop_rates = {
-"Currency": 70,
-"Hazard": 35,
-"Part": 25
-}
+[node name="DroneFighter_V" parent="Elevation_1/Adept" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 5 )
 
-[node name="GruntDrone_Horizontal" parent="Elevation_1/Adept" groups=["Enemy"] instance=ExtResource( 9 )]
-position = Vector2( -1366, 214 )
-collision_layer = 2
-collision_mask = 0
-script = ExtResource( 10 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-currency_drop = ExtResource( 4 )
-part_drop_node = ExtResource( 1 )
-part_drops = [ "Jet Frame", "Supersonic Frame", "Star Frame" ]
-drop_rates = {
-"Currency": 70,
-"Hazard": 30,
-"Part": 25
-}
+[node name="DroneFighter_H" parent="Elevation_1/Adept" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 9 )
+
+[node name="CorrosiveSkyMine_Mild" parent="Elevation_1/Adept" instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 11 )
 
 [node name="Elite" type="Node" parent="Elevation_1"]
 
-[node name="GruntDrone_Horizontal" parent="Elevation_1/Elite" instance=ExtResource( 7 )]
-position = Vector2( -1367, 269 )
-script = ExtResource( 10 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-part_drops = [ "Jet Frame", "Supersonic Frame", "Star Frame" ]
-drop_rates = {
-"Currency": 70,
-"Hazard": 30,
-"Part": 25
-}
+[node name="DroneFighter_V" parent="Elevation_1/Elite" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 6 )
 
-[node name="GruntDrone_Vertical" parent="Elevation_1/Elite" instance=ExtResource( 6 )]
-position = Vector2( -1318, 270 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
-"WeaponRight": "",
-"Wings": ""
-}
-drop_rates = {
-"Currency": 70,
-"Hazard": 35,
-"Part": 25
-}
+[node name="DroneFighter_H" parent="Elevation_1/Elite" groups=["Unit"] instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 7 )
+
+[node name="CorrosiveSkyMine_Strong" parent="Elevation_1/Elite" instance=ExtResource( 1 )]
+enemy_tscn = ExtResource( 4 )
 
 [node name="Bosses" type="Node" parent="Elevation_1"]
 
@@ -151,11 +84,3 @@ drop_rates = {
 [node name="Standard" type="Node" parent="Elevation_5"]
 
 [node name="Bosses" type="Node" parent="Elevation_5"]
-
-[connection signal="enemy_activated" from="Elevation_1/Grunt/GruntDrone_Horizontal" to="Elevation_1/Grunt/GruntDrone_Horizontal/Combat/ShootTimer" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Grunt/GruntDrone_Horizontal" to="Elevation_1/Grunt/GruntDrone_Horizontal/Movement" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Grunt/GruntDrone_Vertical" to="Elevation_1/Grunt/GruntDrone_Vertical/Combat/ShootTimer" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Adept/GruntDrone_Horizontal" to="Elevation_1/Adept/GruntDrone_Horizontal/Combat/ShootTimer" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Adept/GruntDrone_Horizontal" to="Elevation_1/Adept/GruntDrone_Horizontal/Movement" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Elite/GruntDrone_Horizontal" to="Elevation_1/Elite/GruntDrone_Horizontal/Combat/ShootTimer" method="start_up"]
-[connection signal="enemy_activated" from="Elevation_1/Elite/GruntDrone_Horizontal" to="Elevation_1/Elite/GruntDrone_Horizontal/Movement" method="start_up"]

@@ -8,3 +8,10 @@ script = ExtResource( 1 )
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="AreaCollider" type="CollisionShape2D" parent="Hitbox"]
+
+[node name="HurtDuration" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ImmortalDuration" type="Timer" parent="."]
+one_shot = true

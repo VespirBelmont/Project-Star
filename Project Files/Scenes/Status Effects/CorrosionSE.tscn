@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Status Effects/StatusEffectTemplate.tscn" type="PackedScene" id=1]
+
+[node name="CorrosionSE" instance=ExtResource( 1 )]
+rate = {
+"Extreme": 0.5,
+"Mild": 2.0,
+"Strong": 1.0,
+"Weak": 3.0
+}
+
+[node name="EffectTimer" parent="." index="0"]
+one_shot = true

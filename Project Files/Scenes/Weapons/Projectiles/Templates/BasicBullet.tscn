@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Audio/SFX/Damage Sounds/Hurt.wav" type="AudioStream" id=1]
+[ext_resource path="res://Graphics/SHMUP Tiles.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Weapons/Projectiles/Templates/ProjectileTemplate.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0.26935, 0.448467 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Impact"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 0.3, 0.3 ), Vector2( 0.4, 0.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Impact:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 0.658824, 0.937255, 0.937255, 0.937255, 0.0509804 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 6 )
+
+[node name="BasicBullet" instance=ExtResource( 3 )]
+scale = Vector2( 10, 10 )
+collision_mask = 6
+movement_delay = 0.0
+delay_speed_mod = 0.0
+destruction_anim = true
+
+[node name="AreaCollider" parent="." index="0"]
+position = Vector2( 0.034616, -0.0522324 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" parent="." index="1"]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+position = Vector2( 0.0108557, -0.0302038 )
+scale = Vector2( 0.0927262, 0.0927262 )
+z_index = 1
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 4, 19, 8, 12 )
+
+[node name="ImpactFX" type="Node2D" parent="." index="3"]
+
+[node name="Anim" type="AnimationPlayer" parent="ImpactFX" index="0"]
+reset_on_save = false
+playback_speed = 2.0
+anims/Impact = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="ImpactFX" index="1"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -0.0999985 )
+scale = Vector2( 0.001, 0.001 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 121, 2, 12, 12 )
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="ImpactFX" index="2"]
+stream = ExtResource( 1 )
+volume_db = -5.0
+pitch_scale = 0.81
+
+[node name="Particles2D" type="Particles2D" parent="." index="4"]
+position = Vector2( 0, 0.5 )
+amount = 50
+lifetime = 0.2
+local_coords = false
+process_material = SubResource( 4 )

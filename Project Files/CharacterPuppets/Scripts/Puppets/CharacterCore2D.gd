@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-signal death
-
 var move_module
 var health_module
 
@@ -41,7 +39,7 @@ func update_animation():
 
 
 #This handles changing stats (health, stamina, etc) with ease and minimal code
-func modify_stat(stat, stat_max, stat_change, reason_for_change):
+func modify_stat(stat, stat_max, stat_change):
 	#The given stat we sent is adjusted by the change amount
 	#We clamp it between 0 and the stat maximum
 	#This way it stays within the numbers we want all within one line of code for any stat we have

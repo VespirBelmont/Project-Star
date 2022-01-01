@@ -10,3 +10,7 @@ move_speeds = {
 "Sprint": 0.0,
 "Walk": 0.0
 }
+
+[node name="OutOfBoundsTimer" type="Timer" parent="." index="6"]
+wait_time = 20.0
+autostart = true

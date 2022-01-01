@@ -24,7 +24,7 @@ var direction = Vector2() #This is the direction the character is moving
 export (float) var gravity #The gravity amount that'll pull the character down
 export (float) var gravity_fall_mod #The amount gravity is modified when falling [More in the Documentation Document]
 
-
+var boost = Vector2(0, 0)
 
 func _ready():
 	move_speed = move_speeds[default_move_state_mod]
@@ -37,7 +37,10 @@ func apply_gravity(delta):
 	velocity.y += final_gravity * delta #Then we add the final gravity smoothed out with delta which will move the character down nicely
 
 func move():
-	velocity = controller.move_and_slide(velocity, Vector2.UP) #The character is moved by their velocity
+	var final_velocity = velocity
+	final_velocity += boost
+	
+	velocity = controller.move_and_slide(final_velocity, Vector2.UP) #The character is moved by their velocity
 
 #This handles changing the direction of the character
 func update_direction():
@@ -45,4 +48,13 @@ func update_direction():
 		controller.get_node("DirectionAnim").play("Up") #Play the right animation
 	elif direction.y == -1: #If the character is moving left
 		controller.get_node("DirectionAnim").play("Down") #Play the left animation
+
+func boost(_boost_power, _boost_duration):
+	boost.x = _boost_power
+	
+	$BoostDuration.wait_time = _boost_duration
+	$BoostDuration.start()
+
+func end_boost():
+	boost.x = 0
 

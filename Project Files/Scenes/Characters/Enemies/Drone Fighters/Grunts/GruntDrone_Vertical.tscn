@@ -35,6 +35,9 @@ modulate = Color( 0.435294, 0.470588, 0.376471, 1 )
 [node name="Sprite" parent="ShipManager/Frame/Drone Frame/GameplaySprite/Detail_4" index="0"]
 modulate = Color( 1, 1, 1, 1 )
 
+[node name="Sprite" parent="DeathExplosion" index="0"]
+rotation = 1.69915
+
 [node name="ShootTimer" parent="Combat" index="0"]
 min_time = 2.0
 max_time = 3.0

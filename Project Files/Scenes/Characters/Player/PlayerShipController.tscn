@@ -46,7 +46,7 @@ move_speeds = {
 }
 accelerate_speed = 25
 brake_speed = 50
-auto_move_speed = 35
+auto_move_speed = 30
 
 [node name="HealthSystem" parent="Modules" index="1"]
 pause_mode = 2
@@ -96,7 +96,6 @@ pitch_scale = 1.5
 stream = ExtResource( 5 )
 volume_db = -2.378
 pitch_scale = 0.85
-bus = "SFX"
 
 [node name="Moving" type="AudioStreamPlayer" parent="Audio" index="4"]
 stream = ExtResource( 6 )
@@ -106,16 +105,15 @@ autoplay = true
 bus = "SFX"
 
 [node name="CollectableMagnet" type="Area2D" parent="." index="6" groups=["Magnet"]]
-visible = false
 collision_layer = 2
 collision_mask = 0
 
 [node name="MagnetSize_1" type="CollisionShape2D" parent="CollectableMagnet" index="0" groups=["Magnet"]]
 shape = SubResource( 2 )
+disabled = true
 
 [node name="MagnetSize_2" type="CollisionShape2D" parent="CollectableMagnet" index="1" groups=["Magnet"]]
 shape = SubResource( 3 )
-disabled = true
 
 [node name="MagnetSize_3" type="CollisionShape2D" parent="CollectableMagnet" index="2" groups=["Magnet"]]
 shape = SubResource( 4 )

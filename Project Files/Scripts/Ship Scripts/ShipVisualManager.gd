@@ -7,7 +7,7 @@ var health = 0
 var speed = 0
 var damage = 0
 
-export (bool) var calculate_stats = true
+export (bool) var can_calculate_stats = true
 export (bool) var update_weapon_anchors = false
 
 export (NodePath) var weapon_
@@ -31,7 +31,7 @@ func update_part(_area, _part):
 			part.hide()
 			
 	
-	if calculate_stats:
+	if can_calculate_stats:
 		calculate_stats()
 
 func update_module(_area, _part, _module, _status):

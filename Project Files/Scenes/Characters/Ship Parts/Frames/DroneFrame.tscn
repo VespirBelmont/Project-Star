@@ -1,114 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Part Modules/Workshop Modules/Ram_Workshop.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Characters/Ship Parts/PartTemplate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/SpriteManager.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Part Modules/Workshop Modules/EnergyShield_Workshop.tscn" type="PackedScene" id=6]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Fly"
-length = 0.3
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../../Detail_1/Sprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Detail_1:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 18, 21, 106, 27 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Detail_2:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 18, 47, 106, 26 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Detail_3:region_rect")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 18, 75, 106, 18 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../Detail_2/SubDetail:region_rect")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 18, 71, 106, 5 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../../Detail_1/Sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
 
 [node name="Crop Frame" instance=ExtResource( 3 )]
 
@@ -152,9 +48,8 @@ region_rect = Rect2( 13.7181, 120.797, 10.8391, 21.5034 )
 [node name="Detail_1" type="Node2D" parent="GameplaySprite" index="4"]
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_1" index="0"]
-visible = false
 modulate = Color( 0.756863, 0.643137, 0.419608, 1 )
-position = Vector2( -0.17, -0.437 )
+position = Vector2( 0.849, -1.429 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 65.2585, 119.682, 7.41563, 20.038 )
@@ -163,12 +58,13 @@ region_rect = Rect2( 65.2585, 119.682, 7.41563, 20.038 )
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_2" index="0"]
 modulate = Color( 0.737255, 0.737255, 0.737255, 1 )
-position = Vector2( -0.163, 2.955 )
+position = Vector2( -0.104, 2.912 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 81.8253, 125.205, 6.29397, 15.7779 )
 
 [node name="Detail_3" type="Node2D" parent="GameplaySprite" index="6"]
+visible = false
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_3" index="0"]
 position = Vector2( -0.362, -4.372 )
@@ -180,15 +76,10 @@ region_rect = Rect2( 83.7729, 133.725, 0.157776, 0 )
 
 [node name="Sprite" type="Sprite" parent="GameplaySprite/Detail_4" index="0"]
 modulate = Color( 0.447059, 1, 0.831373, 1 )
-position = Vector2( -0.491, -4.308 )
+position = Vector2( -0.51, -4.298 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 118.958, 118.736, 11.3601, 14.2001 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameplaySprite" index="8"]
-root_node = NodePath("../Outline/Sprite")
-anims/Fly = SubResource( 1 )
-anims/RESET = SubResource( 2 )
 
 [node name="Ram" parent="Modules" index="0" instance=ExtResource( 2 )]
 

@@ -15,12 +15,6 @@ var regen_amount = 0 #The amount that's regenerated
 var regen_rate = 0.1 #How fast the health is regenerated
 var regen_timer = null
 
-func _input(event):
-	if Input.is_action_just_pressed("TestHurt"):
-		take_damage(1, 0, Vector2())
-	if Input.is_action_just_pressed("TestHeal"):
-		heal(1)
-
 func _ready():
 	controller = get_parent().get_parent()
 	for module in controller.get_node("Modules").get_children():
@@ -55,6 +49,7 @@ func take_damage(damage, knockback, damage_pos):
 	
 	if health_current == 0:
 		emit_signal("Dead")
+		disable()
 
 func heal(_amount):
 	if not active: return

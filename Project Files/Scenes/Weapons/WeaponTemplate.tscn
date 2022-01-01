@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Parts/Weapons/Weapons.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/SHMUP Tiles.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Weapons/Projectiles/BasicBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Weapons/Projectiles/Templates/BasicBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Flash"

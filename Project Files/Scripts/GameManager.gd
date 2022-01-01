@@ -1,12 +1,22 @@
 extends Node
 
-var player_1
-var player_2
-var game_over = false
+var player_1 #This is the player 1 node
+var player_2 #This is the player 2 node
 
+
+
+#This is for Developer uses
+func _input(_event):
+	if Input.is_action_just_pressed("DevRestart"):
+		get_tree().change_scene("res://Scenes/Title.tscn")
+
+
+#This handles the initialization process
 func _ready():
-	setup_game()
+	setup_game() #Sets up the game
 
+
+#This handles setting up the game for play
 func setup_game():
 	#This collects the player information
 	for player in $Players.get_children():
@@ -22,25 +32,25 @@ func setup_game():
 	if player_1 != null:
 		$Players/P1/Modules/HealthSystem.connect("Hurt", $Interface/Interface/Player_1, "update_health")
 		$Players/P1/Modules/HealthSystem.connect("Hurt", $Interface/Interface/Player_1, "player_hurt")
-		$Players/P1/Modules/HealthSystem.connect("Dead", self, "players_dead")
+		$Players/P1/Modules/HealthSystem.connect("Dead", self, "game_over")
 		$Players/P1/Modules/HealthSystem.connect("Healed", $Interface/Interface/Player_1, "update_health")
 		$Players/P1/Modules/HealthSystem.heal(999)
 
 
-func quit_game():
-	get_tree().paused = false
-	get_tree().change_scene("res://Scenes/Title.tscn")
-
-func players_dead():
-	game_over = true
-	$Interface/Interface/DeathScreen.death_intiate()
-
-func _process(delta):
+func _process(_delta):
 	if $Players/P1.move_module.velocity != Vector2():
 		if not $CamRig.is_processing():
 			$CamRig.run_cam()
 			set_process(false)
 
 
-func restart_game():
-	get_tree().reload_current_scene()
+#This handles what happens during a game over
+func game_over():
+	$Interface/Interface/DeathScreen.death_intiate() #This starts up the death screen
+
+
+#This handles quitting the game
+func quit_game():
+	get_tree().paused = false #The game is unpaused to create less isuees
+	get_tree().change_scene("res://Scenes/Title.tscn") #And the scene is changed back to the title screen
+

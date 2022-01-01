@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Hazard.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Status Effects/CorrosionSE.tscn" type="PackedScene" id=2]
 
 [node name="HazardTemplate" type="Area2D" groups=["Hazard"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 1 )
+corrosion_status_effect = ExtResource( 2 )
 
 [node name="AreaCollider" type="CollisionShape2D" parent="."]
 

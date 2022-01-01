@@ -22,6 +22,9 @@ move_speeds = {
 "Walk": 0.0
 }
 
+[node name="ShipManager" parent="." index="4"]
+modulate = Color( 1, 1, 1, 1 )
+
 [node name="Sprite" parent="ShipManager/Frame/Drone Frame/GameplaySprite/Outline2" index="0"]
 modulate = Color( 0.309804, 0.305882, 0.27451, 1 )
 

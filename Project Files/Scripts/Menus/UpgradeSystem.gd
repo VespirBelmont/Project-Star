@@ -33,6 +33,7 @@ func toggle():
 	if active:
 		active = false
 		$WorkshopMusic.turn_off()
+	
 	else:
 		active = true
 		$WorkshopMusic.turn_on()
@@ -41,10 +42,11 @@ func toggle():
 		true:
 			get_tree().paused = true
 			change_menu("AreaMap")
-			set_process(true)
+			return  #This avoids the player from spamming open
 		
 		false:
 			change_menu("Close")
+			return #This avoids the player from spamming close
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	can_input = true
@@ -83,15 +85,15 @@ func change_menu(_new_menu):
 						button.disable()
 				
 				"PartSelect":
-					$Anim.play_backwards("ToggleCustomization")
+					$Anim.play_backwards("TogglePartSelect")
 					yield($Anim, "animation_finished")
 				
 				"ColorSelect":
-					$Anim.play_backwards("ToggleCustomization")
+					$Anim.play_backwards("ToggleColorSelect")
 					yield($Anim, "animation_finished")
 				
 				"ModuleSelect":
-					$Anim.play_backwards("ToggleCustomization")
+					$Anim.play_backwards("ToggleModuleSelect")
 					yield($Anim, "animation_finished")
 			
 			
@@ -100,7 +102,8 @@ func change_menu(_new_menu):
 			get_tree().paused = false
 			
 			option_current = 0
-			hide_ship_areas()
+			yield(get_tree().create_timer(0.2), "timeout")
+			#hide_ship_areas()
 		
 		"AreaMap":
 			revert_to_equipped()
@@ -112,6 +115,7 @@ func change_menu(_new_menu):
 					
 					
 					yield($Anim, "animation_finished")
+					yield(get_tree().create_timer(0.2), "timeout")
 				
 				"PartSelect":
 					$Anim.play_backwards("TogglePartSelect")
@@ -138,10 +142,10 @@ func change_menu(_new_menu):
 			option_max = 4
 			option_current = 0
 			focused_area = ""
-			hide_ship_areas()
 			
 			for button in $AreaMap/Buttons.get_children():
 				button.enable()
+			set_process(true)
 		
 		"PartSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
@@ -155,6 +159,8 @@ func change_menu(_new_menu):
 			
 			for button in $PartSelect/Buttons.get_children():
 				button.enable()
+			
+			set_process(true)
 		
 		"ColorSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
@@ -173,6 +179,8 @@ func change_menu(_new_menu):
 				button.enable()
 			$Anim.play("ToggleColorSelect")
 			yield($Anim, "animation_finished")
+			
+			set_process(true)
 		
 		"ModuleSelect":
 			var area = $AreaMap/Options.get_child(option_current).name
@@ -194,16 +202,23 @@ func change_menu(_new_menu):
 			
 			for button in $ModuleSelect/Buttons.get_children():
 				button.enable()
+			
+			set_process(true)
 	
 	current_menu = _new_menu
 	input_cooldown()
 
 func area_map_interact():
+	if not can_input or current_menu != "AreaMap": return
+	can_input = false
+	
 	var type = $AreaMap/Options.get_child(option_current).name
 	if type == "Repair":
 		repair()
 	else:
 		change_menu("PartSelect")
+	
+	input_cooldown()
 
 func repair():
 	var cost = int($AreaMap/Options/Repair/Cost/AmountLabel.text)
@@ -219,7 +234,7 @@ func repair():
 	else:
 		$Sounds/CouldntPurchase.play()
 
-func _process(delta):
+func _process(_delta):
 	match current_menu:
 		"AreaMap":
 			if can_input:
@@ -281,9 +296,6 @@ func area_map_controls():
 		$AreaMap/Buttons/ColorSelect.enable()
 		$AreaMap/Buttons/ModuleSelect.enable()
 	
-	if last_option != option_current:
-		hide_ship_areas()
-	
 	if last_option != option_current or not options.get_child(option_current).visible:
 		options.get_child(last_option).get_node("Anim").play("Disable")
 		options.get_child(option_current).get_node("Anim").play("Enable")
@@ -320,7 +332,6 @@ func part_selection_controls():
 	
 	var part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
 	
-	var loop_count = option_current
 	if part.unlocked == false:
 		for _part in $PartSelect/PartList.get_node(focused_area).get_child_count()-1:
 			var check_part = $PartSelect/PartList.get_node(focused_area).get_child(option_current)
@@ -351,7 +362,6 @@ func color_selection_controls():
 	var prev_color = Input.is_action_just_pressed("Option_4")
 	var interact = Input.is_action_just_pressed("Interact")
 	
-	var last_item = option_current
 	var dir = 1
 	
 	if next_detail:
@@ -388,8 +398,6 @@ func change_color():
 	$ColorSelect/ChangeColorSound.play()
 
 func update_color(_dir):
-	var area = focused_area
-	var part = focused_part
 	var color = $ColorSelect/ColorList.get_child(option_current)
 	
 	var loop_count = option_current
@@ -436,7 +444,6 @@ func module_selection_controls():
 		if _part.name == part_in_use.name:
 			module = _part.get_node("Modules").get_child(option_current)
 	
-	var loop_count = option_current
 	if module.unlocked == false:
 		for _mod in $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_child_count()-1:
 			var check_mod = $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_node("Modules").get_child(option_current)
@@ -589,16 +596,6 @@ func input_cooldown():
 	yield(get_tree().create_timer(0.001), "timeout")
 	can_input = true
 
-
-
-func hide_ship_areas():
-	return
-	
-	var options = $AreaMap/Options
-	
-	for opt in options.get_children():
-		if opt.visible:
-			opt.get_node("Anim").play_backwards("Toggle")
 
 func revert_to_equipped():
 	var child_counter = 0

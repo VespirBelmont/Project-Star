@@ -5,14 +5,14 @@
 [ext_resource path="res://Graphics/Nuts and Bolts.png" type="Texture" id=3]
 [ext_resource path="res://Audio/SFX/Purchased.wav" type="AudioStream" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 13.5, 14 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 8.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Collected"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites:scale")
+tracks/0/path = NodePath("DropNode/Sprites:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites:modulate")
+tracks/1/path = NodePath("DropNode/Sprites:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -76,54 +76,48 @@ tracks/0/keys = {
 }
 
 [node name="NutsBolts" instance=ExtResource( 1 )]
-scale = Vector2( 0.5, 0.5 )
-z_index = -1
 script = ExtResource( 2 )
 value = 1
 
-[node name="Sprites" type="Node2D" parent="." index="0"]
+[node name="AreaCollider" parent="DropNode" index="0"]
+position = Vector2( 1, -0.5 )
+shape = SubResource( 4 )
 
-[node name="GoldBolt" type="Sprite" parent="Sprites" index="0"]
+[node name="Sprites" type="Node2D" parent="DropNode" index="1"]
+
+[node name="GoldBolt" type="Sprite" parent="DropNode/Sprites" index="0"]
 visible = false
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 66, 34, 18, 17 )
 
-[node name="CopperBolt" type="Sprite" parent="Sprites" index="1"]
+[node name="CopperBolt" type="Sprite" parent="DropNode/Sprites" index="1"]
 visible = false
 modulate = Color( 1, 0.784314, 0.572549, 1 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 66, 34, 18, 17 )
 
-[node name="SilverNut" type="Sprite" parent="Sprites" index="2"]
+[node name="SilverNut" type="Sprite" parent="DropNode/Sprites" index="2"]
 visible = false
 modulate = Color( 1, 0.807843, 0.537255, 1 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 102, 35, 14, 15 )
 
-[node name="CopperNut" type="Sprite" parent="Sprites" index="3"]
+[node name="CopperNut" type="Sprite" parent="DropNode/Sprites" index="3"]
 visible = false
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 102, 35, 14, 15 )
 
-[node name="AreaCollider" parent="." index="1"]
-position = Vector2( 1.5, 1 )
-shape = SubResource( 1 )
-disabled = true
-
-[node name="Anim" type="AnimationPlayer" parent="." index="2"]
+[node name="Anim" type="AnimationPlayer" parent="." index="1"]
 reset_on_save = false
 anims/Collected = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
-[node name="CollectSound" type="AudioStreamPlayer" parent="." index="3"]
+[node name="CollectSound" type="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [connection signal="Collected" from="." to="." method="add_currency"]

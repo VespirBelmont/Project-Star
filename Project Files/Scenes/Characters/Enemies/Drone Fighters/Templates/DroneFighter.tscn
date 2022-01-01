@@ -9,6 +9,7 @@
 extents = Vector2( 20.5, 18 )
 
 [node name="DroneFighter" instance=ExtResource( 2 )]
+scale = Vector2( 0.994799, 0.994799 )
 script = ExtResource( 3 )
 part_setup = {
 "Frame": "Drone Frame",
@@ -47,9 +48,6 @@ z_index = -2
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
 visible = true
 
-[node name="Anim" parent="DeathExplosion" index="1"]
-autoplay = ""
-
 [node name="Combat" type="Node" parent="." index="7"]
 
 [node name="ShootTimer" type="Timer" parent="Combat" index="0"]
@@ -62,13 +60,12 @@ script = ExtResource( 4 )
 
 [node name="SwitchDirectionTimer" type="Timer" parent="Movement" index="0"]
 
+[connection signal="Dead" from="." to="Combat/ShootTimer" method="stop"]
+[connection signal="Dead" from="." to="Movement/SwitchDirectionTimer" method="stop"]
 [connection signal="enemy_activated" from="." to="Combat/ShootTimer" method="start_up"]
 [connection signal="enemy_activated" from="." to="Movement" method="start_up"]
 [connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
-[connection signal="Hurt" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Hurt" ]]
-[connection signal="Hurt" from="Modules/HealthSystem" to="DeathExplosion/Anim" method="play" binds= [ "Hurt" ]]
 [connection signal="timeout" from="Combat/ShootTimer" to="." method="shoot" binds= [ "Left" ]]
-[connection signal="timeout" from="Movement/SwitchDirectionTimer" to="Movement" method="switch_direction"]
 
 [editable path="Modules/HealthSystem"]
 [editable path="ShipManager"]
