@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=2]
@@ -27,6 +27,9 @@
 [ext_resource path="res://Audio/SFX/Footstep - Dirt.wav" type="AudioStream" id=25]
 [ext_resource path="res://Audio/SFX/Land in Plane.wav" type="AudioStream" id=26]
 [ext_resource path="res://Audio/SFX/Metal Tap.wav" type="AudioStream" id=27]
+[ext_resource path="res://Graphics/Discord Icon Pressed.png" type="Texture" id=28]
+[ext_resource path="res://Graphics/DiscordIcon.png" type="Texture" id=29]
+[ext_resource path="res://Scenes/Menus/WebsiteLink.gd" type="Script" id=31]
 
 [sub_resource type="DynamicFont" id=1]
 size = 159
@@ -162,6 +165,36 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.643137 ) ]
 }
 
+[sub_resource type="Animation" id=29]
+resource_name = "Normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 29 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "Pressed"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 28 ) ]
+}
+
 [sub_resource type="Animation" id=27]
 resource_name = "Fade"
 length = 1.5
@@ -189,6 +222,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Socials:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=28]
 length = 0.001
@@ -211,6 +256,18 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Socials:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -854,7 +911,7 @@ margin_bottom = 393.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_colors/font_color = Color( 0.647059, 0.717647, 0.733333, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "A4.2: Modular Solutions"
+text = "A4.3: Enemies, Enemies Everywhere"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -910,6 +967,46 @@ autoplay = "Idle"
 reset_on_save = false
 anims/Idle = SubResource( 24 )
 anims/RESET = SubResource( 25 )
+
+[node name="Socials" type="Control" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscordButton" type="Control" parent="CanvasLayer/Socials"]
+margin_left = 296.0
+margin_top = 938.0
+margin_right = 492.0
+margin_bottom = 1107.0
+rect_scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+url = "https://discord.com/invite/mXmrB4HF6t"
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Socials/DiscordButton"]
+texture = ExtResource( 29 )
+
+[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/Socials/DiscordButton/Sprite"]
+reset_on_save = false
+anims/Normal = SubResource( 29 )
+anims/Pressed = SubResource( 30 )
+
+[node name="Button" parent="CanvasLayer/Socials/DiscordButton" instance=ExtResource( 11 )]
+margin_left = -66.6667
+margin_top = -183.333
+margin_right = -26.6667
+margin_bottom = -143.333
+rect_scale = Vector2( 3, 3 )
+keyboard_input = "Discord"
+controller_input = "Discord"
+
+[node name="OptionLabel" parent="CanvasLayer/Socials/DiscordButton/Button" index="0"]
+visible = false
 
 [node name="CRTShader" parent="CanvasLayer" instance=ExtResource( 8 )]
 
@@ -1095,6 +1192,7 @@ anims/RESET = SubResource( 16 )
 
 [connection signal="Button_Pressed" from="CanvasLayer/TitleInfo/StartButton" to="." method="play_game"]
 [connection signal="Button_Pressed" from="CanvasLayer/TitleInfo/QuitButton" to="." method="quit_game"]
+[connection signal="Button_Pressed" from="CanvasLayer/Socials/DiscordButton/Button" to="CanvasLayer/Socials/DiscordButton" method="_on_Button_pressed"]
 [connection signal="Button_Pressed" from="OldTitle/Title Info/StartButton" to="." method="play_game"]
 [connection signal="Button_Pressed" from="OldTitle/Title Info/QuitButton" to="." method="quit_game"]
 [connection signal="Button_Pressed" from="OldTitle/ShipRandomizer" to="OldTitle/ShipManager" method="ship_randomizer"]
@@ -1102,5 +1200,6 @@ anims/RESET = SubResource( 16 )
 
 [editable path="CanvasLayer/TitleInfo/StartButton"]
 [editable path="CanvasLayer/TitleInfo/QuitButton"]
+[editable path="CanvasLayer/Socials/DiscordButton/Button"]
 [editable path="OldTitle/Title Info/StartButton"]
 [editable path="OldTitle/Title Info/QuitButton"]

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Scripts/ModuleTemplate.gd" type="Script" id=1]
-
-[node name="Ram" type="Node"]
-script = ExtResource( 1 )
-description = "Don't have time to shoot? Feeling aggressive?! THEN JUST RAM YOUR ENEMIES! With a little health cost..."

@@ -20,8 +20,11 @@ func start_up():
 
 
 func _physics_process(_delta):
+	var move_module = get_parent().get_node("Modules/InstantMoveSystem")
 	var vel = movement_direction * move_speed
-	get_parent().move_and_slide(vel, Vector2.UP)
+	
+	move_module.velocity = vel
+	move_module.move()
 
 func switch_direction():
 	movement_direction *= -1

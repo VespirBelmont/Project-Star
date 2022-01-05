@@ -11,6 +11,7 @@ position = Vector2( 0, 0 )
 projectile_tscn = ExtResource( 5 )
 damage_modifier = 1
 shoot_speed = 200.0
+knockback_power = 50.0
 reload_feedback_active = false
 cam_fx = "SmallShake"
 

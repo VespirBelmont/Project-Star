@@ -57,6 +57,7 @@ func change_menu(_new_menu):
 	
 	match current_menu:
 		"AreaMap":
+			$AreaMap/Options.get_child(option_current).get_node("Anim").play("Disable")
 			for button in $AreaMap/Buttons.get_children():
 				button.disable()
 			
@@ -73,6 +74,8 @@ func change_menu(_new_menu):
 				button.disable()
 	
 		"ModuleSelect":
+			$ModuleSelect/Information/EquipPrompt.disable()
+			
 			for button in $ModuleSelect/Buttons.get_children():
 				button.disable()
 	
@@ -83,22 +86,20 @@ func change_menu(_new_menu):
 				"AreaMap":
 					for button in $AreaMap/Buttons.get_children():
 						button.disable()
+					$Anim.play_backwards("ToggleSystem")
+					yield($Anim, "animation_finished")
 				
 				"PartSelect":
-					$Anim.play_backwards("TogglePartSelect")
+					$Anim.play("CloseFromPartSelect")
 					yield($Anim, "animation_finished")
 				
 				"ColorSelect":
-					$Anim.play_backwards("ToggleColorSelect")
+					$Anim.play("CloseFromColorSelect")
 					yield($Anim, "animation_finished")
 				
 				"ModuleSelect":
-					$Anim.play_backwards("ToggleModuleSelect")
+					$Anim.play("CloseFromModuleSelect")
 					yield($Anim, "animation_finished")
-			
-			
-			$Anim.play_backwards("ToggleSystem")
-			yield($Anim, "animation_finished")
 			get_tree().paused = false
 			
 			option_current = 0
@@ -145,6 +146,8 @@ func change_menu(_new_menu):
 			
 			for button in $AreaMap/Buttons.get_children():
 				button.enable()
+			$AreaMap/Options.get_child(option_current).get_node("Anim").play("Enable")
+			
 			set_process(true)
 		
 		"PartSelect":
@@ -202,6 +205,8 @@ func change_menu(_new_menu):
 			
 			for button in $ModuleSelect/Buttons.get_children():
 				button.enable()
+			
+			$ModuleSelect/Information/EquipPrompt.enable()
 			
 			set_process(true)
 	
@@ -567,6 +572,11 @@ func interact_with_module():
 			$Sounds/Equipped.play()
 			module_node.equipped = true
 			player_ship.update_module(focused_area, part_in_use.name, module_node.name, true)
+			
+			for mod in $ModuleSelect/ModuleList.get_node(focused_area).get_node(part_in_use.name).get_node("Modules").get_children():
+				if mod != module_node:
+					mod.equipped = false
+			
 		else:
 			module_node.equipped = false
 			player_ship.update_module(focused_area, part_in_use.name, module_node.name, false)

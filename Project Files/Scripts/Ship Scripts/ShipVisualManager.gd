@@ -37,7 +37,15 @@ func update_part(_area, _part):
 func update_module(_area, _part, _module, _status):
 	var module_node = get_node(_area).get_node(_part).get_node("Modules").get_node(_module)
 	
-	module_node.equipped = _status
+	for mod in get_node(_area).get_node(_part).get_node("Modules").get_children():
+		if mod != module_node:
+			mod.unequip()
+	
+	match _status:
+		true:
+			module_node.equip()
+		false:
+			module_node.unequip()
 
 func update_color(_area, _detail, _color):
 	for part in get_node(_area).get_children():

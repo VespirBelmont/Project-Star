@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Characters/Ship Parts/Wings/WingPartTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Graphics/Characters/Ships/Ship Pack 1.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Particles/TrailParticles.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Part Modules/Ship Modules/Dodge Thrusters.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/DodgeThrusters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=9]
@@ -251,4 +251,4 @@ speed_scale = 3.0
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 
-[node name="Side Thrusters" parent="Modules" index="0" instance=ExtResource( 5 )]
+[node name="Dodge Thrusters" parent="Modules" index="0" instance=ExtResource( 5 )]

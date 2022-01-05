@@ -1,0 +1,212 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/TimeMatrix.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/ModuleSettings.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Graphics/White Circle.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=4]
+[ext_resource path="res://Graphics/Radar.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/Rotator.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 52.0096
+
+[sub_resource type="Animation" id=3]
+resource_name = "ProjectileHit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("AreaInfluenceActive/InfluenceSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.388235 ), Color( 1, 0.0666667, 0.0666667, 0.388235 ), Color( 1, 0.0666667, 0.0666667, 0.388235 ), Color( 1, 1, 1, 0.388235 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AreaInfluenceActive/InfluenceArea/AreaCollision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Toggle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AreaInfluenceActive:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AreaInfluenceActive/InfluenceArea/AreaCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("InfluenceArea/AreaCollision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Toggle"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InfluenceArea/AreaCollision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Enable"
+
+[node name="Time Matrix" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+passive_color = Color( 0.858824, 0.858824, 0.858824, 0.313726 )
+active_color = Color( 0.984314, 0.396078, 0.396078, 0.34902 )
+
+[node name="AreaInfluenceActive" type="Node2D" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="InfluenceSprite" type="Sprite" parent="AreaInfluenceActive" index="0"]
+modulate = Color( 1, 1, 1, 0.388235 )
+scale = Vector2( 0.46, 0.46 )
+texture = ExtResource( 3 )
+
+[node name="InfluenceArea" type="Area2D" parent="AreaInfluenceActive" index="1"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="AreaCollision" type="CollisionShape2D" parent="AreaInfluenceActive/InfluenceArea" index="0"]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="AreaInfluenceActive" index="2"]
+root_node = NodePath("../..")
+reset_on_save = false
+anims/ProjectileHit = SubResource( 3 )
+anims/RESET = SubResource( 18 )
+anims/Toggle = SubResource( 2 )
+
+[node name="AreaInfluencePassive" type="Node2D" parent="." index="1"]
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 6 )
+
+[node name="InfluenceSprite" type="Sprite" parent="AreaInfluencePassive" index="0"]
+modulate = Color( 1, 1, 1, 0.388235 )
+position = Vector2( 0, 3 )
+rotation = -0.0521909
+scale = Vector2( 0.46, 0.2425 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -107.629 )
+
+[node name="InfluenceArea" type="Area2D" parent="AreaInfluencePassive" index="1"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="AreaCollision" type="CollisionPolygon2D" parent="AreaInfluencePassive/InfluenceArea" index="0"]
+rotation = 1.46836
+polygon = PoolVector2Array( 3.2632, 7.37235, 3.7001, -6.65652, -46.9024, -22.9165, -50.9372, -3.22582, -49.2079, 19.0679 )
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="AreaInfluencePassive" index="2"]
+reset_on_save = false
+anims/ProjectileHit = SubResource( 3 )
+anims/RESET = SubResource( 19 )
+anims/Toggle = SubResource( 17 )
+
+[node name="ActivateButton" type="Control" parent="." index="2"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+enabled = false
+keyboard_input = "Ability_1"
+controller_input = "Ability_1"
+input_cooldown = 0.01
+
+[node name="Anim" type="AnimationPlayer" parent="ActivateButton" index="0"]
+anims/Disable = SubResource( 13 )
+anims/Enable = SubResource( 14 )
+
+[node name="CooldownTimer" type="Timer" parent="." index="3"]
+wait_time = 5.0
+one_shot = true
+
+[node name="DurationTimer" type="Timer" parent="." index="4"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="EquippedMod" from="." to="." method="show"]
+[connection signal="EquippedMod" from="." to="AreaInfluencePassive/Anim" method="play" binds= [ "Toggle" ]]
+[connection signal="EquippedMod" from="." to="ActivateButton" method="enable"]
+[connection signal="UnequippedMod" from="." to="." method="hide"]
+[connection signal="UnequippedMod" from="." to="ActivateButton" method="disable"]
+[connection signal="area_entered" from="AreaInfluenceActive/InfluenceArea" to="." method="projectile_hit"]
+[connection signal="area_exited" from="AreaInfluenceActive/InfluenceArea" to="." method="projectile_left_influence"]
+[connection signal="area_entered" from="AreaInfluencePassive/InfluenceArea" to="." method="projectile_hit"]
+[connection signal="area_exited" from="AreaInfluencePassive/InfluenceArea" to="." method="projectile_left_influence"]
+[connection signal="Button_Pressed" from="ActivateButton" to="." method="activate"]
+[connection signal="timeout" from="CooldownTimer" to="ActivateButton" method="enable"]
+[connection signal="timeout" from="DurationTimer" to="." method="deactivate"]

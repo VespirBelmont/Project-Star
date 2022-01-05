@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/AIMovement.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.5, 18 )
+extents = Vector2( 25.1307, 22.6176 )
 
 [node name="DroneFighter" instance=ExtResource( 2 )]
 scale = Vector2( 0.994799, 0.994799 )
@@ -35,7 +35,7 @@ move_speeds = {
 health_max = 2
 
 [node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
-position = Vector2( 0, 1 )
+position = Vector2( -1.00523, 1.50784 )
 shape = SubResource( 1 )
 
 [node name="Crop Frame" parent="ShipManager/Frame" index="0"]
@@ -65,6 +65,10 @@ script = ExtResource( 4 )
 [connection signal="enemy_activated" from="." to="Combat/ShootTimer" method="start_up"]
 [connection signal="enemy_activated" from="." to="Movement" method="start_up"]
 [connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
+[connection signal="Knockback" from="Modules/HealthSystem" to="Combat/ShootTimer" method="stop"]
+[connection signal="Knockback" from="Modules/HealthSystem" to="Movement/SwitchDirectionTimer" method="stop"]
+[connection signal="KnockbackEnded" from="Modules/HealthSystem" to="Combat/ShootTimer" method="start"]
+[connection signal="KnockbackEnded" from="Modules/HealthSystem" to="Movement/SwitchDirectionTimer" method="start"]
 [connection signal="timeout" from="Combat/ShootTimer" to="." method="shoot" binds= [ "Left" ]]
 
 [editable path="Modules/HealthSystem"]

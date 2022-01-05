@@ -5,6 +5,8 @@ var targets #These are the target tags that'll tell the projectile what it can h
 
 var move_speed = 1 #This is movement speed
 var move_direction = Vector2(0, 0) #This is the direction the projectile moves
+var knockback_power = 0
+var knockback_duration = 0
 
 export (float) var movement_delay = 1.5 #This is the length of the movement delay
 export (float) var delay_speed_mod = 0.3 #This is a delay that makes the projectile move slower at first.
@@ -13,12 +15,16 @@ export (bool) var destruction_anim = false #This will tell the projectile if the
 
 
 #This handles setting up the projectile
-func setup(_damage, _move_direction, _speed, _targets):
+func setup(_damage, _move_direction, _speed, _targets, _knockback_power, _knockback_duration):
 	#Sets up the basic stats
 	damage = _damage
 	move_direction = _move_direction
 	move_speed = _speed
 	targets = _targets
+	
+	knockback_power = _knockback_power
+	knockback_duration = _knockback_duration
+	
 	
 	if move_direction.x > 0:
 		self.rotation_degrees = 90
@@ -47,8 +53,15 @@ func body_hit(body):
 	#Otherwise run through all available target tags
 	for tag in targets:
 		if body.is_in_group(tag): #If the body matches one of the tags
+			var damage_pos = self.global_position
+			print(move_direction)
+			if move_direction.x > move_direction.y:
+				damage_pos.y = 0
+			else:
+				damage_pos.x = 0
+			print(damage_pos)
 			#Give damage to the target's health system
-			body.get_node("Modules/HealthSystem").take_damage(damage, 0, self.global_position)
+			body.get_node("Modules/HealthSystem").take_damage(damage, knockback_power, knockback_duration, -move_direction)
 			destroy() #Then destroy the projectile
 			break #And break the loop
 

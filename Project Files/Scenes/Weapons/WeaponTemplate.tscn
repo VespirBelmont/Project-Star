@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/Parts/Weapons/Weapons.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/SHMUP Tiles.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/TurboTrigger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Weapons/Projectiles/Templates/BasicBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -87,5 +88,7 @@ region_enabled = true
 region_rect = Rect2( 2.07463, 18.695, 13.7235, 13.4315 )
 
 [node name="Modules" type="Node2D" parent="."]
+
+[node name="Turbo Trigger" parent="Modules" instance=ExtResource( 4 )]
 
 [connection signal="timeout" from="CooldownTimer" to="." method="cooldown_finished"]

@@ -4,6 +4,9 @@ signal Hurt
 signal Dead
 signal Healed
 
+signal Knockback
+signal KnockbackEnded
+
 var active = true
 var controller
 var move_module
@@ -30,20 +33,62 @@ func change_health_max(_new_max):
 	heal(0)
 
 #This handles damaging the character
-func take_damage(damage, knockback, damage_pos):
+func take_damage(damage = 0, knockback_power = 0, knockback_duration = 1, damage_pos = Vector2()):
 	if not active:
 		return
+	
+	var active_mods = []
+	var ship_manager = get_parent().get_parent().get_node("ShipManager")
+	var frame
+	
+	if ship_manager != null:
+		for part in ship_manager.get_node("Frame").get_children():
+			if part.visible:
+				frame = part
+				break
+	
+	if frame != null:
+		for mod in frame.get_node("Modules").get_children():
+			if mod.equipped:
+				active_mods.append(mod)
+	
+	for mod in active_mods:
+		match mod.name:
+			"Ghost Frame":
+				if mod.ability_active:
+					return
+				else:
+					var rand_num = randi()%10
+					if rand_num <= 8:
+						mod.ghost_chance_activated()
+						return
 	
 	emit_signal("Hurt")
 	#Reduce the current health with the modify stat method
 	health_current = clamp(health_current - damage, 0, health_max)
-	var damage_direction #This just makes it easier to handle the direction the character is being damaged from
+	var damage_direction = controller.global_position - damage_pos#This just makes it easier to handle the direction the character is being damaged from
+	if damage_pos.x == 0: damage_direction.x = 0
+	if damage_pos.y == 0: damage_direction.y = 0
+	
 	#We take the global position of the character and subtract it from the damage
 	#Then we limit it so it can only be right or left at 1 or -1
-	damage_direction = clamp(controller.global_position.x - damage_pos.x, -1, 1)
+	var primary_direction
+	
+	if abs(damage_direction.x) > abs(damage_direction.y):
+		primary_direction = "X"
+	else:
+		primary_direction = "Y"
+	damage_direction.x = clamp(damage_direction.x, -1, 1)
+	damage_direction.y = clamp(damage_direction.y, -1, 1)
+	
+	match primary_direction:
+		"X":
+			damage_direction.y *= 0.05
+		"Y":
+			damage_direction.x *= 0.05
 	
 	if move_module != null:
-		move_module.velocity.x = damage_direction * knockback #Then set the horizontal velocity to damage jump's value times the direction which knocks us back
+		move_module.knockback(-damage_direction * knockback_power, knockback_duration) #Then set the horizontal velocity to damage jump's value times the direction which knocks us back
 		if controller.is_in_group("AI"):
 			move_module.move(true)
 	

@@ -3,7 +3,6 @@ extends "res://Scripts/Ship Scripts/ShipController.gd"
 export (int) var player_id = 1 #This is the player ID telling which player is which
 
 
-
 #This handles the node initialization
 func _ready():
 	can_move = true #Allows the player to move
@@ -85,4 +84,8 @@ func control_check():
 			if side_weapon.visible: #The weapon being visible means it's equipped
 				side_weapon.shoot() #Then the weapon will shoot
 	#------------#
+
+
+
+
 

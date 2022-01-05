@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scripts/BoosterModule.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=2]
-[ext_resource path="res://Audio/SFX/Module Not Ready.wav" type="AudioStream" id=3]
-[ext_resource path="res://Audio/SFX/Module Ready.wav" type="AudioStream" id=4]
-[ext_resource path="res://Audio/SFX/Dodge Thruster Activate.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/SFX/Module Not Ready.wav" type="AudioStream" id=1]
+[ext_resource path="res://Audio/SFX/Dodge Thruster Activate.wav" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/Module Ready.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/BoosterModule.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=13]
 resource_name = "Disable"
@@ -19,8 +19,7 @@ resource_name = "Disable"
 resource_name = "Enable"
 
 [node name="Dodge Thrusters" type="Node2D"]
-script = ExtResource( 1 )
-equipped = true
+script = ExtResource( 5 )
 boost_power = 200.0
 boost_duration = 0.5
 
@@ -28,7 +27,7 @@ boost_duration = 0.5
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,7 +43,7 @@ anims/Enable = SubResource( 14 )
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,18 +67,18 @@ one_shot = true
 [node name="Sounds" type="Node" parent="."]
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 4 )
+stream = ExtResource( 3 )
 volume_db = -5.0
 bus = "SFX"
 
 [node name="NotReadySound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 3 )
+stream = ExtResource( 1 )
 volume_db = -3.0
 pitch_scale = 0.61
 bus = "SFX"
 
 [node name="ActivateSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource( 5 )
+stream = ExtResource( 2 )
 bus = "SFX"
 
 [connection signal="Button_Pressed" from="DodgeRight" to="." method="use_booster" binds= [ "Right" ]]

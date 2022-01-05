@@ -63,7 +63,9 @@ tracks/1/keys = {
 [node name="Crop Cannon" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
 damage_modifier = 2
-shoot_speed = 140.0
+shoot_speed = 180.0
+knockback_power = 20.0
+knockback_duration = 0.5
 reload_feedback_active = false
 cam_fx = "MediumShake"
 
@@ -83,6 +85,7 @@ position = Vector2( -0.073, -3.34313 )
 
 [node name="Shoot" parent="Audio" index="0"]
 stream = ExtResource( 2 )
+volume_db = -10.0
 pitch_scale = 1.09
 
 [node name="ReloadedLabel" parent="." index="6"]

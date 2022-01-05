@@ -107,38 +107,71 @@ shape = SubResource( 7 )
 [node name="ShipManager" parent="." index="4"]
 can_calculate_stats = false
 
+[node name="Crop Wings" parent="ShipManager/Wings" index="0"]
+party = "Enemy"
+
+[node name="Jet Wings" parent="ShipManager/Wings" index="1"]
+party = "Enemy"
+
+[node name="Supersonic Wings" parent="ShipManager/Wings" index="2"]
+party = "Enemy"
+
+[node name="Star Wings" parent="ShipManager/Wings" index="3"]
+party = "Enemy"
+
+[node name="Crop Frame" parent="ShipManager/Frame" index="0"]
+party = "Enemy"
+
+[node name="Jet Frame" parent="ShipManager/Frame" index="1"]
+party = "Enemy"
+
+[node name="Supersonic Frame" parent="ShipManager/Frame" index="2"]
+party = "Enemy"
+
+[node name="Star Frame" parent="ShipManager/Frame" index="3"]
+party = "Enemy"
+
 [node name="Drone Frame" parent="ShipManager/Frame" index="4"]
 visible = true
+party = "Enemy"
 
 [node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Cerberus Cannon" parent="ShipManager/WeaponLeft" index="3"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Crop Cannon" parent="ShipManager/WeaponRight" index="0"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponRight" index="2"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Cerberus Cannon" parent="ShipManager/WeaponRight" index="3"]
+party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 

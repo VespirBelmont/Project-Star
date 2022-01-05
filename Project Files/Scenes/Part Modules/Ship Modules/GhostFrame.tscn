@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/ModuleSettings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/GhostFrame.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=13]
+resource_name = "Disable"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Enable"
+
+[node name="Ghost Frame" instance=ExtResource( 1 )]
+pause_mode = 1
+script = ExtResource( 2 )
+
+[node name="ActivateButton" type="Control" parent="." index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+enabled = false
+keyboard_input = "Ability_1"
+controller_input = "Ability_1"
+input_cooldown = 0.01
+
+[node name="Anim" type="AnimationPlayer" parent="ActivateButton" index="0"]
+anims/Disable = SubResource( 13 )
+anims/Enable = SubResource( 14 )
+
+[node name="CooldownTimer" type="Timer" parent="." index="1"]
+wait_time = 10.0
+one_shot = true
+
+[node name="GhostDuration" type="Timer" parent="." index="2"]
+wait_time = 3.0
+one_shot = true
+
+[node name="GhostTween" type="Tween" parent="." index="3"]
+
+[connection signal="EquippedMod" from="." to="ActivateButton" method="enable"]
+[connection signal="UnequippedMod" from="." to="ActivateButton" method="disable"]
+[connection signal="Button_Pressed" from="ActivateButton" to="." method="activate"]
+[connection signal="timeout" from="CooldownTimer" to="." method="cooldown_finished"]
+[connection signal="timeout" from="GhostDuration" to="." method="end_ghost_visual"]

@@ -8,4 +8,8 @@ script = ExtResource( 1 )
 [node name="BoostDuration" type="Timer" parent="."]
 one_shot = true
 
+[node name="KnockbackDuration" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="BoostDuration" to="." method="end_boost"]
+[connection signal="timeout" from="KnockbackDuration" to="." method="end_knockback"]

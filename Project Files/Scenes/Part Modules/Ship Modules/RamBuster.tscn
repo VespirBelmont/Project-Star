@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/ModuleSettings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/RamModule.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Audio/SFX/RamBusterSound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Module Ready.wav" type="AudioStream" id=5]
+
+[node name="Ram Buster" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+boost_power = -100.0
+
+[node name="ActivateButton" parent="." index="0" instance=ExtResource( 3 )]
+keyboard_input = "Option_1"
+controller_input = "Option_1"
+pressed_sound = null
+input_cooldown = 0.05
+
+[node name="OptionLabel" parent="ActivateButton" index="0"]
+visible = false
+
+[node name="PromptManager" parent="ActivateButton" index="1"]
+visible = false
+
+[node name="PressedAudio" parent="ActivateButton" index="2"]
+stream = null
+
+[node name="UseCooldown" type="Timer" parent="." index="1"]
+wait_time = 4.0
+one_shot = true
+
+[node name="ButtonTapReset" type="Timer" parent="." index="2"]
+wait_time = 0.3
+
+[node name="Sounds" type="Node" parent="." index="3"]
+
+[node name="ActiveSound" type="AudioStreamPlayer" parent="Sounds" index="0"]
+stream = ExtResource( 4 )
+volume_db = -10.0
+bus = "SFX"
+
+[node name="ReadySound" type="AudioStreamPlayer" parent="Sounds" index="1"]
+stream = ExtResource( 5 )
+volume_db = -5.0
+bus = "SFX"
+
+[connection signal="Button_Pressed" from="ActivateButton" to="." method="use_ram"]
+[connection signal="timeout" from="UseCooldown" to="." method="cooled_down"]
+[connection signal="timeout" from="ButtonTapReset" to="." method="reset_taps"]
+
+[editable path="ActivateButton"]

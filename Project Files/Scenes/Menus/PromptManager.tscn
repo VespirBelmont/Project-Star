@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/PromptManager.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Interface/Input Prompts/InputMap.png" type="Texture" id=2]
@@ -762,7 +762,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 480, 64, 16, 16 ) ]
+"values": [ Rect2( 304, 64, 16, 16 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Pressed:region_rect")
@@ -774,7 +774,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 480, 192, 16, 16 ) ]
+"values": [ Rect2( 304, 192, 16, 16 ) ]
 }
 
 [sub_resource type="Animation" id=32]
@@ -1036,6 +1036,33 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=37]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 304, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 304, 192, 16, 16 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -2027,7 +2054,6 @@ __meta__ = {
 }
 
 [node name="Keyboard" type="Control" parent="."]
-visible = false
 margin_left = 247.97
 margin_top = 41.9526
 margin_right = 287.97
@@ -2041,7 +2067,7 @@ position = Vector2( -227.522, -19.2604 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 512, 16, 32, 16 )
+region_rect = Rect2( 304, 64, 16, 16 )
 
 [node name="Pressed" type="Sprite" parent="Keyboard"]
 visible = false
@@ -2049,9 +2075,10 @@ position = Vector2( -227.522, -19.2604 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 512, 144, 32, 16 )
+region_rect = Rect2( 304, 192, 16, 16 )
 
 [node name="Controller" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -2143,6 +2170,7 @@ anims/Option_3 = SubResource( 11 )
 anims/Option_4 = SubResource( 12 )
 anims/PauseGame = SubResource( 13 )
 anims/Pressed = SubResource( 14 )
+anims/RESET = SubResource( 37 )
 anims/StartGame = SubResource( 16 )
 anims/UpgradeMenu = SubResource( 25 )
 

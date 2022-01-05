@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Weapons/Projectiles/Templates/ProjectileTemplate.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 0.26935, 0.448467 )
+extents = Vector2( 0.5, 0.65 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Impact"
@@ -59,15 +59,16 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color_ramp = SubResource( 6 )
 
-[node name="BasicBullet" instance=ExtResource( 3 )]
+[node name="BasicBullet" groups=["CanSlow"] instance=ExtResource( 3 )]
 scale = Vector2( 10, 10 )
+collision_layer = 16
 collision_mask = 6
 movement_delay = 0.0
 delay_speed_mod = 0.0
 destruction_anim = true
 
 [node name="AreaCollider" parent="." index="0"]
-position = Vector2( 0.034616, -0.0522324 )
+position = Vector2( 1.19209e-08, -0.05 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" parent="." index="1"]

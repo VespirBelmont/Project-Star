@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/ModuleTemplate.gd" type="Script" id=1]
+
+[node name="Turbo Trigger" type="Node"]
+script = ExtResource( 1 )
+purchase_cost = 50
+description = "Speed up your massacre by doubling your fire rate!"

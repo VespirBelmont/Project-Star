@@ -25,20 +25,19 @@ export (float) var gravity #The gravity amount that'll pull the character down
 export (float) var gravity_fall_mod #The amount gravity is modified when falling [More in the Documentation Document]
 
 var boost = Vector2(0, 0)
+var knockback_mod = Vector2(0, 0)
 
 func _ready():
 	move_speed = move_speeds[default_move_state_mod]
 
-
-#This handles applying gravity to the character
-func apply_gravity(delta):
-	var final_gravity = gravity #This will allow us to modify the value of gravity without changing it
-	
-	velocity.y += final_gravity * delta #Then we add the final gravity smoothed out with delta which will move the character down nicely
-
 func move():
-	var final_velocity = velocity
-	final_velocity += boost
+	var final_velocity = Vector2()
+	
+	#If the ship is being knocked back it shouldn't move
+	if knockback_mod == Vector2():
+		final_velocity +=  velocity
+		final_velocity += boost
+	final_velocity -= knockback_mod
 	
 	velocity = controller.move_and_slide(final_velocity, Vector2.UP) #The character is moved by their velocity
 
@@ -57,4 +56,26 @@ func boost(_boost_power, _boost_duration):
 
 func end_boost():
 	boost.x = 0
+	boost.y = 0
+
+func ram(_ram_power, _ram_duration):
+	boost.y = _ram_power
+	
+	$BoostDuration.wait_time = _ram_duration
+	$BoostDuration.start()
+
+func knockback(power, duration):
+	knockback_mod = power
+	
+	if duration is Vector2: return
+	
+	$KnockbackDuration.wait_time = duration
+	$KnockbackDuration.start()
+
+func end_knockback():
+	knockback_mod = Vector2()
+
+
+
+
 

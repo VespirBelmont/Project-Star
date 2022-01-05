@@ -15,7 +15,7 @@
 [ext_resource path="res://Scripts/UIManager.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Menus/WorkshopSystem.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/WorldGenerator.gd" type="Script" id=15]
-[ext_resource path="res://Scenes/Dev Cheats.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Dev Cheats.gd" type="Script" id=16]
 
 [sub_resource type="Shader" id=103]
 code = "shader_type canvas_item;

@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Characters/Ship Parts/Frames/FramePartTemplate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Characters/Ships/CropFrame.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/RamBuster.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Characters/Ship Part Master.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/GhostFrame.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Part Modules/Ship Modules/TimeMatrix.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fly"
@@ -135,3 +138,10 @@ position = Vector2( 0, 2.486 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 18, 75, 10, 18 )
+
+[node name="Ram Buster" parent="Modules" index="0" instance=ExtResource( 3 )]
+
+[node name="Ghost Frame" parent="Modules" index="1" instance=ExtResource( 5 )]
+
+[node name="Time Matrix" parent="Modules" index="2" instance=ExtResource( 6 )]
+z_index = -1
