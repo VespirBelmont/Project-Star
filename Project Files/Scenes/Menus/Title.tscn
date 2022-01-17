@@ -1,19 +1,16 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Graphics/Fonts/Font 5.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Graphics/Fonts/Main Font.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/RandomMessage.gd" type="Script" id=2]
 [ext_resource path="res://Graphics/Shaders/StarShader.material" type="Material" id=3]
 [ext_resource path="res://Scripts/Menus/TitleManager.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Gameplay.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Audio/Music/Barn Night.wav" type="AudioStream" id=6]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Buildings/Big Barn Red.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/Shaders/CRTShader.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Audio/SFX/TitleTakeOff.wav" type="AudioStream" id=9]
-[ext_resource path="res://Audio/SFX/TitleShipStart.wav" type="AudioStream" id=10]
+[ext_resource path="res://Graphics/Character_2.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Characters/ShipController.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Characters/ShipManager.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Audio/SFX/UI/Easter Egg.wav" type="AudioStream" id=13]
-[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=14]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Moon and Farm.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/SpriteRandomizer.gd" type="Script" id=16]
 [ext_resource path="res://Graphics/Environment/Farm/Side View/Objects/tree (5).png" type="Texture" id=17]
@@ -27,86 +24,25 @@
 [ext_resource path="res://Audio/SFX/Footstep - Dirt.wav" type="AudioStream" id=25]
 [ext_resource path="res://Audio/SFX/Land in Plane.wav" type="AudioStream" id=26]
 [ext_resource path="res://Audio/SFX/Metal Tap.wav" type="AudioStream" id=27]
-[ext_resource path="res://Graphics/Discord Icon Pressed.png" type="Texture" id=28]
-[ext_resource path="res://Graphics/DiscordIcon.png" type="Texture" id=29]
-[ext_resource path="res://Scenes/Menus/WebsiteLink.gd" type="Script" id=31]
+[ext_resource path="res://Scenes/WebsiteButton.tscn" type="PackedScene" id=28]
 
 [sub_resource type="DynamicFont" id=1]
 size = 159
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=18]
-resource_name = "Disable"
-length = 0.5
+[sub_resource type="Animation" id=32]
+resource_name = "Toggle"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.188235, 0.188235, 0.188235, 1 ) ]
-}
-
-[sub_resource type="Animation" id=19]
-resource_name = "Enable"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=20]
-resource_name = "Disable"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("OptionLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PromptManager:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
-}
-
-[sub_resource type="Animation" id=21]
-resource_name = "Enable"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -165,36 +101,6 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.643137 ) ]
 }
 
-[sub_resource type="Animation" id=29]
-resource_name = "Normal"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 29 ) ]
-}
-
-[sub_resource type="Animation" id=30]
-resource_name = "Pressed"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 28 ) ]
-}
-
 [sub_resource type="Animation" id=27]
 resource_name = "Fade"
 length = 1.5
@@ -211,24 +117,12 @@ tracks/0/keys = {
 "values": [ Color( 0.113725, 0.133333, 0.141176, 1 ), Color( 0.113725, 0.133333, 0.141176, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/TitleInfo:modulate")
+tracks/1/path = NodePath("TitleInfo:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Socials:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.3, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -250,7 +144,7 @@ tracks/0/keys = {
 "values": [ Color( 0.113725, 0.133333, 0.141176, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/TitleInfo:modulate")
+tracks/1/path = NodePath("TitleInfo:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -260,45 +154,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Socials:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=26]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/Fade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.113725, 0.133333, 0.141176, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Audio/TitleMusic:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -80.0 ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -326,7 +181,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 2.4, 2.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2, 1 ]
+"values": [ 11, 9 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Visual/PilotManager:rotation_degrees")
@@ -353,7 +208,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1446, 897 ), Vector2( 526, 897 ), Vector2( 550, 897 ), Vector2( 526, 897 ), Vector2( 526, 897 ), Vector2( 1048.99, 893.176 ), Vector2( 1582.88, 563.57 ), Vector2( 2343.88, 189.57 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/TitleInfo/StartButton:modulate")
+tracks/4/path = NodePath("TitleInfo/StartButton:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -365,7 +220,7 @@ tracks/4/keys = {
 "values": [ Color( 0.188235, 0.188235, 0.188235, 1 ), Color( 0.188235, 0.188235, 0.188235, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/TitleInfo/QuitButton:modulate")
+tracks/5/path = NodePath("TitleInfo/QuitButton:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -377,7 +232,7 @@ tracks/5/keys = {
 "values": [ Color( 0.188235, 0.188235, 0.188235, 1 ), Color( 0.188235, 0.188235, 0.188235, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("CanvasLayer/TitleInfo/TitleLabel:modulate")
+tracks/6/path = NodePath("TitleInfo/TitleLabel:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -389,7 +244,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("CanvasLayer/TitleInfo/VersionLabel:modulate")
+tracks/7/path = NodePath("TitleInfo/VersionLabel:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -508,194 +363,84 @@ tracks/16/keys = {
 "update": 1,
 "values": [ true ]
 }
-
-[sub_resource type="Animation" id=12]
-resource_name = "Disable"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("OptionLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+tracks/17/type = "value"
+tracks/17/path = NodePath("TitleInfo/RandomMessageLabel:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PromptManager:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.282353, 0.282353, 0.282353, 1 ) ]
+"values": [ Color( 1, 1, 1, 0.979632 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
-size = 130
-font_data = ExtResource( 1 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "Blink"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.976471, 0.709804, 0.364706, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:custom_fonts/font:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 130, 145 ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:custom_fonts/font:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 145 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "Fade"
-tracks/0/type = "value"
-tracks/0/path = NodePath("FadeRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.105882, 0.105882, 0.105882, 1 ), Color( 0.105882, 0.105882, 0.105882, 0 ) ]
-}
-
-[sub_resource type="Animation" id=17]
-resource_name = "Start Game"
+[sub_resource type="Animation" id=29]
+resource_name = "ToCredits"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("ShipManager:position")
+tracks/0/path = NodePath("Cam:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9, 1.1, 1.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 976, 564 ), Vector2( 976, 650 ), Vector2( 976, 650 ), Vector2( 976, -200 ) ]
+"values": [ Vector2( 963, 546 ), Vector2( 963, -534 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("OldTitle/Title Info:modulate")
+tracks/1/type = "method"
+tracks/1/path = NodePath("Credits/DiscordButton")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 1.8, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ {
+"args": [  ],
+"method": "disable"
+}, {
+"args": [  ],
+"method": "enable"
+} ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("ShipManager/BuildUp:playing")
+tracks/2/type = "method"
+tracks/2/path = NodePath("ToCreditsButton")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
+"values": [ {
+"args": [  ],
+"method": "enable"
+}, {
+"args": [  ],
+"method": "disable"
+} ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("ShipManager/TakeOff:playing")
+tracks/3/type = "method"
+tracks/3/path = NodePath("ToMainland")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="DynamicFont" id=14]
-size = 130
-font_data = ExtResource( 2 )
-
-[sub_resource type="Animation" id=15]
-resource_name = "Disable"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("OptionLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 1.8, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.227451, 0.227451, 0.227451, 1 ) ]
-}
-
-[sub_resource type="Animation" id=16]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("OptionLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.227451, 0.227451, 0.227451, 1 ) ]
+"values": [ {
+"args": [  ],
+"method": "disable"
+}, {
+"args": [  ],
+"method": "enable"
+} ]
 }
 
 [node name="Title" type="Node"]
@@ -705,12 +450,11 @@ gameplay_tscn = ExtResource( 5 )
 [node name="SpaceBackground" type="ColorRect" parent="."]
 material = ExtResource( 3 )
 margin_left = -339.0
-margin_top = -200.0
+margin_top = -1860.0
 margin_right = 2279.0
 margin_bottom = 1268.0
 color = Color( 1, 0.760784, 0.984314, 1 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -719,11 +463,13 @@ __meta__ = {
 [node name="Moon" type="Sprite" parent="Visual"]
 position = Vector2( 1600, 297 )
 scale = Vector2( 13.9069, 13 )
+z_index = 5
 texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( 84, 8, 34, 33 )
 
 [node name="Trees" type="Node2D" parent="Visual"]
+z_index = 8
 
 [node name="Tree_1" type="Sprite" parent="Visual/Trees"]
 modulate = Color( 0.752941, 0.941176, 0.898039, 1 )
@@ -803,6 +549,7 @@ sprite_list = [ ExtResource( 18 ), ExtResource( 17 ) ]
 [node name="FarmPath" type="Sprite" parent="Visual"]
 position = Vector2( 995.75, 1020 )
 scale = Vector2( 13.9069, 13 )
+z_index = 10
 texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( -13.3158, 43.5789, 145.263, 28.4211 )
@@ -810,12 +557,13 @@ region_rect = Rect2( -13.3158, 43.5789, 145.263, 28.4211 )
 [node name="BarnSprite" type="Sprite" parent="Visual"]
 position = Vector2( 1262, 700 )
 scale = Vector2( 5, 5 )
+z_index = 8
 texture = ExtResource( 7 )
 
 [node name="PlaceholderPlane" type="Sprite" parent="Visual"]
-position = Vector2( 1445.98, 897 )
-rotation = -0.358588
-z_index = 2
+position = Vector2( 1446, 897 )
+rotation = -0.360379
+z_index = 10
 texture = ExtResource( 21 )
 flip_h = true
 
@@ -848,12 +596,13 @@ bus = "Music"
 [node name="QuitSign" type="Sprite" parent="Visual"]
 position = Vector2( 157, 926 )
 scale = Vector2( 5, 5 )
+z_index = 10
 texture = ExtResource( 19 )
 
 [node name="PilotManager" parent="Visual" instance=ExtResource( 20 )]
 position = Vector2( 854, 927 )
 scale = Vector2( 11, 11 )
-z_index = 2
+z_index = 11
 
 [node name="Walking" type="AudioStreamPlayer2D" parent="Visual/PilotManager"]
 position = Vector2( 5.3656, 4.03033 )
@@ -875,13 +624,11 @@ bus = "Music"
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 6 )
-volume_db = -20.0
+volume_db = -19.9992
 autoplay = true
 bus = "Music"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TitleInfo" type="Control" parent="CanvasLayer"]
+[node name="TitleInfo" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 40.0
 margin_bottom = 40.0
@@ -889,8 +636,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/TitleInfo"]
-modulate = Color( 1, 1, 1, 0.983885 )
+[node name="TitleLabel" type="Label" parent="TitleInfo"]
 margin_left = 36.0
 margin_top = 45.0
 margin_right = 1116.0
@@ -902,113 +648,147 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VersionLabel" type="Label" parent="CanvasLayer/TitleInfo"]
-modulate = Color( 1, 1, 1, 0.979632 )
-margin_left = 340.0
-margin_top = 230.0
-margin_right = 2442.0
-margin_bottom = 393.0
+[node name="VersionLabel" type="Label" parent="TitleInfo"]
+visible = false
+margin_left = 323.0
+margin_top = 209.0
+margin_right = 2425.0
+margin_bottom = 372.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_colors/font_color = Color( 0.647059, 0.717647, 0.733333, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "A4.3: Enemies, Enemies Everywhere"
+text = "A5: It's a New World!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton" parent="CanvasLayer/TitleInfo" instance=ExtResource( 11 )]
-margin_left = 1228.0
-margin_top = 949.0
-margin_right = 1268.0
-margin_bottom = 989.0
+[node name="RandomMessageLabel" type="Label" parent="TitleInfo"]
+modulate = Color( 1, 1, 1, 0.979632 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 9.0
+margin_top = 218.0
+margin_right = 3703.0
+margin_bottom = 381.0
+rect_scale = Vector2( 0.35, 0.35 )
+custom_colors/font_color = Color( 0.647059, 0.717647, 0.733333, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Random Message"
+align = 1
+clip_text = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+messages = [ "Press Up to see the developer!", "Did you know if you press start, the game will start!", "I added this message because I love Minecraft", "I've been playing Minecraft since Alpha 1!", "You can't beat this game yet >:D", "There's 2 planned expansions!", "The dodge thruster mod for wings is great for mobility!", "Try out the ram buster frame mod if you like ramming!" ]
+
+[node name="Anim" type="AnimationPlayer" parent="TitleInfo/RandomMessageLabel"]
+reset_on_save = false
+anims/Toggle = SubResource( 32 )
+
+[node name="RefreshMessage" type="Timer" parent="TitleInfo/RandomMessageLabel"]
+wait_time = 10.0
+autostart = true
+
+[node name="StartButton" parent="TitleInfo" instance=ExtResource( 11 )]
+margin_left = 1114.0
+margin_top = 935.0
+margin_right = 1154.0
+margin_bottom = 975.0
 rect_rotation = -21.9423
 rect_pivot_offset = Vector2( 19.3333, 20.6667 )
-keyboard_input = "StartGame"
-controller_input = "StartGame"
+_input = "StartGame"
+label_text = "Play!"
+label_position = Vector2( 25.279, 4.951 )
+button_graphic_position = Vector2( 0, 6.827 )
+button_graphic_scale = 0.6
 
-[node name="OptionLabel" parent="CanvasLayer/TitleInfo/StartButton" index="0"]
-text = "Play"
-
-[node name="PromptManager" parent="CanvasLayer/TitleInfo/StartButton" index="1"]
-margin_left = 50.6932
-margin_top = 17.3085
-margin_right = 90.6932
-margin_bottom = 57.3085
-
-[node name="Anim" parent="CanvasLayer/TitleInfo/StartButton" index="3"]
-anims/Disable = SubResource( 18 )
-anims/Enable = SubResource( 19 )
-
-[node name="QuitButton" parent="CanvasLayer/TitleInfo" instance=ExtResource( 11 )]
-margin_left = 137.0
-margin_top = 923.0
-margin_right = 177.0
-margin_bottom = 963.0
+[node name="QuitButton" parent="TitleInfo" instance=ExtResource( 11 )]
+margin_left = 121.0
+margin_top = 906.0
+margin_right = 161.0
+margin_bottom = 946.0
 rect_scale = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( 19.3333, 20.6667 )
-keyboard_input = "Back"
-controller_input = "Back"
+label_text = "Quit"
+label_position = Vector2( 18.284, 2.858 )
 
-[node name="OptionLabel" parent="CanvasLayer/TitleInfo/QuitButton" index="0"]
-margin_left = -17.6231
-margin_top = -32.6638
-margin_right = 349.377
-margin_bottom = 130.336
-text = "Quit"
-
-[node name="Anim" parent="CanvasLayer/TitleInfo/QuitButton" index="3"]
-autoplay = "Enable"
-anims/Disable = SubResource( 20 )
-anims/Enable = SubResource( 21 )
-
-[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/TitleInfo"]
+[node name="Anim" type="AnimationPlayer" parent="TitleInfo"]
 autoplay = "Idle"
 reset_on_save = false
 anims/Idle = SubResource( 24 )
 anims/RESET = SubResource( 25 )
 
-[node name="Socials" type="Control" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="Credits" type="Control" parent="."]
+margin_left = 322.0
+margin_top = -1657.0
+margin_right = 362.0
+margin_bottom = -1617.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="Label" parent="Credits"]
+modulate = Color( 1, 1, 1, 0.983885 )
+margin_left = 320.0
+margin_top = 612.0
+margin_right = 1195.0
+margin_bottom = 772.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 1 )
+text = "The Devs!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscordButton" parent="Credits" instance=ExtResource( 28 )]
+margin_left = -128.0
+margin_top = 1552.0
+margin_right = 68.0
+margin_bottom = 1721.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Vespir" type="Control" parent="Credits"]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Name" type="Label" parent="Credits/Vespir"]
+modulate = Color( 1, 1, 1, 0.983885 )
+margin_left = -156.0
+margin_top = 762.0
+margin_right = 719.0
+margin_bottom = 922.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = SubResource( 1 )
+text = "Vespir Belmont"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DiscordButton" type="Control" parent="CanvasLayer/Socials"]
-margin_left = 296.0
-margin_top = 938.0
-margin_right = 492.0
-margin_bottom = 1107.0
-rect_scale = Vector2( 0.6, 0.6 )
-script = ExtResource( 31 )
-__meta__ = {
-"_edit_use_anchors_": false
+[node name="Sprite" type="Sprite" parent="Credits/Vespir"]
+position = Vector2( 102, 887 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 9 )
+hframes = 5
+vframes = 5
+
+[node name="ShipController" parent="Credits/Vespir" instance=ExtResource( 10 )]
+position = Vector2( -80, 906 )
+scale = Vector2( 3, 3 )
+parts_equipped = {
+"Frame": "Jet Frame",
+"WeaponLeft": "Auto Rifle XV",
+"WeaponRight": "Auto Rifle XV",
+"Wings": "Supersonic Wings"
 }
-url = "https://discord.com/invite/mXmrB4HF6t"
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Socials/DiscordButton"]
-texture = ExtResource( 29 )
-
-[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/Socials/DiscordButton/Sprite"]
-reset_on_save = false
-anims/Normal = SubResource( 29 )
-anims/Pressed = SubResource( 30 )
-
-[node name="Button" parent="CanvasLayer/Socials/DiscordButton" instance=ExtResource( 11 )]
-margin_left = -66.6667
-margin_top = -183.333
-margin_right = -26.6667
-margin_bottom = -143.333
-rect_scale = Vector2( 3, 3 )
-keyboard_input = "Discord"
-controller_input = "Discord"
-
-[node name="OptionLabel" parent="CanvasLayer/Socials/DiscordButton/Button" index="0"]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CRTShader" parent="CanvasLayer" instance=ExtResource( 8 )]
+margin_top = -1366.0
+margin_bottom = 1817.0
 
 [node name="Fade" type="ColorRect" parent="CanvasLayer"]
 margin_left = -72.0
@@ -1028,178 +808,38 @@ anims/RESET = SubResource( 28 )
 
 [node name="TitleSubAnim" type="AnimationPlayer" parent="."]
 reset_on_save = false
-anims/RESET = SubResource( 26 )
 anims/StartGame = SubResource( 23 )
 
-[node name="OldTitle" type="Node2D" parent="."]
-visible = false
+[node name="Cam" type="Camera2D" parent="."]
+position = Vector2( 963, 546 )
+current = true
 
-[node name="Title Info" type="Control" parent="OldTitle"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TitleLabel" type="Label" parent="OldTitle/Title Info"]
-margin_left = 447.0
-margin_top = 42.0
-margin_right = 1527.0
-margin_bottom = 205.0
-custom_fonts/font = SubResource( 1 )
-text = "To the MOON!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VersionLabel" type="Label" parent="OldTitle/Title Info"]
-margin_left = 437.0
-margin_top = 207.0
-margin_right = 2539.0
-margin_bottom = 370.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_colors/font_color = Color( 0.964706, 0.690196, 0.443137, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "A4: Enemies at Your 12!"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartButton" parent="OldTitle/Title Info" instance=ExtResource( 11 )]
-margin_left = 947.0
-margin_top = 1006.0
-margin_right = 987.0
-margin_bottom = 1046.0
-rect_pivot_offset = Vector2( 19.3333, 20.6667 )
-keyboard_input = "StartGame"
-controller_input = "StartGame"
-
-[node name="OptionLabel" parent="OldTitle/Title Info/StartButton" index="0"]
-visible = false
-
-[node name="QuitButton" parent="OldTitle/Title Info" instance=ExtResource( 11 )]
-margin_left = 112.297
-margin_top = 1010.49
-margin_right = 152.297
-margin_bottom = 1050.49
-rect_pivot_offset = Vector2( 19.3333, 20.6667 )
-keyboard_input = "Back"
-controller_input = "Back"
-
-[node name="OptionLabel" parent="OldTitle/Title Info/QuitButton" index="0"]
-margin_left = -17.6231
-margin_top = -32.6638
-margin_right = 349.377
-margin_bottom = 130.336
-text = "Quit"
-
-[node name="Anim" parent="OldTitle/Title Info/QuitButton" index="3"]
-autoplay = "Enable"
-anims/Disable = SubResource( 12 )
-
-[node name="StartLabel" type="Label" parent="OldTitle/Title Info"]
-margin_left = 9.0
-margin_top = 855.0
-margin_right = 2725.0
-margin_bottom = 1023.0
-rect_scale = Vector2( 0.7, 0.7 )
-custom_colors/font_color = Color( 0.964706, 0.690196, 0.443137, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "Insert Coin"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartAnim" type="AnimationPlayer" parent="OldTitle/Title Info/StartLabel"]
-autoplay = "Blink"
-reset_on_save = false
-anims/Blink = SubResource( 2 )
-anims/RESET = SubResource( 4 )
-
-[node name="ShipManager" parent="OldTitle" instance=ExtResource( 12 )]
-position = Vector2( 976, 564 )
-scale = Vector2( 15, 15 )
-update_weapon_anchors = true
-
-[node name="TakeOff" type="AudioStreamPlayer" parent="OldTitle/ShipManager"]
-stream = ExtResource( 9 )
-pitch_scale = 0.61
-
-[node name="BuildUp" type="AudioStreamPlayer" parent="OldTitle/ShipManager"]
-stream = ExtResource( 10 )
-volume_db = -4.0
-pitch_scale = 0.57
-
-[node name="FadeRect" type="ColorRect" parent="OldTitle"]
-margin_left = -349.0
-margin_top = -225.0
-margin_right = 2346.0
-margin_bottom = 1273.0
-color = Color( 0.105882, 0.105882, 0.105882, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TitleAnim" type="AnimationPlayer" parent="OldTitle"]
-root_node = NodePath("../..")
-autoplay = "Fade"
-anims/Fade = SubResource( 5 )
-
-[node name="TitleSubAnim" type="AnimationPlayer" parent="OldTitle"]
+[node name="Anim" type="AnimationPlayer" parent="Cam"]
 root_node = NodePath("../..")
 reset_on_save = false
-"anims/Start Game" = SubResource( 17 )
+anims/ToCredits = SubResource( 29 )
 
-[node name="ShipRandomizer" type="Control" parent="OldTitle"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-keyboard_input = "ShipRandomizer"
-controller_input = "ShipRandomizer"
+[node name="ToCreditsButton" parent="." instance=ExtResource( 11 )]
+margin_left = -661.0
+margin_top = -192.0
+margin_right = -621.0
+margin_bottom = -152.0
+_input = "Option_1"
+label_text = "Fuck NFTS"
+button_graphic_position = Vector2( -4.332, 0 )
 
-[node name="OptionLabel" type="Label" parent="OldTitle/ShipRandomizer"]
-visible = false
-modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
-margin_left = 38.5
-margin_top = 5.5
-margin_right = 405.5
-margin_bottom = 168.5
-rect_scale = Vector2( 0.2, 0.2 )
-custom_fonts/font = SubResource( 14 )
-text = "Option"
-align = 1
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ToMainland" parent="." instance=ExtResource( 11 )]
+margin_left = -661.0
+margin_top = -192.0
+margin_right = -621.0
+margin_bottom = -152.0
+enabled = false
+_input = "Option_3"
+label_text = "Fuck NFTS"
+button_graphic_position = Vector2( -4.332, 0 )
 
-[node name="PressedAudio" type="AudioStreamPlayer" parent="OldTitle/ShipRandomizer"]
-stream = ExtResource( 13 )
-volume_db = -15.0
-bus = "SFX"
-
-[node name="Anim" type="AnimationPlayer" parent="OldTitle/ShipRandomizer"]
-anims/Disable = SubResource( 15 )
-anims/RESET = SubResource( 16 )
-
-[connection signal="Button_Pressed" from="CanvasLayer/TitleInfo/StartButton" to="." method="play_game"]
-[connection signal="Button_Pressed" from="CanvasLayer/TitleInfo/QuitButton" to="." method="quit_game"]
-[connection signal="Button_Pressed" from="CanvasLayer/Socials/DiscordButton/Button" to="CanvasLayer/Socials/DiscordButton" method="_on_Button_pressed"]
-[connection signal="Button_Pressed" from="OldTitle/Title Info/StartButton" to="." method="play_game"]
-[connection signal="Button_Pressed" from="OldTitle/Title Info/QuitButton" to="." method="quit_game"]
-[connection signal="Button_Pressed" from="OldTitle/ShipRandomizer" to="OldTitle/ShipManager" method="ship_randomizer"]
-[connection signal="Button_Pressed" from="OldTitle/ShipRandomizer" to="OldTitle/ShipRandomizer/PressedAudio" method="play"]
-
-[editable path="CanvasLayer/TitleInfo/StartButton"]
-[editable path="CanvasLayer/TitleInfo/QuitButton"]
-[editable path="CanvasLayer/Socials/DiscordButton/Button"]
-[editable path="OldTitle/Title Info/StartButton"]
-[editable path="OldTitle/Title Info/QuitButton"]
+[connection signal="timeout" from="TitleInfo/RandomMessageLabel/RefreshMessage" to="TitleInfo/RandomMessageLabel" method="randomize_message"]
+[connection signal="Button_Pressed" from="TitleInfo/StartButton" to="." method="play_game"]
+[connection signal="Button_Pressed" from="TitleInfo/QuitButton" to="." method="quit_game"]
+[connection signal="Button_Pressed" from="ToCreditsButton" to="Cam/Anim" method="play" binds= [ "ToCredits" ]]
+[connection signal="Button_Pressed" from="ToMainland" to="Cam/Anim" method="play_backwards" binds= [ "ToCredits" ]]

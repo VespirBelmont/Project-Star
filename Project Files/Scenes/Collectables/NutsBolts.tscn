@@ -79,6 +79,9 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 value = 1
 
+[node name="DropNode" parent="." index="0"]
+visible = false
+
 [node name="AreaCollider" parent="DropNode" index="0"]
 position = Vector2( 1, -0.5 )
 shape = SubResource( 4 )

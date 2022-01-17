@@ -1,5 +1,9 @@
 extends Node2D
 
+onready var operator = get_parent().get_parent().get_parent()
+
+export (Vector2) var base_movement = Vector2(0, -1)
+
 export (PackedScene) var projectile_tscn
 
 export (bool) var active_weapon = false
@@ -39,7 +43,9 @@ func shoot():
 	
 	var projectile = projectile_tscn.instance()
 	$Bullets.add_child(projectile)
-	projectile.setup(damage_modifier, shoot_direction * get_parent().get_parent().get_parent().scale, shoot_speed, target, knockback_power, knockback_duration)
+	
+	# * get_parent().get_parent().get_parent().scale
+	projectile.setup(damage_modifier, operator.rotation, shoot_speed, target, knockback_power, knockback_duration)
 	projectile.global_position = $ProjectileSpawnPos.global_position
 	projectile.add_to_group(party)
 	

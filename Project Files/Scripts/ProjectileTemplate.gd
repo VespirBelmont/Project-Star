@@ -15,21 +15,18 @@ export (bool) var destruction_anim = false #This will tell the projectile if the
 
 
 #This handles setting up the projectile
-func setup(_damage, _move_direction, _speed, _targets, _knockback_power, _knockback_duration):
+func setup(_damage, _rotation, _speed, _targets, _knockback_power, _knockback_duration):
 	#Sets up the basic stats
 	damage = _damage
-	move_direction = _move_direction
+	move_direction = Vector2(0, -1).rotated(_rotation)
+	rotation = _rotation 
+	#rotation_degrees + 90
+	
 	move_speed = _speed
 	targets = _targets
 	
 	knockback_power = _knockback_power
 	knockback_duration = _knockback_duration
-	
-	
-	if move_direction.x > 0:
-		self.rotation_degrees = 90
-	elif move_direction.x < 0:
-		self.rotation_degrees = 90
 	
 	#If there's movement delay
 	if movement_delay != 0:
@@ -54,14 +51,30 @@ func body_hit(body):
 	for tag in targets:
 		if body.is_in_group(tag): #If the body matches one of the tags
 			var damage_pos = self.global_position
-			print(move_direction)
 			if move_direction.x > move_direction.y:
 				damage_pos.y = 0
 			else:
 				damage_pos.x = 0
-			print(damage_pos)
 			#Give damage to the target's health system
 			body.get_node("Modules/HealthSystem").take_damage(damage, knockback_power, knockback_duration, -move_direction)
+			destroy() #Then destroy the projectile
+			break #And break the loop
+
+func area_hit(area):
+	if area == null: #If the body is not there (null)
+		print("ProjectileTemplate.gd | CRASH | Body was Null") #Leave this nift comment
+		return #Then leave the function
+	
+	#Otherwise run through all available target tags
+	for tag in targets:
+		if area.is_in_group(tag): #If the body matches one of the tags
+			var damage_pos = self.global_position
+			if move_direction.x > move_direction.y:
+				damage_pos.y = 0
+			else:
+				damage_pos.x = 0
+			#Give damage to the target's health system
+			area.get_parent().take_damage(damage, knockback_power, knockback_duration, -move_direction)
 			destroy() #Then destroy the projectile
 			break #And break the loop
 
@@ -77,5 +90,6 @@ func destroy(off_screen = false):
 		yield($ImpactFX/Anim, "animation_finished") #Wait for it to end
 	
 	self.queue_free() #Then get rid of it
+
 
 

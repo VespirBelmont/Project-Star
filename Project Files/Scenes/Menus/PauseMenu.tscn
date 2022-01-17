@@ -81,59 +81,26 @@ margin_left = -794.087
 margin_top = -895.255
 margin_right = -754.087
 margin_bottom = -855.255
-keyboard_input = "PauseGame"
-controller_input = "PauseGame"
-
-[node name="OptionLabel" parent="Options/Resume" index="0"]
-text = "Resume"
+_input = "PauseGame"
+label_text = "Resume"
 
 [node name="Settings" parent="Options" instance=ExtResource( 1 )]
 margin_left = 1862.13
 margin_top = -898.635
 margin_right = 1902.13
 margin_bottom = -858.635
-keyboard_input = "Option_1"
-controller_input = "Option_1"
-
-[node name="OptionLabel" parent="Options/Settings" index="0"]
-margin_left = -152.5
-margin_right = 641.5
-text = "Settings"
-align = 2
-
-[node name="PromptManager" parent="Options/Settings" index="1"]
-margin_left = 2.0
-margin_top = -1.0
-margin_right = 42.0
-margin_bottom = 39.0
+label_text = "Settings"
+label_position = Vector2( -154.677, 3.705 )
 
 [node name="Quit" parent="Options" instance=ExtResource( 1 )]
 margin_left = 1705.37
 margin_top = -839.696
 margin_right = 1745.37
 margin_bottom = -799.696
-keyboard_input = "Option_3"
-controller_input = "Option_3"
-
-[node name="OptionLabel" parent="Options/Quit" index="0"]
-margin_left = -71.7319
-margin_top = 5.33051
-margin_right = 295.268
-margin_bottom = 168.331
-custom_colors/font_color = Color( 0.937255, 0.52549, 0.52549, 1 )
-text = "Quit"
-align = 2
-
-[node name="PromptManager" parent="Options/Quit" index="1"]
-margin_left = -0.5
-margin_top = 1.5
-margin_right = 39.5
-margin_bottom = 41.5
+label_text = "Quit"
+label_position = Vector2( -49.039, 5.891 )
+button_graphic_position = Vector2( 25.521, 0 )
 
 [connection signal="Button_Pressed" from="Options/Resume" to="." method="toggle_pause"]
 [connection signal="Button_Pressed" from="Options/Settings" to="." method="toggle_settings"]
 [connection signal="Button_Pressed" from="Options/Quit" to="." method="quit_game"]
-
-[editable path="Options/Resume"]
-[editable path="Options/Settings"]
-[editable path="Options/Quit"]

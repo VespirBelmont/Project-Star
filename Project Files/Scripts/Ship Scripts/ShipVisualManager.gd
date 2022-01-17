@@ -2,6 +2,7 @@ extends Node2D
 
 signal HealthChanged
 signal SpeedChanged
+signal PartUpdated
 
 var health = 0
 var speed = 0
@@ -21,6 +22,7 @@ func update_part(_area, _part):
 	for part in self.get_node(_area).get_children():
 		if part.name == _part:
 			part.show()
+			emit_signal("PartUpdated", _area, _part)
 			
 			if _area == "Wings":
 				var left_anchor = part.get_node("WeaponAnchors/LeftPos").global_position

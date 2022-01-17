@@ -59,6 +59,9 @@ func check_if_obsolete():
 	
 	
 	if distance <= distance_until_delete:
+		print("EnemyShipController.gd")
+		print("Out of Bounds")
+		print("--------------")
 		destroy()
 
 func create_loot():

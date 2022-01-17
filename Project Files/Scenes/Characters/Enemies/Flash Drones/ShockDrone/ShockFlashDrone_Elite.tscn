@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Characters/Enemies/Flash Drones/ShockDrone/ShockFlashDrone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Shock/ShockSkyMine_Weak.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="ShockFlashDrone_Weak" instance=ExtResource( 1 )]
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
+drop_rates = {
+"Currency": 1,
+"Hazard": 1,
+"Part": 100
+}
+
+[node name="InstantMoveSystem" parent="Modules" index="0"]
+move_speeds = {
+"Run": 1500.0,
+"Sprint": 0.0,
+"Walk": 0.0
+}
+
+[node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+active_weapon = true
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
+active_weapon = true
+
+[node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
+active_weapon = true
+
+[node name="Cerberus Cannon" parent="ShipManager/WeaponLeft" index="3"]
+active_weapon = true
+
+[node name="Crop Cannon" parent="ShipManager/WeaponRight" index="0"]
+active_weapon = true
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
+active_weapon = true
+
+[node name="Rocket Launcher Mk1" parent="ShipManager/WeaponRight" index="2"]
+active_weapon = true
+
+[node name="Cerberus Cannon" parent="ShipManager/WeaponRight" index="3"]
+active_weapon = true
+
+[node name="AreaCollider" parent="RamArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="ShockSkyMine_Weak" parent="Bombs" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, 1.00523 )
+damage_severity = "Weak"
+targets = [ "Player", "Hazard" ]
+
+[connection signal="Exploded" from="Bombs/ShockSkyMine_Weak" to="Modules/HealthSystem" method="take_damage"]
+
+[editable path="Modules/HealthSystem"]
+[editable path="ShipManager"]

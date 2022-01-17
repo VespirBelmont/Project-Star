@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Status Effects/StatusEffectTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Audio/SFX/CorrosionDamage_1.wav" type="AudioStream" id=2]
 
 [node name="CorrosionSE" instance=ExtResource( 1 )]
 rate = {
@@ -9,6 +10,21 @@ rate = {
 "Strong": 1.0,
 "Weak": 3.0
 }
+normal_color = Color( 1, 1, 1, 1 )
+effect_color = Color( 0.619608, 0.45098, 0.768627, 1 )
 
 [node name="EffectTimer" parent="." index="0"]
 one_shot = true
+
+[node name="StatusSound" parent="." index="2"]
+stream = ExtResource( 2 )
+volume_db = 5.0
+pitch_scale = 0.56
+bus = "SFX"
+
+[node name="Tween" type="Tween" parent="." index="3"]
+
+[connection signal="AllSet" from="." to="." method="change_color" binds= [ "ToEffect" ]]
+[connection signal="HitsLeftDone" from="." to="." method="change_color" binds= [ "ToNormal" ]]
+[connection signal="timeout" from="EffectTimer" to="." method="inflict_damage"]
+[connection signal="timeout" from="EffectTimer" to="StatusSound" method="play"]

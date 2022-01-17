@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Characters/Enemies/Flash Drones/Frost Drone/FrostFlashDrone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Ice/IceSkyMine_Weak.tscn" type="PackedScene" id=5]
+
+[node name="FrostFlashDrone_Grunt" instance=ExtResource( 1 )]
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
+
+[node name="InstantMoveSystem" parent="Modules" index="0"]
+move_speeds = {
+"Run": 1500.0,
+"Sprint": 0.0,
+"Walk": 0.0
+}
+
+[node name="IceSkyMine_Weak" parent="Bombs" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, 5.02614 )
+targets = [ "Player", "Hazard" ]
+
+[connection signal="Exploded" from="Bombs/IceSkyMine_Weak" to="Modules/HealthSystem" method="take_damage"]
+
+[editable path="Modules/HealthSystem"]
+[editable path="ShipManager"]

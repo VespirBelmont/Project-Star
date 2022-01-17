@@ -10,7 +10,7 @@
 [ext_resource path="res://Audio/SFX/Damage Sounds/Death_3.wav" type="AudioStream" id=8]
 [ext_resource path="res://Audio/SFX/Damage Sounds/Death_2.wav" type="AudioStream" id=9]
 [ext_resource path="res://CharacterPuppets/Scenes/2D/Modules/HealthSystem.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Characters/Ram.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Ram.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 

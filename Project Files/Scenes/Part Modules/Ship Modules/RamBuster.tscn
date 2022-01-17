@@ -11,19 +11,11 @@ script = ExtResource( 2 )
 boost_power = -100.0
 
 [node name="ActivateButton" parent="." index="0" instance=ExtResource( 3 )]
-keyboard_input = "Option_1"
-controller_input = "Option_1"
+visible = false
+_input = "FrameAbility"
 pressed_sound = null
 input_cooldown = 0.05
-
-[node name="OptionLabel" parent="ActivateButton" index="0"]
-visible = false
-
-[node name="PromptManager" parent="ActivateButton" index="1"]
-visible = false
-
-[node name="PressedAudio" parent="ActivateButton" index="2"]
-stream = null
+show_label = false
 
 [node name="UseCooldown" type="Timer" parent="." index="1"]
 wait_time = 4.0
@@ -47,5 +39,3 @@ bus = "SFX"
 [connection signal="Button_Pressed" from="ActivateButton" to="." method="use_ram"]
 [connection signal="timeout" from="UseCooldown" to="." method="cooled_down"]
 [connection signal="timeout" from="ButtonTapReset" to="." method="reset_taps"]
-
-[editable path="ActivateButton"]

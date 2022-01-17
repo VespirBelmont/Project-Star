@@ -28,6 +28,7 @@ func setup(available_parts):
 			part.show()
 	
 	$DropNode/AreaCollider.set_deferred("disabled", false)
+	$DropNode.show()
 
 func unlock_part(body):
 	$DropNode/AreaCollider.set_deferred("disabled", true)

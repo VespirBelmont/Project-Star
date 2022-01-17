@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ShockExplode.wav-5b2d5e1e39b7cf588d440f3d1bf1702f.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/ShockExplode.wav"
+dest_files=[ "res://.import/ShockExplode.wav-5b2d5e1e39b7cf588d440f3d1bf1702f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

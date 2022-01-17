@@ -10,7 +10,7 @@ var generate_timer
 export (float) var time_between_waves = 15
 export (float) var distance_limit = 400
 
-
+export (float) var chance_for_hazard = 3
 
 #This handles the node initialization
 func _ready():
@@ -42,7 +42,12 @@ func generate_wave():
 	wave_template.global_position.y = spawn_pos.y
 	
 	for enemy in wave_template.get_children():
-		generate_enemy(enemy.global_position)
+		
+		var rand_num = randi()%10
+		if rand_num <= chance_for_hazard:
+			generate_hazard(enemy.global_position)
+		else:
+			generate_enemy(enemy.global_position)
 		
 		if waves_until_boss <= 0:
 			reset_wave_count()
@@ -60,6 +65,14 @@ func generate_enemy(_position):
 		_new_enemy = enemy_list.get_node("Bosses").get_child(randi()%(enemy_list.get_node("Bosses").get_child_count()-1)).duplicate()
 	else:
 		_new_enemy = $EnemyList.create_enemy(elevation_level, parent, _position)
+
+func generate_hazard(_position):
+	var elevation_level = get_parent().get_node("World").elevation_level
+	var hazard_list = $HazardList.get_node("Elevation_%s" % elevation_level)
+	var _new_hazard
+	var parent = get_parent().get_node("Hazards")
+	
+	_new_hazard = $HazardList.create_hazard(elevation_level, parent, _position)
 
 func reset_wave_count():
 	waves_until_boss = waves_between_bosses

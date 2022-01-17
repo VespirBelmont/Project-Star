@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/TimerRandomizer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/DroneFighter.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/AIMovement.gd" type="Script" id=4]
+[ext_resource path="res://CharacterPuppets/Scenes/2D/Modules/LookAt.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.1307, 22.6176 )
@@ -11,9 +12,9 @@ extents = Vector2( 25.1307, 22.6176 )
 [node name="DroneFighter" instance=ExtResource( 2 )]
 scale = Vector2( 0.994799, 0.994799 )
 script = ExtResource( 3 )
-part_setup = {
-"Frame": "Drone Frame",
-"WeaponLeft": "Auto Rifle XV",
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
 "WeaponRight": "",
 "Wings": ""
 }
@@ -23,6 +24,7 @@ drop_rates = {
 "Hazard": 1,
 "Part": 100
 }
+random_rotate = false
 
 [node name="InstantMoveSystem" parent="Modules" index="0"]
 move_speeds = {
@@ -37,6 +39,8 @@ health_max = 2
 [node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
 position = Vector2( -1.00523, 1.50784 )
 shape = SubResource( 1 )
+
+[node name="LookAt" parent="Modules" index="2" instance=ExtResource( 5 )]
 
 [node name="Crop Frame" parent="ShipManager/Frame" index="0"]
 visible = false
@@ -60,6 +64,12 @@ script = ExtResource( 4 )
 
 [node name="SwitchDirectionTimer" type="Timer" parent="Movement" index="0"]
 
+[node name="RandomRotateTimer" type="Timer" parent="Movement" index="1"]
+wait_time = 5.0
+one_shot = true
+
+[node name="RotateTween" type="Tween" parent="." index="12"]
+
 [connection signal="Dead" from="." to="Combat/ShootTimer" method="stop"]
 [connection signal="Dead" from="." to="Movement/SwitchDirectionTimer" method="stop"]
 [connection signal="enemy_activated" from="." to="Combat/ShootTimer" method="start_up"]
@@ -70,6 +80,7 @@ script = ExtResource( 4 )
 [connection signal="KnockbackEnded" from="Modules/HealthSystem" to="Combat/ShootTimer" method="start"]
 [connection signal="KnockbackEnded" from="Modules/HealthSystem" to="Movement/SwitchDirectionTimer" method="start"]
 [connection signal="timeout" from="Combat/ShootTimer" to="." method="shoot" binds= [ "Left" ]]
+[connection signal="timeout" from="Movement/RandomRotateTimer" to="." method="random_rotate"]
 
 [editable path="Modules/HealthSystem"]
 [editable path="ShipManager"]

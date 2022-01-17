@@ -31,6 +31,7 @@ func _ready():
 	$DropNode/Sprites.get_node(chosen_value).show()
 	
 	$DropNode/AreaCollider.set_deferred("disabled", false)
+	$DropNode.show()
 
 
 func add_currency(_body):

@@ -4,13 +4,6 @@ var player_1 #This is the player 1 node
 var player_2 #This is the player 2 node
 
 
-
-#This is for Developer uses
-func _input(_event):
-	if Input.is_action_just_pressed("DevRestart"):
-		get_tree().change_scene("res://Scenes/Title.tscn")
-
-
 #This handles the initialization process
 func _ready():
 	setup_game() #Sets up the game
@@ -26,7 +19,7 @@ func setup_game():
 				$Interface/Interface/Player_1.setup(player_1)
 			2:
 				player_2 = player
-				#$CanvasLayer/Interface/Player_2.setup(player_2)
+				#$CanvasLayer/Interface/Pl7ayer_2.setup(player_2)
 	
 	#This sets up the player health systems
 	if player_1 != null:
@@ -46,7 +39,8 @@ func _process(_delta):
 
 #This handles what happens during a game over
 func game_over():
-	$Interface/Interface/DeathScreen.death_intiate() #This starts up the death screen
+	get_tree().change_scene("res://Scenes/Menus/Title.tscn")
+	#$Interface/Interface/DeathScreen.death_intiate() #This starts up the death screen
 
 
 #This handles quitting the game

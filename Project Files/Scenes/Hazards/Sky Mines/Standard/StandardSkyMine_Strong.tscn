@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Hazards/Sky Mines/Standard/StandardSkyMine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Collision Shapes/SkyMineStrong_CollisionShape.tres" type="Shape2D" id=2]
 
 [node name="StandardSkyMine_Strong" instance=ExtResource( 1 )]
 damage = 3
+
+[node name="AreaCollider" parent="." index="0"]
+visible = true
+shape = ExtResource( 2 )
+
+[node name="Radius" parent="Visual" index="0"]
+position = Vector2( 6.4373e-06, -1.25 )
+scale = Vector2( 1.41667, 1.42708 )
 
 [editable path="Hitbox/Modules/HealthSystem"]

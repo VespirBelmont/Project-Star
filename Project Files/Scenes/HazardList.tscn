@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/EnemyListToken.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Shock/ShockSkyMine_Mild.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveSkyMine_Mild.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyToken.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Standard/StandardSkyMine_Weak.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Shock/ShockSkyMine_Weak.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveSkyMine_Weak.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Ice/IceSkyMine_Mild.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Standard/StandardSkyMine_Mild.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Ice/IceSkyMine_Strong.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Standard/StandardSkyMine_Strong.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Corrosive/CorrosiveSkyMine_Strong.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Ice/IceSkyMine_Weak.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Shock/ShockSkyMine_Strong.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/HazardList.gd" type="Script" id=15]
+
+[node name="HazardList" type="Node"]
+script = ExtResource( 15 )
+
+[node name="Elevation_1" type="Node" parent="."]
+
+[node name="Grunt" type="Node" parent="Elevation_1"]
+
+[node name="StandardSkyMine_Weak" type="Node" parent="Elevation_1/Grunt" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 5 )
+
+[node name="IceSkyMine_Weak" type="Node" parent="Elevation_1/Grunt" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 13 )
+
+[node name="CorrosiveSkyMine_Weak" type="Node" parent="Elevation_1/Grunt" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 7 )
+
+[node name="ShockSkyMine_Weak" type="Node" parent="Elevation_1/Grunt" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 6 )
+
+[node name="Adept" type="Node" parent="Elevation_1"]
+
+[node name="CorrosiveSkyMine_Mild" type="Node" parent="Elevation_1/Adept" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 3 )
+
+[node name="StandardSkyMine_Mild" type="Node" parent="Elevation_1/Adept" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 9 )
+
+[node name="IceSkyMine_Mild" type="Node" parent="Elevation_1/Adept" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 8 )
+
+[node name="ShockSkyMine_Mild" type="Node" parent="Elevation_1/Adept" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 2 )
+
+[node name="Elite" type="Node" parent="Elevation_1"]
+
+[node name="CorrosiveSkyMine_Strong" type="Node" parent="Elevation_1/Elite" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 12 )
+
+[node name="StandardSkyMine_Strong" type="Node" parent="Elevation_1/Elite" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 11 )
+
+[node name="IceSkyMine_Strong" type="Node" parent="Elevation_1/Elite" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 10 )
+
+[node name="ShockSkyMine_Strong" type="Node" parent="Elevation_1/Elite" instance=ExtResource( 4 )]
+script = ExtResource( 1 )
+enemy_tscn = ExtResource( 14 )
+
+[node name="Bosses" type="Node" parent="Elevation_1"]
+
+[node name="Elevation_2" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_2"]
+
+[node name="Bosses" type="Node" parent="Elevation_2"]
+
+[node name="Elevation_3" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_3"]
+
+[node name="Bosses" type="Node" parent="Elevation_3"]
+
+[node name="Elevation_4" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_4"]
+
+[node name="Bosses" type="Node" parent="Elevation_4"]
+
+[node name="Elevation_5" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_5"]
+
+[node name="Bosses" type="Node" parent="Elevation_5"]
+
+[node name="Elevation_6" type="Node" parent="."]
+
+[node name="Standard" type="Node" parent="Elevation_6"]
+
+[node name="Bosses" type="Node" parent="Elevation_6"]

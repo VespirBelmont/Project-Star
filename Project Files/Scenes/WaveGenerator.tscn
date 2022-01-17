@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/WaveGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/WaveTemplates.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemyList.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/HazardList.tscn" type="PackedScene" id=4]
 
 [node name="WaveGenerator" type="Node"]
 script = ExtResource( 1 )
@@ -12,3 +13,5 @@ time_between_waves = 10.0
 [node name="WaveTemplates" parent="." instance=ExtResource( 2 )]
 
 [node name="EnemyList" parent="." instance=ExtResource( 3 )]
+
+[node name="HazardList" parent="." instance=ExtResource( 4 )]

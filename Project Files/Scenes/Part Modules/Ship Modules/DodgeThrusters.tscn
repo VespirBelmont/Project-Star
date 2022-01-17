@@ -1,60 +1,25 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Audio/SFX/Module Not Ready.wav" type="AudioStream" id=1]
 [ext_resource path="res://Audio/SFX/Dodge Thruster Activate.wav" type="AudioStream" id=2]
 [ext_resource path="res://Audio/SFX/Module Ready.wav" type="AudioStream" id=3]
-[ext_resource path="res://Scripts/ButtonPrompt.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/BoosterModule.gd" type="Script" id=5]
-
-[sub_resource type="Animation" id=13]
-resource_name = "Disable"
-
-[sub_resource type="Animation" id=14]
-resource_name = "Enable"
-
-[sub_resource type="Animation" id=15]
-resource_name = "Disable"
-
-[sub_resource type="Animation" id=16]
-resource_name = "Enable"
 
 [node name="Dodge Thrusters" type="Node2D"]
 script = ExtResource( 5 )
 boost_power = 200.0
 boost_duration = 0.5
 
-[node name="DodgeRight" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-keyboard_input = "Option_2"
-controller_input = "Option_2"
-input_cooldown = 0.01
+[node name="DodgeRightButton" parent="." instance=ExtResource( 4 )]
+visible = false
+_input = "Option_2"
+show_label = false
 
-[node name="Anim" type="AnimationPlayer" parent="DodgeRight"]
-anims/Disable = SubResource( 13 )
-anims/Enable = SubResource( 14 )
-
-[node name="DodgeLeft" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 2, 2 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-keyboard_input = "Option_4"
-controller_input = "Option_4"
-input_cooldown = 0.01
-
-[node name="Anim" type="AnimationPlayer" parent="DodgeLeft"]
-root_node = NodePath("../../DodgeRight")
-anims/Disable = SubResource( 15 )
-anims/Enable = SubResource( 16 )
+[node name="DodgeLeftButton" parent="." instance=ExtResource( 4 )]
+visible = false
+_input = "Option_4"
+show_label = false
 
 [node name="ButtonTapReset" type="Timer" parent="."]
 wait_time = 0.3
@@ -81,7 +46,7 @@ bus = "SFX"
 stream = ExtResource( 2 )
 bus = "SFX"
 
-[connection signal="Button_Pressed" from="DodgeRight" to="." method="use_booster" binds= [ "Right" ]]
-[connection signal="Button_Pressed" from="DodgeLeft" to="." method="use_booster" binds= [ "Left" ]]
+[connection signal="Button_Pressed" from="DodgeRightButton" to="." method="use_booster" binds= [ "Right" ]]
+[connection signal="Button_Pressed" from="DodgeLeftButton" to="." method="use_booster" binds= [ "Left" ]]
 [connection signal="timeout" from="ButtonTapReset" to="." method="reset_taps"]
 [connection signal="timeout" from="UseCooldown" to="." method="cooled_down"]

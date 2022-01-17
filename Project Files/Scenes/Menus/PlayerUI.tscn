@@ -338,26 +338,14 @@ __meta__ = {
 
 [node name="Workshop" parent="." instance=ExtResource( 8 )]
 modulate = Color( 1, 1, 1, 1 )
-margin_left = 16.12
+margin_left = 28.12
 margin_top = 127.188
-margin_right = 56.12
+margin_right = 68.12
 margin_bottom = 167.188
 rect_scale = Vector2( 0.8, 0.8 )
-keyboard_input = "UpgradeMenu"
-controller_input = "UpgradeMenu"
-
-[node name="OptionLabel" parent="Workshop" index="0"]
-margin_left = 39.375
-margin_top = 5.0
-margin_right = 833.375
-margin_bottom = 168.0
-text = "Workshop"
-align = 0
-
-[node name="PromptManager" parent="Workshop" index="1"]
-margin_top = -0.5
-margin_bottom = 39.5
+_input = "UpgradeMenu"
+label_text = "Workshop"
+label_position = Vector2( 36.021, 5.34 )
+label_alignment = "Left"
 
 [connection signal="Button_Pressed" from="Workshop" to="Workshop" method="toggle_label" binds= [ "Workshop", "Close Workshop" ]]
-
-[editable path="Workshop"]

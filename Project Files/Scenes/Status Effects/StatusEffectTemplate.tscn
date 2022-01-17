@@ -10,5 +10,3 @@ script = ExtResource( 1 )
 [node name="StatusAnim" type="AnimationPlayer" parent="."]
 
 [node name="StatusSound" type="AudioStreamPlayer" parent="."]
-
-[connection signal="timeout" from="EffectTimer" to="." method="inflict_damage"]

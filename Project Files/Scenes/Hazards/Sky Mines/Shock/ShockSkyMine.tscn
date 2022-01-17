@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Standard/StandardSkyMine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/FX/Energy ball/energyBallImpact.png" type="Texture" id=2]
+[ext_resource path="res://Audio/SFX/ShockExplode.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/Hazards/Sky Mines/Collision Shapes/SkyMineWeak_CollisionShape.tres" type="Shape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 88, 78 )
+
+[node name="ShockSkyMine" instance=ExtResource( 1 )]
+damage_type = "Shock"
+damage_severity = "Mild"
+cam_effect = ""
+
+[node name="AreaCollider" parent="." index="0"]
+position = Vector2( 5, 6 )
+z_index = 0
+shape = ExtResource( 4 )
+
+[node name="AreaCollider" parent="TriggerZone" index="0"]
+position = Vector2( -5, -1 )
+z_index = 0
+shape = SubResource( 5 )
+
+[node name="Hitbox" parent="." index="2"]
+visible = true
+
+[node name="Hitbox" parent="Hitbox/Modules/HealthSystem" index="0"]
+visible = false
+
+[node name="AreaCollider" parent="Hitbox/Modules/HealthSystem/Hitbox" index="0"]
+position = Vector2( 0, 0 )
+
+[node name="Radius" parent="Visual" index="0"]
+modulate = Color( 0.996078, 1, 0.686275, 1 )
+
+[node name="ElementalIcon_Radius" parent="Visual" index="1"]
+visible = true
+position = Vector2( 2.49999, 0 )
+region_rect = Rect2( 163, 160, 96, 132 )
+
+[node name="Sprite" parent="Visual" index="2"]
+self_modulate = Color( 1, 0.929412, 0.556863, 1 )
+
+[node name="ElementalIcon_Mine" parent="Visual/Sprite" index="0"]
+modulate = Color( 0.301961, 0.298039, 0.203922, 1 )
+position = Vector2( 0.833333, 0 )
+scale = Vector2( 0.0597223, 0.0597223 )
+region_rect = Rect2( 163, 160, 96, 132 )
+
+[node name="Explosion" type="Node2D" parent="Visual" index="4"]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="Visual/Explosion" index="0"]
+position = Vector2( -40, 104.444 )
+texture = ExtResource( 2 )
+vframes = 8
+
+[node name="Explosion" parent="Audio" index="0"]
+stream = ExtResource( 3 )
+volume_db = 5.0
+
+[editable path="Hitbox/Modules/HealthSystem"]

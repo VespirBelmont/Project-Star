@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/TimerRandomizer.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CharacterPuppets/Scenes/2D/Modules/LookAt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/AudioClipPlayer.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/ScreamerJet.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25.1307, 22.6176 )
+
+[node name="ScreamerJet" instance=ExtResource( 2 )]
+scale = Vector2( 0.994799, 0.994799 )
+collision_layer = 2
+script = ExtResource( 5 )
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
+distance_until_delete = 200
+
+[node name="LookAt" parent="Modules" index="0" instance=ExtResource( 3 )]
+
+[node name="InstantMoveSystem" parent="Modules" index="1"]
+default_move_state_mod = "Run"
+move_speeds = {
+"Run": 10000.0,
+"Sprint": 0.0,
+"Walk": 0.0
+}
+
+[node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
+position = Vector2( -1.00523, 1.50784 )
+shape = SubResource( 1 )
+
+[node name="ShipManager" parent="." index="4"]
+scale = Vector2( 2, 2 )
+
+[node name="Jet Wings" parent="ShipManager/Wings" index="1"]
+visible = true
+
+[node name="Crop Frame" parent="ShipManager/Frame" index="0"]
+visible = false
+
+[node name="Jet Frame" parent="ShipManager/Frame" index="1"]
+visible = true
+
+[node name="Drone Frame" parent="ShipManager/Frame" index="4"]
+visible = false
+
+[node name="WeaponLeft" parent="ShipManager" index="2"]
+position = Vector2( 0, -9.5 )
+z_index = -2
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
+visible = true
+position = Vector2( -20.1046, 23.0209 )
+z_index = 1
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
+visible = true
+position = Vector2( 5.01456, 9.01568 )
+
+[node name="Hurt" parent="Audio" index="2"]
+bus = "SFX"
+
+[node name="Death" parent="Audio" index="3"]
+script = ExtResource( 4 )
+
+[node name="OutOfBoundsTimer" parent="." index="6"]
+wait_time = 30.0
+
+[node name="Combat" type="Node" parent="." index="7"]
+
+[node name="ShootLeftTimer" type="Timer" parent="Combat" index="0"]
+autostart = true
+script = ExtResource( 1 )
+min_time = 1.0
+max_time = 2.0
+
+[node name="ShootRightTimer" type="Timer" parent="Combat" index="1"]
+autostart = true
+script = ExtResource( 1 )
+min_time = 1.0
+max_time = 2.0
+
+[node name="RotateTween" type="Tween" parent="." index="11"]
+
+[node name="MovementCooldownTimer" type="Timer" parent="." index="12"]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="Dead" from="." to="Combat/ShootLeftTimer" method="stop"]
+[connection signal="Dead" from="." to="Combat/ShootRightTimer" method="stop"]
+[connection signal="enemy_activated" from="." to="Combat/ShootLeftTimer" method="start_up"]
+[connection signal="enemy_activated" from="." to="Combat/ShootRightTimer" method="start_up"]
+[connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
+[connection signal="Knockback" from="Modules/HealthSystem" to="Combat/ShootLeftTimer" method="stop"]
+[connection signal="KnockbackEnded" from="Modules/HealthSystem" to="Combat/ShootLeftTimer" method="start"]
+[connection signal="timeout" from="Combat/ShootLeftTimer" to="." method="shoot" binds= [ "Left" ]]
+[connection signal="timeout" from="Combat/ShootRightTimer" to="." method="shoot" binds= [ "Right" ]]
+[connection signal="timeout" from="MovementCooldownTimer" to="." method="start_movement"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="end_movement"]
+
+[editable path="Modules/HealthSystem"]
+[editable path="ShipManager"]

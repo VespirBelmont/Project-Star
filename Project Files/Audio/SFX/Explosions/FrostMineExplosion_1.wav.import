@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FrostMineExplosion_1.wav-274e8360215ba80147cbacfb65dc79c0.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Explosions/FrostMineExplosion_1.wav"
+dest_files=[ "res://.import/FrostMineExplosion_1.wav-274e8360215ba80147cbacfb65dc79c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

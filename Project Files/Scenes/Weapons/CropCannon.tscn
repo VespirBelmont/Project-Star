@@ -66,6 +66,7 @@ damage_modifier = 2
 shoot_speed = 180.0
 knockback_power = 20.0
 knockback_duration = 0.5
+target = [ "Enemy", "Hazard" ]
 reload_feedback_active = false
 cam_fx = "MediumShake"
 

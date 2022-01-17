@@ -3,6 +3,357 @@
 [ext_resource path="res://Scripts/PromptManager.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Interface/Input Prompts/InputMap.png" type="Texture" id=2]
 
+[sub_resource type="Animation" id=25]
+resource_name = "A"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 288, 48, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 288, 176, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Arrow Down"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 192, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Arrow Left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 528, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 528, 192, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Arrow Right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 496, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 496, 192, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Arrow Up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 480, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 480, 192, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "Backspace"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 16, 32, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 144, 32, 16 ) ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "C"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 336, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 336, 192, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "Enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 32, 32, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 512, 160, 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Escape"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 273, 0, 15, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 272, 128, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Space"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 496, 96, 48, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 496, 224, 48, 16 ) ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "Tab"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 304, 80, 32, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -227.522, -19.2604 ) ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "X"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 320, 192, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Unpressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 320, 64, 16, 16 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "Z"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Unpressed:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 304, 64, 16, 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pressed:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 304, 192, 16, 16 ) ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "Option_1"
 tracks/0/type = "value"
@@ -694,429 +1045,6 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Rect2( 224, 336, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=35]
-resource_name = "Back"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 512, 16, 32, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 512, 144, 32, 16 ) ]
-}
-
-[sub_resource type="Animation" id=31]
-resource_name = "ColorMenu"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 320, 192, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Unpressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 320, 64, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=27]
-resource_name = "Interact"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 304, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 304, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=32]
-resource_name = "ModMenu"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 336, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 336, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Option_1"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 480, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 480, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "Option_2"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 496, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 496, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "Option_3"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 512, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 512, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "Option_4"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 528, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 528, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "PauseGame"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 273, 0, 15, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 272, 128, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "Pressed"
-tracks/0/type = "value"
-tracks/0/path = NodePath("../Controller/Nintendo/Unpressed:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Controller/Xbox/Unpressed:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Controller/PlayStation/Unpressed:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Unpressed:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ true, false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Pressed:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../Controller/PlayStation/Pressed:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../Controller/Xbox/Pressed:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../Controller/Nintendo/Pressed:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-
-[sub_resource type="Animation" id=37]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 304, 64, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 304, 192, 16, 16 ) ]
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "StartGame"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 496, 96, 48, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 496, 224, 48, 16 ) ]
-}
-
-[sub_resource type="Animation" id=25]
-resource_name = "UpgradeMenu"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Unpressed:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 288, 48, 16, 16 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pressed:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Rect2( 288, 176, 16, 16 ) ]
 }
 
 [sub_resource type="Animation" id=36]
@@ -2067,7 +1995,7 @@ position = Vector2( -227.522, -19.2604 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 304, 64, 16, 16 )
+region_rect = Rect2( 288, 48, 16, 16 )
 
 [node name="Pressed" type="Sprite" parent="Keyboard"]
 visible = false
@@ -2075,7 +2003,24 @@ position = Vector2( -227.522, -19.2604 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 304, 192, 16, 16 )
+region_rect = Rect2( 288, 176, 16, 16 )
+
+[node name="Anim" type="AnimationPlayer" parent="Keyboard"]
+reset_on_save = false
+playback_speed = 2.0
+anims/A = SubResource( 25 )
+"anims/Arrow Down" = SubResource( 11 )
+"anims/Arrow Left" = SubResource( 12 )
+"anims/Arrow Right" = SubResource( 10 )
+"anims/Arrow Up" = SubResource( 9 )
+anims/Backspace = SubResource( 35 )
+anims/C = SubResource( 32 )
+anims/Enter = SubResource( 38 )
+anims/Escape = SubResource( 13 )
+anims/Space = SubResource( 16 )
+anims/Tab = SubResource( 37 )
+anims/X = SubResource( 31 )
+anims/Z = SubResource( 27 )
 
 [node name="Controller" type="Control" parent="."]
 visible = false
@@ -2095,7 +2040,7 @@ position = Vector2( 18.5933, 18.9841 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 240, 16, 16, 16 )
+region_rect = Rect2( 16, 112, 16, 16 )
 
 [node name="Pressed" type="Sprite" parent="Controller/PlayStation"]
 visible = false
@@ -2103,7 +2048,7 @@ position = Vector2( 18.5933, 18.9841 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 240, 0, 16, 16 )
+region_rect = Rect2( 16, 128, 16, 16 )
 
 [node name="Xbox" type="Control" parent="Controller"]
 visible = false
@@ -2115,7 +2060,7 @@ position = Vector2( 20.4474, 22.6922 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 80, 0, 16, 16 )
+region_rect = Rect2( 16, 80, 16, 16 )
 
 [node name="Pressed" type="Sprite" parent="Controller/Xbox"]
 visible = false
@@ -2123,7 +2068,7 @@ position = Vector2( 20.4474, 22.6922 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 144, 0, 16, 16 )
+region_rect = Rect2( 16, 96, 16, 16 )
 
 [node name="Nintendo" type="Control" parent="Controller"]
 margin_right = 40.0
@@ -2134,7 +2079,7 @@ position = Vector2( 22.8312, 22.9571 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 176, 0, 16, 16 )
+region_rect = Rect2( 0, 144, 16, 16 )
 
 [node name="Pressed" type="Sprite" parent="Controller/Nintendo"]
 visible = false
@@ -2142,7 +2087,7 @@ position = Vector2( 22.8312, 22.9571 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 176, 16, 16, 16 )
+region_rect = Rect2( 0, 160, 16, 16 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Keyboard")
@@ -2155,24 +2100,6 @@ anims/Option_4 = SubResource( 5 )
 anims/PauseGame = SubResource( 6 )
 anims/Pressed = SubResource( 1 )
 anims/StartGame = SubResource( 7 )
-
-[node name="KeyboardAnim" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Keyboard")
-reset_on_save = false
-playback_speed = 2.0
-anims/Back = SubResource( 35 )
-anims/ColorMenu = SubResource( 31 )
-anims/Interact = SubResource( 27 )
-anims/ModMenu = SubResource( 32 )
-anims/Option_1 = SubResource( 9 )
-anims/Option_2 = SubResource( 10 )
-anims/Option_3 = SubResource( 11 )
-anims/Option_4 = SubResource( 12 )
-anims/PauseGame = SubResource( 13 )
-anims/Pressed = SubResource( 14 )
-anims/RESET = SubResource( 37 )
-anims/StartGame = SubResource( 16 )
-anims/UpgradeMenu = SubResource( 25 )
 
 [node name="ControllerAnim" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Keyboard")

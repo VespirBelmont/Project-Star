@@ -7,6 +7,8 @@ export var value = 0
 var velocity = Vector2()
 var target
 
+export (float) var magnet_collect_speed = 100
+
 func _ready():
 	set_process(false)
 
@@ -24,7 +26,7 @@ func _process(delta):
 	var drop_node_pos = get_node("DropNode").global_position
 	
 	var movement = (target.global_position - drop_node_pos).normalized()
-	velocity = (movement * 50) * delta
+	velocity = (movement * magnet_collect_speed) * delta
 	
 	get_node("DropNode").global_position += velocity
 
@@ -33,7 +35,5 @@ func body_detected(body):
 		collected(body)
 
 func area_detected(area):
-	print("Area Hit")
 	if area.is_in_group("Magnet"):
-		print("Follow Player")
 		follow_player(area.get_parent())

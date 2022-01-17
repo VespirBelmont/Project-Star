@@ -88,6 +88,12 @@ tracks/1/keys = {
 scale = Vector2( 0.8335, 0.8335 )
 collision_mask = 0
 script = ExtResource( 4 )
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
 currency_drop = ExtResource( 9 )
 part_drop_node = ExtResource( 10 )
 explosion_effect = ExtResource( 2 )
@@ -99,6 +105,9 @@ move_speeds = {
 "Sprint": 0.0,
 "Walk": 0.0
 }
+
+[node name="Hitbox" parent="Modules/HealthSystem" index="0" groups=["Enemy"]]
+collision_layer = 2
 
 [node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
 position = Vector2( -0.5, 2.5 )
@@ -136,42 +145,56 @@ visible = true
 party = "Enemy"
 
 [node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Cerberus Cannon" parent="ShipManager/WeaponLeft" index="3"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Crop Cannon" parent="ShipManager/WeaponRight" index="0"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Rocket Launcher Mk1" parent="ShipManager/WeaponRight" index="2"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 
 [node name="Cerberus Cannon" parent="ShipManager/WeaponRight" index="3"]
+base_movement = Vector2( 0, 1 )
 party = "Enemy"
+shoot_direction = Vector2( 0, 0 )
 target = [ "Player", "Hazard" ]
 cam_fx = "None"
 

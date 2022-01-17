@@ -2,8 +2,10 @@ extends Control
 
 func _ready():
 	ControlSettings.connect("Update_Prompts", self, "update_prompts")
-	$KeyboardAnim.play(get_parent().keyboard_input)
-	$ControllerAnim.play(get_parent().controller_input)
+
+func setup(_key, _button):
+	if _key == null: return
+	$Keyboard/Anim.play(_key)
 
 func _input(event):
 	ControlSettings.check_for_device(event)

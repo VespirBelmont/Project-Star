@@ -1,8 +1,9 @@
 extends "res://CharacterPuppets/Scripts/Puppets/TopDownPuppet2D.gd"
 
 var can_move : bool = false
+var can_control : bool = true
 
-export var part_setup = {
+export var parts_equipped = {
 						 "Frame": "",
 						 "Wings": "",
 						 "WeaponRight": "",
@@ -11,18 +12,21 @@ export var part_setup = {
 
 func _ready():
 	
-	if part_setup["Frame"] != "":
-		$ShipManager.update_part("Frame", part_setup["Frame"])
+	if parts_equipped["Frame"] != "":
+		$ShipManager.update_part("Frame", parts_equipped["Frame"])
 	
-	if part_setup["Wings"] != "":
-		$ShipManager.update_part("Wings", part_setup["Wings"])
+	if parts_equipped["Wings"] != "":
+		$ShipManager.update_part("Wings", parts_equipped["Wings"])
 	
-	if part_setup["WeaponRight"] != "":
-		$ShipManager.update_part("WeaponRight", part_setup["WeaponRight"])
+	if parts_equipped["WeaponRight"] != "":
+		$ShipManager.update_part("WeaponRight", parts_equipped["WeaponRight"])
 	
-	if part_setup["WeaponLeft"] != "":
-		$ShipManager.update_part("WeaponLeft", part_setup["WeaponLeft"])
+	if parts_equipped["WeaponLeft"] != "":
+		$ShipManager.update_part("WeaponLeft", parts_equipped["WeaponLeft"])
 
+
+func update_parts(_area, _part):
+	parts_equipped[_area] = _part
 
 func shoot(_side):
 	if _side == "Left":
@@ -38,3 +42,9 @@ func shoot(_side):
 func destroy():
 	self.call_deferred("free")
 
+func shock_check():
+	for se in $StatusEffects.get_children():
+		if "Shock" in se.name:
+			return true
+	
+	return false

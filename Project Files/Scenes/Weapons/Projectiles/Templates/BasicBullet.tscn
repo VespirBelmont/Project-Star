@@ -108,3 +108,5 @@ amount = 50
 lifetime = 0.2
 local_coords = false
 process_material = SubResource( 4 )
+
+[connection signal="area_entered" from="." to="." method="area_hit"]

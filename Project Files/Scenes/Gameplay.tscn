@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Characters/Player/PlayerShipController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CamRig.tscn" type="PackedScene" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://Scenes/Menus/WorkshopSystem.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/WorldGenerator.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/Dev Cheats.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/Characters/Enemies/Scream Jet/ScreamerJet_Grunt.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Collectables/PartDrop.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Explosion.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Collectables/NutsBolts.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Shader" id=103]
 code = "shader_type canvas_item;
@@ -397,12 +401,15 @@ tracks/3/keys = {
 }
 
 [node name="Gameplay" type="Node"]
+pause_mode = 2
 script = ExtResource( 10 )
 
 [node name="World" type="Node" parent="."]
+pause_mode = 1
 script = ExtResource( 15 )
 
 [node name="Evelation_1" type="Node2D" parent="World"]
+z_index = -20
 
 [node name="Blur" type="Sprite" parent="World/Evelation_1"]
 material = SubResource( 104 )
@@ -481,6 +488,7 @@ region_enabled = true
 region_rect = Rect2( 864, 144, 16, 32 )
 
 [node name="Evelation_2" type="Node2D" parent="World"]
+z_index = -19
 
 [node name="Blur" type="Sprite" parent="World/Evelation_2"]
 material = SubResource( 104 )
@@ -489,6 +497,7 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="Evelation_3" type="Node2D" parent="World"]
+z_index = -18
 
 [node name="Blur" type="Sprite" parent="World/Evelation_3"]
 material = SubResource( 104 )
@@ -497,6 +506,7 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="Evelation_4" type="Node2D" parent="World"]
+z_index = -17
 
 [node name="Blur" type="Sprite" parent="World/Evelation_4"]
 material = SubResource( 104 )
@@ -505,6 +515,7 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="Evelation_5" type="Node2D" parent="World"]
+z_index = -16
 
 [node name="Blur" type="Sprite" parent="World/Evelation_5"]
 material = SubResource( 104 )
@@ -513,6 +524,7 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="Space" type="Node2D" parent="World"]
+z_index = -15
 
 [node name="Blur" type="Sprite" parent="World/Space"]
 material = SubResource( 104 )
@@ -521,30 +533,52 @@ scale = Vector2( 64.375, 40.1875 )
 texture = ExtResource( 8 )
 
 [node name="WaveGenerator" parent="." instance=ExtResource( 11 )]
-spawn_move_speed = 45.0
-time_between_waves = 15.0
-distance_limit = 250.0
+pause_mode = 1
+spawn_move_speed = 35.0
+distance_limit = 300.0
+chance_for_hazard = 2.0
 
 [node name="Players" type="Node" parent="."]
+pause_mode = 1
 
 [node name="P1" parent="Players" instance=ExtResource( 1 )]
 position = Vector2( 552, 403 )
+z_index = 1
 collision_mask = 4
-part_setup = {
+parts_equipped = {
 "Frame": "Crop Frame",
-"WeaponLeft": "",
+"WeaponLeft": "Crop Cannon",
 "WeaponRight": "",
-"Wings": ""
+"Wings": "Crop Wings"
 }
 
 [node name="Enemies" type="Node" parent="."]
+pause_mode = 1
 
 [node name="MiddlePos" type="Position2D" parent="Enemies"]
 position = Vector2( 552, 358 )
 
+[node name="ScreamerJet_Grunt" parent="Enemies" groups=["Enemy"] instance=ExtResource( 17 )]
+position = Vector2( 524, -99 )
+collision_mask = 0
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
+currency_drop = ExtResource( 20 )
+part_drop_node = ExtResource( 18 )
+explosion_effect = ExtResource( 19 )
+
+[node name="Hazards" type="Node" parent="."]
+pause_mode = 1
+
 [node name="LootPool" type="Node" parent="."]
+pause_mode = 1
 
 [node name="CamRig" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
 position = Vector2( 479, 469 )
 scroll_speed = 30.0
 
@@ -652,6 +686,14 @@ health_bar_percents = {
 "Medium": 75
 }
 
+[node name="OptionLabel" parent="Interface/Interface/Player_1/Workshop" index="0"]
+margin_left = 36.021
+margin_top = 5.34
+margin_right = 830.021
+margin_bottom = 168.34
+text = "Workshop"
+align = 0
+
 [node name="UpgradeSystem" parent="Interface/Interface/Player_1" instance=ExtResource( 14 )]
 margin_left = 417.62
 margin_top = -83.312
@@ -711,9 +753,18 @@ margin_left = -16.4136
 margin_right = 350.587
 align = 2
 
+[node name="OptionLabel" parent="Interface/Interface/Player_2/Workshop" index="0"]
+margin_left = 36.021
+margin_top = 5.34
+margin_right = 830.021
+margin_bottom = 168.34
+text = "Workshop"
+align = 0
+
 [node name="PauseMenu" parent="Interface/Interface" instance=ExtResource( 6 )]
 
 [node name="DeathScreen" parent="Interface/Interface" instance=ExtResource( 7 )]
+visible = false
 margin_left = -89.0
 margin_top = 19.0
 margin_right = -49.0
@@ -721,8 +772,9 @@ margin_bottom = 59.0
 
 [node name="Dev Cheats" type="Node" parent="."]
 script = ExtResource( 16 )
-give_money = true
 
+[connection signal="Dead" from="Enemies/ScreamerJet_Grunt" to="Enemies/ScreamerJet_Grunt/Combat/ShootTimer" method="stop"]
+[connection signal="enemy_activated" from="Enemies/ScreamerJet_Grunt" to="Enemies/ScreamerJet_Grunt/Combat/ShootTimer" method="start_up"]
 [connection signal="Activate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "Workshop" ]]
 [connection signal="Button_Pressed" from="Interface/Interface/Player_1/Workshop" to="Interface/Interface/Player_1/UpgradeSystem" method="toggle"]
 [connection signal="Deactivate" from="Interface/Interface/Player_1/Workshop" to="Interface" method="change_menu" binds= [ "" ]]

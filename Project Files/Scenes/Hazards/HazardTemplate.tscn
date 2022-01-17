@@ -12,5 +12,3 @@ corrosion_status_effect = ExtResource( 2 )
 [node name="AreaCollider" type="CollisionShape2D" parent="."]
 
 [node name="Visual" type="Node2D" parent="."]
-
-[connection signal="body_entered" from="." to="." method="body_hit"]

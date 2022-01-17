@@ -51,17 +51,19 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+_input = "Discord"
 pressed_sound = ExtResource( 1 )
 pressed_volume = -5.0
+label_position = Vector2( 32.355, 2.858 )
 
 [node name="OptionLabel" type="Label" parent="."]
-margin_left = 34.5
-margin_top = -2.0
-margin_right = 401.5
-margin_bottom = 161.0
+margin_left = 32.355
+margin_top = 2.858
+margin_right = 399.355
+margin_bottom = 165.858
 rect_scale = Vector2( 0.2, 0.2 )
 custom_fonts/font = SubResource( 6 )
-text = "Option"
+text = "Default"
 align = 1
 valign = 2
 __meta__ = {
@@ -69,6 +71,8 @@ __meta__ = {
 }
 
 [node name="PromptManager" parent="." instance=ExtResource( 3 )]
+margin_top = 0.0
+margin_bottom = 40.0
 
 [node name="PressedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

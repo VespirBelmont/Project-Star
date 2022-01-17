@@ -15,7 +15,8 @@ func _ready():
 	if ship_root.name == "UpgradeSystem":
 		return
 	
-	self.connect("Ram", ship_root.get_node("Modules/InstantMoveSystem"), "ram")
+	if ship_root.name != "ModuleSelect":
+		self.connect("Ram", ship_root.get_node("Modules/InstantMoveSystem"), "ram")
 
 
 func use_ram():

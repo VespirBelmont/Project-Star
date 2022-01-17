@@ -13,4 +13,8 @@ move_speeds = {
 
 [node name="OutOfBoundsTimer" type="Timer" parent="." index="6"]
 wait_time = 20.0
-autostart = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="9"]
+
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="OutOfBoundsTimer" method="stop"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="OutOfBoundsTimer" method="start"]

@@ -594,6 +594,12 @@ func interact_with_module():
 
 
 func unlock_part(part_area, part_name):
+	if part_area == null: 
+		print("Upgrade System.gd")
+		print("Part is not defined")
+		print("-------------------")
+		return
+	
 	var part = $PartSelect/PartList.get_node(part_area).get_node(part_name)
 	
 	if part.unlocked:

@@ -18,6 +18,17 @@ func _physics_process(delta):
 
 #This handles all control inputs
 func control_check():
+	if shock_check():
+		var rand_num = randi()%10
+		
+		if rand_num > 4 and can_control:
+			$FX/Shocked/Anim.play("Shocked")
+			$FX/Shocked.show()
+			lose_control(0.5)
+			return
+	
+	if not can_control: return
+	
 	#--Variable Shortcuts--#
 	var move_requirements = can_move and $ShipManager.wing_check() #A shortcut for the movement requirements
 	
@@ -86,6 +97,12 @@ func control_check():
 	#------------#
 
 
-
+func lose_control(duration):
+	can_control = false
+	
+	yield(get_tree().create_timer(duration), "timeout")
+	$FX/Shocked.hide()
+	
+	can_control = true
 
 

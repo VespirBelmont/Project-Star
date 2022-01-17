@@ -17,6 +17,8 @@ export var brake_speed = 30
 export var auto_move_speed = 10
 var move_speed_mod = 1
 
+var move_speed_mod_store = 1
+
 export (float, 0, 1) var air_control = 1 #How much control the character has in the air [0 = No control | 1 = Full Control] 
 var velocity = Vector2() #This is the overall speed the character is moving at
 var direction = Vector2() #This is the direction the character is moving
@@ -41,12 +43,18 @@ func move():
 	
 	velocity = controller.move_and_slide(final_velocity, Vector2.UP) #The character is moved by their velocity
 
-#This handles changing the direction of the character
-func update_direction():
-	if direction.y == 1: #If the character is moving right
-		controller.get_node("DirectionAnim").play("Up") #Play the right animation
-	elif direction.y == -1: #If the character is moving left
-		controller.get_node("DirectionAnim").play("Down") #Play the left animation
+func move_to(_target = get_parent(), forced_position = null, delta = 1):
+	var move_dir
+	
+	if forced_position == null:
+		move_dir = (_target.global_position - controller.global_position).normalized()
+	else:
+		move_dir = (forced_position - controller.global_position).normalized()
+	var vel = (move_dir * move_speed) * delta
+	
+	velocity = vel
+	move()
+
 
 func boost(_boost_power, _boost_duration):
 	boost.x = _boost_power
@@ -75,7 +83,17 @@ func knockback(power, duration):
 func end_knockback():
 	knockback_mod = Vector2()
 
+func slow(_duration):
+	print("InstantMoveSystem.gd / Slow")
+	move_speed_mod_store = move_speed_mod
+	
+	move_speed_mod *= 0.3
+	$SlowDuration.wait_time = _duration
+	$SlowDuration.start()
 
-
+func end_slow():
+	if move_speed_mod < move_speed_mod_store:
+		move_speed_mod = move_speed_mod_store
+		print("InstantMoveSystem.gd / End Slow")
 
 

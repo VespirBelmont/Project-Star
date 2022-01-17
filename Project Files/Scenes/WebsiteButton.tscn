@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Graphics/Discord Icon Pressed.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/DiscordIcon.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Menus/WebsiteLink.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/WebsiteLink.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Menus/ButtonPrompt.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=29]
@@ -56,12 +56,14 @@ anims/Normal = SubResource( 29 )
 anims/Pressed = SubResource( 30 )
 
 [node name="ButtonInput" parent="." instance=ExtResource( 5 )]
-margin_left = -66.6667
-margin_top = -183.333
-margin_right = -26.6667
-margin_bottom = -143.333
+margin_left = -61.6667
+margin_top = -208.333
+margin_right = -21.6667
+margin_bottom = -168.333
 rect_scale = Vector2( 3, 3 )
-keyboard_input = "Discord"
-controller_input = "Discord"
+enabled = false
+show_label = false
+label_position = Vector2( 32.355, -16.332 )
+button_graphic_position = Vector2( 0, 5.902 )
 
 [connection signal="Button_Pressed" from="ButtonInput" to="." method="_on_Button_pressed"]

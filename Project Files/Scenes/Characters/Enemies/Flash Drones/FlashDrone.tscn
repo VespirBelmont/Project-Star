@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/AudioClipPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Characters/Enemies/EnemyShipController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/FlashDrone.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25.1307, 22.6176 )
+
+[node name="FlashDrone" instance=ExtResource( 2 )]
+scale = Vector2( 0.994799, 0.994799 )
+collision_layer = 2
+script = ExtResource( 3 )
+parts_equipped = {
+"Frame": "",
+"WeaponLeft": "",
+"WeaponRight": "",
+"Wings": ""
+}
+distance_until_delete = 200
+
+[node name="InstantMoveSystem" parent="Modules" index="0"]
+default_move_state_mod = "Run"
+move_speeds = {
+"Run": 1500.0,
+"Sprint": 0.0,
+"Walk": 0.0
+}
+
+[node name="HealthSystem" parent="Modules" index="1"]
+health_max = 1
+
+[node name="AreaCollider" parent="Modules/HealthSystem/Hitbox" index="0"]
+position = Vector2( -1.00523, 1.50784 )
+shape = SubResource( 1 )
+
+[node name="ShipManager" parent="." index="4"]
+scale = Vector2( 2, 2 )
+
+[node name="Crop Frame" parent="ShipManager/Frame" index="0"]
+visible = false
+
+[node name="WeaponLeft" parent="ShipManager" index="2"]
+visible = false
+position = Vector2( 0, -9.5 )
+z_index = -2
+
+[node name="Crop Cannon" parent="ShipManager/WeaponLeft" index="0"]
+active_weapon = false
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponLeft" index="1"]
+active_weapon = false
+
+[node name="Rocket Launcher Mk1" parent="ShipManager/WeaponLeft" index="2"]
+active_weapon = false
+
+[node name="Cerberus Cannon" parent="ShipManager/WeaponLeft" index="3"]
+active_weapon = false
+
+[node name="WeaponRight" parent="ShipManager" index="3"]
+visible = false
+
+[node name="Crop Cannon" parent="ShipManager/WeaponRight" index="0"]
+active_weapon = false
+
+[node name="Auto Rifle XV" parent="ShipManager/WeaponRight" index="1"]
+active_weapon = false
+
+[node name="Rocket Launcher Mk1" parent="ShipManager/WeaponRight" index="2"]
+active_weapon = false
+
+[node name="Cerberus Cannon" parent="ShipManager/WeaponRight" index="3"]
+active_weapon = false
+
+[node name="Hurt" parent="Audio" index="2"]
+bus = "SFX"
+
+[node name="Death" parent="Audio" index="3"]
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="." index="10"]
+
+[node name="Bombs" type="Node2D" parent="." index="11"]
+
+[connection signal="Dead" from="Modules/HealthSystem" to="." method="set_state" binds= [ "Dead" ]]
+[connection signal="Dead" from="Modules/HealthSystem" to="." method="release_bombs"]
+
+[editable path="Modules/HealthSystem"]
+[editable path="ShipManager"]
